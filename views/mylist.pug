@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    title Mylist
+  body
+    p My Daily tasks
+    hr
+    ul
+      each val, index in tasklist
+        li= val.title
+        include controls.pug
+    hr  
+    p end of list
