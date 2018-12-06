@@ -14,4 +14,6 @@ html(lang='en')
           include controls.pug
     hr  
     p end of list
+    form(action= 'http://localhost:3000/edit' method='post')
+      input(type='submit')
     script(src='/main.js')

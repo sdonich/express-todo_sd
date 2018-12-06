@@ -1,14 +1,1 @@
-[
-  {
-    "title": "Learn Node",
-    "completed": true
-  },
-  {
-    "title": "Learn Express",
-    "completed": false
-  },
-  {
-    "title": "Learn MongoDB",
-    "completed": false
-  }
-]
+[{"title":"Learn Node"},{"title":"Learn Express"},{"title":"Learn MongoDB"}]
