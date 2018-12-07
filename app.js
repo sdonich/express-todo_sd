@@ -3,20 +3,28 @@ const tasklist = require('./data/tasklist.json');
 const bodyParser = require('body-parser');
 const fs = require('fs');
 const path = require('path');
-const jsonParser = bodyParser.json();
+// const jsonParser = bodyParser.json();
 const app = express();
 
-// const urlencodedParser = bodyParser.urlencoded({extended: false});
-// app.use(bodyParser.urlencoded({ extended: false }));
-// app.use(bodyParser.json());
+// let urlencodedParser = bodyParser.urlencoded({extended: false});
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 app.use(express.static(__dirname + '/public'));
 
 app.set('view engine', 'pug');
 
-app.post('/edit', jsonParser, (req, res) => {
+app.post('/edit', (req, res) => {
+  // 
 
-  console.log(req.body.key);
+  console.log(req.body);
+  // console.log(req.body.key);
+  // console.log(req.body.name);
+  // console.log(req.body.val);
+
+
+
   // let task = {};
   // task.title = req.body.key;
   // fs.readFile(path.resolve('data', 'tasklist.json'), (err, data) => {
@@ -31,6 +39,7 @@ app.post('/edit', jsonParser, (req, res) => {
   //   });
 
   // });
+  // res.send('<h1>');
   res.render('mylist', { tasklist });
   // res.resume();
   // req.end(data, 'utf-8', () => {
