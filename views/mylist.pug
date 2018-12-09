@@ -3,19 +3,25 @@ html(lang='en')
   head
     meta(charset='UTF-8')
     title Mylist
-    link(rel='stylesheet', href='/style.css')
+    link(rel='stylesheet', href='/css/style.css')
   body
     p My Daily tasks
     hr
     ul
       each val, index in tasklist
         li
-          div= val.title
-          include controls.pug
+          if val.complited
+            <input checked type='checkbox' id='#{val.id}' complited='#{val.complited}'>
+            <label for='#{val.id}'>#{val.title}</label>
+          else
+            <input type='checkbox' id='#{val.id}' complited='#{val.complited}'>
+            <label for='#{val.id}'>#{val.title}</label>
     hr  
     p end of list
-    form(action='/edit' method='POST') 
-      input(type='text' name='key')
-      input(type='submit')
+    <button>Create</button>
 
-    script(src='/main.js')
+    script(src='js/complited.js')
+    script(src='js/add_task.js')
+    script(src='js/backend.js')
+    script(src='js/main.js')
+    

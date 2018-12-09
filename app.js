@@ -1,55 +1,59 @@
 const express = require('express');
-const tasklist = require('./data/tasklist.json');
 const bodyParser = require('body-parser');
+const padding = require('./utils/padding');
 const fs = require('fs');
 const path = require('path');
-// const jsonParser = bodyParser.json();
+const jsonParse = bodyParser.json();
+const url = require('url');
+
 const app = express();
 
-// let urlencodedParser = bodyParser.urlencoded({extended: false});
-
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-
 app.use(express.static(__dirname + '/public'));
-
 app.set('view engine', 'pug');
 
-app.post('/edit', (req, res) => {
-  // 
+app.post('/edit', jsonParse, (req, res) => {
 
-  console.log(req.body);
-  // console.log(req.body.key);
-  // console.log(req.body.name);
-  // console.log(req.body.val);
+  fs.readFile(path.resolve('data', 'tasklist.json'), (err, data) => {
+    let newTasklist = JSON.parse(data);
+    const newTask = padding(req.body);
 
+    newTasklist.push(newTask);
+    let jsonTasklist = JSON.stringify(newTasklist);
+    fs.writeFile(path.resolve('data', 'tasklist.json'), jsonTasklist, (err) => {
+      res.json( jsonTasklist );
+    });
+  });
+});
 
+app.get('/complite', (req, res) => {
 
-  // let task = {};
-  // task.title = req.body.key;
-  // fs.readFile(path.resolve('data', 'tasklist.json'), (err, data) => {
-  //   // console.log(data);
-  //   let json = JSON.parse(data);
-  //   json.push(task);
-  //   console.log(json);
-  //   const xxx = JSON.stringify(json);
-  //   fs.writeFile(path.resolve('data', 'tasklist.json'), xxx, (err) => {
-  //     // console.log(tasklist);
-  //     if (err) console.log('f');
-  //   });
+  const changeTask = url.parse(req.url, true).query;
 
-  // });
-  // res.send('<h1>');
-  res.render('mylist', { tasklist });
-  // res.resume();
-  // req.end(data, 'utf-8', () => {
-  //   console.log(data);
-  // });
+  fs.readFile(path.resolve('data', 'tasklist.json'), (err, data) => {
+
+    let tasklist = JSON.parse(data);
+    tasklist.forEach(task => {
+
+      if (task.id.toString() === changeTask.id) {
+        task.complited = (changeTask.complited == 'true');
+      }
+    });
+
+    let jsonTasklist = JSON.stringify(tasklist);
+    
+    fs.writeFile(path.resolve('data', 'tasklist.json'), jsonTasklist, (err) => {
+      res.send('ok');
+    });
+  });
 });
 
 
 app.get('/', (req, res) => {
-  res.render('mylist', { tasklist });
+
+  fs.readFile(path.resolve('data', 'tasklist.json'), (err, data) => {
+    let tasklist = JSON.parse(data);
+    res.render('mylist', { tasklist });
+  });
 });
 
-app.listen(3000, () => console.log('Server is running'));
+app.listen(3000, () => console.log('Server is listening'));
