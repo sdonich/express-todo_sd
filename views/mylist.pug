@@ -7,24 +7,20 @@ html(lang='en')
   body
     p My Daily tasks
     hr
-    ul
-      each val, index in tasklist
-        li
-          if val.complited
-            <input checked type='checkbox' id='#{val.id}' complited='#{val.complited}'>
-            <label for='#{val.id}'>#{val.title}</label>
-          else
-            <input type='checkbox' id='#{val.id}' complited='#{val.complited}'>
-            <label for='#{val.id}'>#{val.title}</label>
-    hr  
-    p end of list
-    ul(class='test')
-    <button>Create</button>
-
-    script(src='js/test.js')
     
-    script(src='js/complited.js')
+    div(class='test')
+      p not done yet:
+      ul(class='not_done')
+      hr
+      p done:
+      ul(class='done')
+    hr  
+    <button>Create</button>
+    
+
+
+    script(src='js/render_tasklist.js')
     script(src='js/add_task.js')
     script(src='js/backend.js')
-    script(src='js/main.js')
+    script(src='js/button.js')
     

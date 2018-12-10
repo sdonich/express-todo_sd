@@ -4,22 +4,22 @@
   function add(tasks) {
     getLastTask(tasks, (task) => {
   
-      let tasklist = document.querySelector('ul');
-      let newLi = document.createElement('li');
-      let newTask = document.createElement('label');
+      let ul = document.querySelector('ul');
+      let li = document.createElement('li');
+      let label = document.createElement('label');
       let input = document.createElement('input');
-      newTask.setAttribute('for', task.id);
+      label.setAttribute('for', task.id);
       input.setAttribute('complited', task.complited);
   
-      newTask.textContent = task.title;
+      label.textContent = task.title;
       input.setAttribute('id', task.id);
       input.setAttribute('type', 'checkbox');
       input.setAttribute('complited', task.complited);
   
-      newLi.append(input);
-      newLi.append(newTask);
+      li.append(input);
+      li.append(label);
   
-      tasklist.append(newLi);
+      ul.append(li);
 
       input.addEventListener('change', (evt) => {
         let task = evt.target;
@@ -34,7 +34,9 @@
         const complited = task.getAttribute('complited');
         const id = task.getAttribute('id');
   
-        window.task.complite(complited, id);        
+        window.task.complite(complited, id);
+        
+        window.tasklist.moving(evt);
       });
 
   
