@@ -17,37 +17,12 @@
       const complited = task.getAttribute('complited');
       const id = task.getAttribute('id');
 
-      sendData(complited, id);
-
-
-
+      window.task.complite(complited, id);
 
     });
   });
 
-  function sendData(complited, id) {
-    
-    // console.log(task);
-    // console.log(id);
-
-
-
-    let xhr = new XMLHttpRequest();
-    // xhr.responseType = 'json';
-    // xhr.open('GET', `/complite?id=${id}&complited=${complited}`);
-    // xhr.open('GET', `/complite`);
-    xhr.open('GET', `/complite?id=${id}&complited=${complited}`);
-
-
   
-    xhr.send();
-  
-    // xhr.addEventListener('load', function () {
-    //   onLoad(xhr.response);
-    // });    
-    
-  }
-
 
 
 })();

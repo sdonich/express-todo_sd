@@ -20,14 +20,14 @@
     submit.addEventListener('click', (evt) => {
       evt.preventDefault();
       let task = edit.value;
-      window.sendData(task, window.newTask.add);
+      window.task.create(task, window.newTask.add);
     });
     document.addEventListener('keydown', (evt) => {
       if (evt.keyCode === 13) {
         evt.preventDefault();
         let task = edit.value;
   
-        window.sendData(task, window.newTask.add);
+        window.task.create(task, window.newTask.add);
       }
     });
   

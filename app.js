@@ -20,8 +20,22 @@ app.post('/edit', jsonParse, (req, res) => {
     newTasklist.push(newTask);
     let jsonTasklist = JSON.stringify(newTasklist);
     fs.writeFile(path.resolve('data', 'tasklist.json'), jsonTasklist, (err) => {
-      res.json( jsonTasklist );
+      res.json(jsonTasklist);
     });
+  });
+});
+
+app.get('/notes', (req, res) => {
+  // console.log('hello');
+  fs.readFile(path.resolve('data', 'tasklist.json'), (err, data) => {
+
+    let tasklist = JSON.parse(data);
+
+    // let jsonTasklist = JSON.stringify(data);
+    // res.set('Content-type', 'application/json');
+    res.json(tasklist);
+
+
   });
 });
 
