@@ -18,18 +18,46 @@
     let done = document.querySelector('.done');    
 
     let li = document.createElement('li');
-    let label = document.createElement('label');
+    li.classList.add('li');
+
+    let label = document.createElement('div');
+    label.classList.add('label');
     let input = document.createElement('input');
-    label.setAttribute('for', task.id);
     input.setAttribute('complited', task.complited);
   
     label.textContent = task.title;
+
+    label.addEventListener('mouseover', (evt) => {
+      let cross = evt.target.nextSibling;
+      cross.style.opacity = 0.5;
+
+    });
+    label.addEventListener('mouseout', (evt) => {
+      let cross = evt.target.nextSibling;
+      cross.style.opacity = 0;
+
+    });
+
+    
     input.setAttribute('id', task.id);
     input.setAttribute('type', 'checkbox');
     input.setAttribute('complited', task.complited);
+
+    let cross = document.createElement('div');
+    cross.classList.add('cross');
+
+    cross.addEventListener('mouseover', (evt) => {
+      cross.style.opacity = 0.5;
+    });
+    cross.addEventListener('mouseout', (evt) => {
+      cross.style.opacity = 0;
+    });
+  
+      
   
     li.append(input);
     li.append(label);
+    li.append(cross);
   
     // tasklist.append(newLi);
     if (task.complited) {
@@ -41,7 +69,7 @@
       // console.log('hello');
     }
 
-   handler(input, task);
+   handler(input);
   
 
   }
