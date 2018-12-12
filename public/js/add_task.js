@@ -71,6 +71,17 @@
         window.tasklist.moving(evt);
       });
 
+      cross.addEventListener('click', (evt) => {
+        //  console.log(task.id);
+        window.task.expel(task.id, (task) => {
+          // console.log(li);
+          li.remove();
+        });
+    
+        
+    
+       });
+    
   
     });
   }

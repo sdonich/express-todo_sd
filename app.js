@@ -61,6 +61,29 @@ app.get('/complite', (req, res) => {
   });
 });
 
+app.get('/expel', (req, res) => {
+
+  const expelTaskId = url.parse(req.url, true).query;
+
+  fs.readFile(path.resolve('data', 'tasklist.json'), (err, data) => {
+
+    let tasklist = JSON.parse(data);
+    tasklist.forEach((task, i) => {
+
+      if (task.id == expelTaskId.id) {
+        tasklist.splice(i, 1);
+      }
+
+    });
+
+    let jsonTasklist = JSON.stringify(tasklist);
+    
+    fs.writeFile(path.resolve('data', 'tasklist.json'), jsonTasklist, (err) => {
+      res.send('ok');
+    });
+  });
+});
+
 
 app.get('/', (req, res) => {
 

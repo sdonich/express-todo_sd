@@ -20,7 +20,23 @@ function complite(complited, id) {
   xhr.send();
 }
 
+function expel(id, onLoad) {
+  let xhr = new XMLHttpRequest();
+  
+  
+  
+  xhr.addEventListener('load', function () {
+    // onLoad(xhr.response);
+
+    onLoad(id);
+  });
+  
+  xhr.open('GET', `/expel?id=${id}`);
+  xhr.send();
+}
+
 window.task = {
   create,
-  complite
+  complite,
+  expel
 }
