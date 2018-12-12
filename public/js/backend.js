@@ -35,7 +35,7 @@ function expel(id, onLoad) {
   xhr.send();
 }
 
-window.task = {
+window.backend = {
   create,
   complite,
   expel

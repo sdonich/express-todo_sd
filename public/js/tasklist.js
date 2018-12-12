@@ -59,22 +59,18 @@
     li.append(label);
     li.append(cross);
   
-    // tasklist.append(newLi);
     if (task.complited) {
       input.checked = true;
       done.append(li);
     } 
     if (task.complited === false) {
       notDone.append(li);
-      // console.log('hello');
     }
 
    handler(input);
   
    cross.addEventListener('click', (evt) => {
-    //  console.log(task.id);
-    window.task.expel(task.id, (task) => {
-      // console.log(li);
+    window.backend.expel(task.id, (task) => {
       li.remove();
     });
 
@@ -92,7 +88,6 @@
   });
 
   function inputChangeHandler(input) {
-    // debugger;
 
     input.addEventListener('change', (evt) => {
       let task = evt.target;
@@ -107,33 +102,10 @@
       const complited = task.getAttribute('complited');
       const id = task.getAttribute('id');
   
-      window.task.complite(complited, id);
+      window.backend.complite(complited, id);
 
-      //clear
-      // console.log(evt.target.parentElement.parentElement);
       moving(evt);
 
-
-      
-      // if (li.parentElement === done) {
-        
-      //   let copy = li.parentElement.removeChild(li);
-      //   notDone.append(copy);
-
-      // }
-
-      // while (notDone.lastChild) {
-      //   console.log('hello');
-      //   notDone.removeChild(notDone.lastChild);
-      // }
-
-      // while (done.lastChild) {
-      //   console.log('hi');
-
-      //   done.removeChild(done.lastChild);
-      // }  
-      
-      
 
     });
   }
@@ -144,8 +116,6 @@
 
       let li = evt.target.parentElement;
       let parent = li.parentElement;
-      // let copy = li.parentElement.removeChild(li);
-      // console.log(copy);
       let copy = li.parentElement.removeChild(li);
       if (parent === notDone) {
         

@@ -1,4 +1,4 @@
-.edit {
+.enter_field {
   width: 200px;
   height: 25px;
   border: 1px solid black;
@@ -55,5 +55,9 @@
 }
 
 .ok_button {
-  background-color: aquamarine;
+  background-color: rgb(37, 139, 139);
+}
+
+.create_button {
+  background-color: rgb(37, 139, 139);
 }

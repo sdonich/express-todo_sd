@@ -26,21 +26,14 @@ app.post('/edit', jsonParse, (req, res) => {
 });
 
 app.get('/notes', (req, res) => {
-  // console.log('hello');
   fs.readFile(path.resolve('data', 'tasklist.json'), (err, data) => {
 
     let tasklist = JSON.parse(data);
-
-    // let jsonTasklist = JSON.stringify(data);
-    // res.set('Content-type', 'application/json');
     res.json(tasklist);
-
-
   });
 });
 
 app.get('/complite', (req, res) => {
-
   const changeTask = url.parse(req.url, true).query;
 
   fs.readFile(path.resolve('data', 'tasklist.json'), (err, data) => {
