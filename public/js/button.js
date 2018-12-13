@@ -29,7 +29,7 @@
     let submit = document.querySelector('.ok_button');
 
     let task = enterField.value;
-    window.backend.create(task, window.newTask.add);
+    window.backend.create(task, window.action.add);
 
     submit.remove();
     enterField.remove();
@@ -46,7 +46,7 @@
       let submit = document.querySelector('.ok_button');
 
       let task = enterField.value;
-      window.backend.create(task, window.newTask.add);
+      window.backend.create(task, window.action.add);
 
       submit.remove();
       enterField.remove();

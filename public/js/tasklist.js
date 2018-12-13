@@ -17,31 +17,31 @@
     let notDone = document.querySelector('.not_done');
     let done = document.querySelector('.done');    
 
-    let li = document.createElement('li');
-    li.classList.add('li');
+    let taskBox = document.createElement('li');
+    taskBox.classList.add('taskBox');
 
-    let label = document.createElement('div');
-    label.classList.add('label');
-    let input = document.createElement('input');
-    input.setAttribute('complited', task.complited);
+    let taskContent = document.createElement('div');
+    taskContent.classList.add('taskContent');
+    let checkbox = document.createElement('input');
+    checkbox.setAttribute('complited', task.complited);
   
-    label.textContent = task.title;
+    taskContent.textContent = task.title;
 
-    label.addEventListener('mouseover', (evt) => {
+    taskContent.addEventListener('mouseover', (evt) => {
       let cross = evt.target.nextSibling;
       cross.style.opacity = 0.5;
 
     });
-    label.addEventListener('mouseout', (evt) => {
+    taskContent.addEventListener('mouseout', (evt) => {
       let cross = evt.target.nextSibling;
       cross.style.opacity = 0;
 
     });
 
     
-    input.setAttribute('id', task.id);
-    input.setAttribute('type', 'checkbox');
-    input.setAttribute('complited', task.complited);
+    checkbox.setAttribute('id', task.id);
+    checkbox.setAttribute('type', 'checkbox');
+    checkbox.setAttribute('complited', task.complited);
 
     let cross = document.createElement('div');
     cross.classList.add('cross');
@@ -55,23 +55,23 @@
   
       
   
-    li.append(input);
-    li.append(label);
-    li.append(cross);
+    taskBox.append(checkbox);
+    taskBox.append(taskContent);
+    taskBox.append(cross);
   
     if (task.complited) {
-      input.checked = true;
-      done.append(li);
+      checkbox.checked = true;
+      done.append(taskBox);
     } 
     if (task.complited === false) {
-      notDone.append(li);
+      notDone.append(taskBox);
     }
 
-   handler(input);
+   handler(checkbox);
   
    cross.addEventListener('click', (evt) => {
     window.backend.expel(task.id, (task) => {
-      li.remove();
+      taskBox.remove();
     });
 
     
@@ -87,9 +87,9 @@
     });
   });
 
-  function inputChangeHandler(input) {
+  function inputChangeHandler(checkbox) {
 
-    input.addEventListener('change', (evt) => {
+    checkbox.addEventListener('change', (evt) => {
       let task = evt.target;
   
       if (task.checked === true) {
@@ -104,32 +104,13 @@
   
       window.backend.complite(complited, id);
 
-      moving(evt);
+      window.action.moving(evt);
 
 
     });
   }
 
-  function moving(evt) {
-    let notDone = document.querySelector('.not_done');
-      let done = document.querySelector('.done'); 
 
-      let li = evt.target.parentElement;
-      let parent = li.parentElement;
-      let copy = li.parentElement.removeChild(li);
-      if (parent === notDone) {
-        
-        done.append(copy);
-
-      } else {
-        notDone.append(copy);
-      }
-  }
-
-  
-  window.tasklist = {
-    moving
-  };
 
 })();
 

@@ -23,12 +23,8 @@ function complite(complited, id) {
 function expel(id, onLoad) {
   let xhr = new XMLHttpRequest();
   
-  
-  
   xhr.addEventListener('load', function () {
-    // onLoad(xhr.response);
-
-    onLoad(id);
+    onLoad();
   });
   
   xhr.open('GET', `/expel?id=${id}`);
