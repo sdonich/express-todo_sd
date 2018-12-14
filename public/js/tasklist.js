@@ -1,60 +1,45 @@
 'use strict';
 
 (function() {
-  function add(onLoad) {
-    let xhr = new XMLHttpRequest();
-    xhr.open('GET', `/notes`);
-    xhr.responseType = 'json';
-    xhr.send();
-  
-    xhr.addEventListener('load', function () {
-      onLoad(xhr.response);
-    })
-  
-  }
-  
   function render(task, handler) {
     let notDone = document.querySelector('.not_done');
     let done = document.querySelector('.done');    
 
+    // создаем обертки и контейнеры для задачь
     let taskBox = document.createElement('li');
     taskBox.classList.add('taskBox');
 
     let taskContent = document.createElement('div');
     taskContent.classList.add('taskContent');
-    let checkbox = document.createElement('input');
-    checkbox.setAttribute('complited', task.complited);
-  
     taskContent.textContent = task.title;
 
+    let checkbox = document.createElement('input');
+    checkbox.setAttribute('complited', task.complited);
+    checkbox.setAttribute('type', 'checkbox');
+    checkbox.setAttribute('id', task.id);
+    
+    // вешаем обработку на появление cross
     taskContent.addEventListener('mouseover', (evt) => {
       let cross = evt.target.nextSibling;
       cross.style.opacity = 0.5;
-
     });
     taskContent.addEventListener('mouseout', (evt) => {
       let cross = evt.target.nextSibling;
       cross.style.opacity = 0;
-
     });
 
-    
-    checkbox.setAttribute('id', task.id);
-    checkbox.setAttribute('type', 'checkbox');
-    checkbox.setAttribute('complited', task.complited);
-
+    // создание cross и обработка
     let cross = document.createElement('div');
     cross.classList.add('cross');
 
-    cross.addEventListener('mouseover', (evt) => {
+    cross.addEventListener('mouseover', () => {
       cross.style.opacity = 0.5;
     });
-    cross.addEventListener('mouseout', (evt) => {
+    cross.addEventListener('mouseout', () => {
       cross.style.opacity = 0;
     });
-  
       
-  
+    // вставляем задачи
     taskBox.append(checkbox);
     taskBox.append(taskContent);
     taskBox.append(cross);
@@ -67,35 +52,22 @@
       notDone.append(taskBox);
     }
 
-   handler(checkbox);
-  
-   cross.addEventListener('click', (evt) => {
-    window.backend.expel(task.id, (task) => {
-      taskBox.remove();
+    // обработчики на галочку и на тап по cross
+    handler(checkbox);
+    cross.addEventListener('click', () => {
+      window.backend.expel(task.id, () => {
+        taskBox.remove();
+      });
     });
-
-    
-
-   });
-  
-
   }
-  
-  add((tasks) => {
-    tasks.forEach(task => {
-      render(task, inputChangeHandler);
-    });
-  });
 
   function inputChangeHandler(checkbox) {
-
     checkbox.addEventListener('change', (evt) => {
       let task = evt.target;
   
       if (task.checked === true) {
         task.setAttribute('complited', true);
-      }
-      if (task.checked === false) {
+      } else {
         task.setAttribute('complited', false);
       }
   
@@ -103,14 +75,14 @@
       const id = task.getAttribute('id');
   
       window.backend.complite(complited, id);
-
       window.action.moving(evt);
-
-
     });
   }
 
-
-
+  window.backend.buildList((tasks) => {
+    tasks.forEach(task => {
+      render(task, inputChangeHandler);
+    });
+  });
 })();
 

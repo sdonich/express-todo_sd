@@ -9,27 +9,13 @@
   list-style-type: none;
 }
 
-
-
-.cross_delete {
-  width: 10px;
-  height: 10px;
-  background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICA8cGF0aCBkPSJNMTkgNi40MUwxNy41OSA1IDEyIDEwLjU5IDYuNDEgNSA1IDYuNDEgMTAuNTkgMTIgNSAxNy41OSA2LjQxIDE5IDEyIDEzLjQxIDE3LjU5IDE5IDE5IDE3LjU5IDEzLjQxIDEyIDE5IDYuNDF6Ii8+Cjwvc3ZnPgo=');
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
 .taskBox {
   display: flex;
-  
   position: relative;
   width: 200px;
 }
 
-
-
 .cross {
-  
   position: absolute;
   width: 10px;
   height: 10px;
