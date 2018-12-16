@@ -17,9 +17,8 @@ app.post('/edit', jsonParse, (req, res) => {
     const newTask = padding(req.body);
     newTasklist.push(newTask);
 
-    let jsonTasklist = JSON.stringify(newTasklist);
-    fs.writeFile(path.resolve('data', 'tasklist.json'), jsonTasklist, (err) => {
-      res.json(jsonTasklist);
+    fs.writeFile(path.resolve('data', 'tasklist.json'), JSON.stringify(newTasklist), (err) => {
+      res.json(newTasklist);
     });
   });
 });

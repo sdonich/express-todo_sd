@@ -11,7 +11,8 @@
     xhr.send(JSON.stringify( task ));
   
     xhr.addEventListener('load', function () {
-      onLoad(xhr.response);
+      let task = getLastTask(xhr.response);
+      onLoad(task);
     });
   }
   
@@ -41,6 +42,13 @@
     xhr.addEventListener('load', function () {
       onLoad(xhr.response);
     })
+  }
+
+  function getLastTask(tasks) {
+    const lastIndex = tasks.length;
+    const task = tasks[lastIndex - 1];
+
+    return task;
   }
   
   window.backend = {
