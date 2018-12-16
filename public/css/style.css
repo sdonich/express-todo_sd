@@ -38,3 +38,24 @@
 .create_button {
   background-color: rgb(37, 139, 139);
 }
+
+/* .create_field {
+  width: 600px;
+  min-height: 20px;
+  border-radius: 10px;
+  box-shadow: -1px 1px 3px 2px #2021243e;
+  color: grey;
+  font-size: 17px;
+  padding: 10px 15px;
+  outline: none;
+  margin: 25px;
+  position: relative;
+  left: 30%;
+}
+
+.ok {
+  height: 23px;
+  position: relative;
+} */
+
+ 

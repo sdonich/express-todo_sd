@@ -5,10 +5,11 @@ html(lang='en')
     title Mylist
     link(rel='stylesheet', href='/css/style.css')
   body
-    p My Daily tasks
-    div(class='cross')
+    //- div(class='wrapper')
+    //- div(class='create_field' contenteditable='true') Task...
+    //- img(src='img/checkmark.png' class='ok')
     hr
-    div(class='test')
+    div
       p not done yet:
       ul(class='list not_done')
       p done:
@@ -16,6 +17,7 @@ html(lang='en')
     hr  
     button(class='create_button') Create
 
+    //- script(src='js/test.js')
     script(src='js/handler.js')
     script(src='js/backend.js')
     script(src='js/action.js')
