@@ -5,22 +5,19 @@ html(lang='en')
     title Mylist
     link(rel='stylesheet', href='/css/style.css')
   body
-    //- div(class='wrapper')
-    //- div(class='create_field' contenteditable='true') Task...
-    //- img(src='img/checkmark.png' class='ok')
+    div(class='wrapper_create')
+      div(class='create_field' contenteditable='true') new task...
+      div(class='ok_markdown')
     hr
     div
       p not done yet:
       ul(class='list not_done')
       p done:
       ul(class='list done')
-    hr  
-    button(class='create_button') Create
 
-    //- script(src='js/test.js')
     script(src='js/handler.js')
     script(src='js/backend.js')
     script(src='js/action.js')
-    script(src='js/button.js')
+    script(src='js/task.js')
     script(src='js/tasklist.js')
     

@@ -1,7 +1,5 @@
-.enter_field {
-  width: 200px;
-  height: 25px;
-  border: 1px solid black;
+body {
+  background-color: #f7f2f2;
 }
 
 .list {
@@ -31,31 +29,48 @@
   flex-grow: 3;
 }
 
-.ok_button {
-  background-color: rgb(37, 139, 139);
+.ok_markdown {
+  width: 50px;
+  position: relative;
+  background-image: url('/img/checkmark.png');
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  align-self: stretch;
+  margin-left: 20px;
+  opacity: 0;
+} 
+
+.ok_markdown:active {
+  transform: scale(0.9);
+
 }
 
-.create_button {
-  background-color: rgb(37, 139, 139);
-}
-
-/* .create_field {
-  width: 600px;
-  min-height: 20px;
+.wrapper_create {
+  width: 700px;
+  min-height: 40px;
   border-radius: 10px;
   box-shadow: -1px 1px 3px 2px #2021243e;
-  color: grey;
-  font-size: 17px;
-  padding: 10px 15px;
-  outline: none;
   margin: 25px;
   position: relative;
   left: 30%;
+  padding: 10px 15px;
+  display: flex;
+  background-color: white;
 }
 
-.ok {
-  height: 23px;
-  position: relative;
-} */
+.create_field {
+  outline: none;
+  overflow: hidden;
+  width: 650px;
+  font-size: 26px;
+  padding-top: 4px;
+  color: grey;
+}
 
- 
+.cursor {
+  height: 50%;
+  border: 1px solid grey;
+  position: absolute;
+  top: 14px;
+}
