@@ -5,14 +5,12 @@ html(lang='en')
     title Mylist
     link(rel='stylesheet', href='/css/style.css')
   body
+    h1(class='title') My task list
     div(class='wrapper_create')
       div(class='create_field' contenteditable='true') new task...
       div(class='ok_markdown')
-    hr
-    div
-      p not done yet:
+    div(class='wrapper_list')
       ul(class='list not_done')
-      p done:
       ul(class='list done')
 
     script(src='js/handler.js')

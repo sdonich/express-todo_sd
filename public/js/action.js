@@ -18,6 +18,7 @@
     // контейнер для задачи
     let taskContent = document.createElement('div');
     taskContent.classList.add('taskContent');
+    taskContent.setAttribute('contenteditable', true);
     taskContent.textContent = task.title;
        
     // cross для удаления задачи

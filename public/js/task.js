@@ -20,7 +20,6 @@
     setDefaultState();
   }
   
-  
   function keydownHandler(evt) {
     if (document.querySelector('.cursor')) {
       document.querySelector('.cursor').remove();
@@ -43,25 +42,29 @@
   
   function createNoteHandler(evt) {
     okMarkdown.style.opacity = 0.5;
-    evt.target.textContent = '';
 
-    let cursor = document.createElement('div');
-    cursor.classList.add('cursor');
-    createField.append(cursor);
+    if (evt.target.textContent === 'new task...') {
+      evt.target.textContent = '';
+
+      let cursor = document.createElement('div');
+      cursor.classList.add('cursor');
+      createField.append(cursor);
+    }
+    
     createField.style.color = 'black';
 
     document.addEventListener('keydown', keydownHandler);
     okMarkdown.addEventListener('click', submit);
-    // document.addEventListener('mousedown', (evt) => {
-    //   if (evt.target !== okMarkdown || evt.target !== createField) {
-    //     // createField.blur();
-    //     // console.log(evt.target === okMarkdown);
-    //     createField.style.color = 'grey';
-    //     document.removeEventListener('keydown', keydownHandler);
 
+    document.addEventListener('mousedown', (evt) => {
+      if (evt.target !== okMarkdown || evt.target !== createField) {
+        createField.style.color = 'grey';
 
-    //   }
-    // });
+        document.removeEventListener('keydown', keydownHandler);
+        createField.addEventListener('click', createNoteHandler);
+      }
+    });
+
     createField.removeEventListener('click', createNoteHandler);
   }
   
