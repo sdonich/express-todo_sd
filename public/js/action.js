@@ -29,7 +29,9 @@
           evt.preventDefault();
           const checkboxSibling = evt.target.previousSibling;
           const id = checkboxSibling.getAttribute('id');
-          const editTask = evt.target.textContent;
+          const editContent = evt.target.textContent;
+
+          window.backend.edit({id, content: editContent});
 
 
         }

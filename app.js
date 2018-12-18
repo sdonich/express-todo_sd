@@ -25,6 +25,7 @@ app.post('/add', jsonParse, (req, res) => {
 
 // work
 app.post('/edit', jsonParse, (req, res) => {
+  console.log(req.body);
   // fs.readFile(path.resolve('data', 'tasklist.json'), (err, data) => {
   //   let newTasklist = JSON.parse(data);
   //   const newTask = padding(req.body);

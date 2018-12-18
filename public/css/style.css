@@ -1,5 +1,5 @@
 body {
-  background-color: #f7f2f2;
+  background-color: #8b96a8;
   font-family: 'Courier New', Courier, monospace;
 }
 
@@ -81,7 +81,7 @@ body {
 .wrapper_list {
   background-color: white;
   border-radius: 10px;
-  box-shadow: -1px 1px 3px 2px #20212433;
+  box-shadow: -1px 1px 3px 2px #2021243e;
   padding: 10px 15px;
   width: 700px;
   position: relative;
@@ -93,3 +93,17 @@ body {
 .done div {
   text-decoration: line-through;
 }
+
+input {
+  align-self: center;
+
+}
+
+/* for new
+width: 300px;
+height: 200px;
+background-color: white;
+border-radius: 10px;
+box-shadow: -1px 1px 3px 2px #2021243e;
+position: absolute;
+top: 10px; */

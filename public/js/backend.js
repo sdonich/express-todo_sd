@@ -18,13 +18,12 @@
 
   // work
   function edit(data, onLoad) {
-    // const task = { title: data };
-    
-    // let xhr = new XMLHttpRequest();
-    // xhr.responseType = 'json';
-    // xhr.open('POST', '/add');
-    // xhr.setRequestHeader('Content-Type', 'application/json');
-    // xhr.send(JSON.stringify( task ));
+    let xhr = new XMLHttpRequest();
+    xhr.responseType = 'json';
+    xhr.open('POST', '/edit');
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify(data));
+
   
     // xhr.addEventListener('load', function () {
     //   let task = getLastTask(xhr.response);
