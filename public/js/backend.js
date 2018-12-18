@@ -6,7 +6,7 @@
     
     let xhr = new XMLHttpRequest();
     xhr.responseType = 'json';
-    xhr.open('POST', '/edit');
+    xhr.open('POST', '/add');
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(JSON.stringify( task ));
   
@@ -15,6 +15,23 @@
       onLoad(task);
     });
   }
+
+  // work
+  function edit(data, onLoad) {
+    // const task = { title: data };
+    
+    // let xhr = new XMLHttpRequest();
+    // xhr.responseType = 'json';
+    // xhr.open('POST', '/add');
+    // xhr.setRequestHeader('Content-Type', 'application/json');
+    // xhr.send(JSON.stringify( task ));
+  
+    // xhr.addEventListener('load', function () {
+    //   let task = getLastTask(xhr.response);
+    //   onLoad(task);
+    // });
+  }
+  //
   
   function complite(complited, id) {
     let xhr = new XMLHttpRequest();
@@ -55,7 +72,11 @@
     create,
     complite,
     expel,
-    buildList
+    buildList,
+
+    // work
+    edit
+    //
   }
 })();
 

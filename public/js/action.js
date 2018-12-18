@@ -18,6 +18,28 @@
     // контейнер для задачи
     let taskContent = document.createElement('div');
     taskContent.classList.add('taskContent');
+
+    // work
+    taskContent.setAttribute('contenteditable', true);
+
+    
+    taskContent.addEventListener('click', () => {
+      document.addEventListener('keydown', (evt) => {
+        if (evt.keyCode === 13) {
+          evt.preventDefault();
+          const checkboxSibling = evt.target.previousSibling;
+          const id = checkboxSibling.getAttribute('id');
+          const editTask = evt.target.textContent;
+
+
+        }
+      });
+    });
+
+    //
+
+
+
     taskContent.textContent = task.title;
        
     // cross для удаления задачи
