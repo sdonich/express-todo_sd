@@ -5,6 +5,7 @@ const fs = require('fs');
 const path = require('path');
 const jsonParse = bodyParser.json();
 const url = require('url');
+const edit = require('./utils/edit');
 
 const app = express();
 
@@ -23,20 +24,18 @@ app.post('/add', jsonParse, (req, res) => {
   });
 });
 
-// work
 app.post('/edit', jsonParse, (req, res) => {
-  console.log(req.body);
-  // fs.readFile(path.resolve('data', 'tasklist.json'), (err, data) => {
-  //   let newTasklist = JSON.parse(data);
-  //   const newTask = padding(req.body);
-  //   newTasklist.push(newTask);
+  let editTask = req.body;
+  fs.readFile(path.resolve('data', 'tasklist.json'), (err, data) => {
+    let tasklist = JSON.parse(data);
+    let newTasklist = edit(editTask, tasklist);
 
-  //   fs.writeFile(path.resolve('data', 'tasklist.json'), JSON.stringify(newTasklist), (err) => {
-  //     res.json(newTasklist);
-  //   });
-  // });
+    fs.writeFile(path.resolve('data', 'tasklist.json'), JSON.stringify(newTasklist), (err) => {
+      res.send('ok');
+
+    });
+  });
 });
-//
 
 app.get('/notes', (req, res) => {
   fs.readFile(path.resolve('data', 'tasklist.json'), (err, data) => {

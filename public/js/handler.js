@@ -44,9 +44,51 @@
     });
   }
 
+  function editContent(taskContent) {
+    let prieviousContent = '';
+
+    function taskContentClickHandler(evt) {
+      prieviousContent = evt.target.textContent;
+
+      document.addEventListener('keydown', submitHandler);
+      document.addEventListener('keydown', resetHandler);
+      evt.target.removeEventListener('click', taskContentClickHandler);
+    }
+
+
+    function resetHandler(evt) {
+      if (evt.keyCode === 27) {
+        taskContent.blur();
+        taskContent.textContent = prieviousContent;
+        document.removeEventListener('keydown', resetHandler);
+        document.removeEventListener('keydown', submitHandler);
+        taskContent.addEventListener('click', taskContentClickHandler);
+      }
+    }
+
+    function submitHandler(evt) {
+      if (evt.keyCode === 13) {
+        evt.preventDefault();
+        evt.target.blur();
+        const checkboxSibling = evt.target.previousSibling;
+        const id = checkboxSibling.getAttribute('id');
+        const content = evt.target.textContent;
+
+        window.backend.edit( {id, title: content} );
+        document.removeEventListener('keydown', submitHandler);
+        document.addEventListener('keydown', resetHandler);
+
+        taskContent.addEventListener('click', taskContentClickHandler);
+      }
+    }
+
+    taskContent.addEventListener('click', taskContentClickHandler);
+  }
+
   window.handler = {
     inputChange,
     crossAppear,
-    crossDelete
+    crossDelete,
+    editContent
   }
 })();

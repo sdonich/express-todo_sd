@@ -8,7 +8,7 @@
     xhr.responseType = 'json';
     xhr.open('POST', '/add');
     xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.send(JSON.stringify( task ));
+    xhr.send(JSON.stringify(task));
   
     xhr.addEventListener('load', function () {
       let task = getLastTask(xhr.response);
@@ -16,21 +16,13 @@
     });
   }
 
-  // work
   function edit(data, onLoad) {
     let xhr = new XMLHttpRequest();
     xhr.responseType = 'json';
     xhr.open('POST', '/edit');
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(JSON.stringify(data));
-
-  
-    // xhr.addEventListener('load', function () {
-    //   let task = getLastTask(xhr.response);
-    //   onLoad(task);
-    // });
   }
-  //
   
   function complite(complited, id) {
     let xhr = new XMLHttpRequest();

@@ -18,30 +18,7 @@
     // контейнер для задачи
     let taskContent = document.createElement('div');
     taskContent.classList.add('taskContent');
-
-    // work
     taskContent.setAttribute('contenteditable', true);
-
-    
-    taskContent.addEventListener('click', () => {
-      document.addEventListener('keydown', (evt) => {
-        if (evt.keyCode === 13) {
-          evt.preventDefault();
-          const checkboxSibling = evt.target.previousSibling;
-          const id = checkboxSibling.getAttribute('id');
-          const editContent = evt.target.textContent;
-
-          window.backend.edit({id, content: editContent});
-
-
-        }
-      });
-    });
-
-    //
-
-
-
     taskContent.textContent = task.title;
        
     // cross для удаления задачи
@@ -65,6 +42,7 @@
     window.handler.crossAppear(taskContent, cross);
     window.handler.inputChange(checkbox);
     window.handler.crossDelete(task, taskBox, cross);
+    window.handler.editContent(taskContent);
   }
 
   // перемещение задачи между невыполненными и выполненными

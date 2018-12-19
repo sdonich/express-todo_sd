@@ -21,10 +21,6 @@
   }
   
   function keydownHandler(evt) {
-    if (document.querySelector('.cursor')) {
-      document.querySelector('.cursor').remove();
-    }
-  
     if (evt.keyCode === 27) {
       evt.preventDefault();
 
@@ -45,10 +41,6 @@
 
     if (evt.target.textContent === 'new task...') {
       evt.target.textContent = '';
-
-      let cursor = document.createElement('div');
-      cursor.classList.add('cursor');
-      createField.append(cursor);
     }
     
     createField.style.color = 'black';
