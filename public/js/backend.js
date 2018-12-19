@@ -1,8 +1,8 @@
 'use strict';
 
 (function() {
-  function create(data, onLoad) {
-    const task = { title: data };
+  function create(data, tasklist, onLoad) {
+    const task = { title: data, tasklist };
     
     let xhr = new XMLHttpRequest();
     xhr.responseType = 'json';
