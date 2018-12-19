@@ -44,44 +44,68 @@
     });
   }
 
+  // обработка редактирования задачи
+  let prieviousContent = '';
+  function taskContentClickHandler(evt) {
+    prieviousContent = evt.target.textContent;
+    evt.target.setAttribute('status', 'editing');
+
+    document.addEventListener('keydown', submitHandler);
+    document.addEventListener('keydown', resetHandler);
+    document.addEventListener('click', clickSubmit);
+    evt.target.removeEventListener('click', taskContentClickHandler);
+  }
+  
+  function clickSubmit(evt) {
+    const editingTask = document.querySelector('div[status="editing"]');
+
+    if (evt.target !== editingTask) {
+      const checkboxSibling = editingTask.previousSibling;
+      const id = checkboxSibling.getAttribute('id');
+      const content = editingTask.textContent;
+
+      window.backend.edit( {id, title: content} );
+      document.removeEventListener('keydown', submitHandler);
+      document.removeEventListener('click', clickSubmit);
+      document.removeEventListener('keydown', resetHandler);
+      evt.target.addEventListener('click', taskContentClickHandler);
+
+      editingTask.removeAttribute('status', 'editing');
+    }
+  }
+
+  function resetHandler(evt) {
+    if (evt.keyCode === 27) {
+      evt.target.blur();
+      evt.target.textContent = prieviousContent;
+      document.removeEventListener('keydown', resetHandler);
+      document.removeEventListener('keydown', submitHandler);
+      document.removeEventListener('click', clickSubmit);
+      evt.target.addEventListener('click', taskContentClickHandler);
+
+      editingTask.removeAttribute('status', 'editing');
+    }
+  }
+
+  function submitHandler(evt) {
+    if (evt.keyCode === 13) {
+      evt.preventDefault();
+      evt.target.blur();
+      const checkboxSibling = evt.target.previousSibling;
+      const id = checkboxSibling.getAttribute('id');
+      const content = evt.target.textContent;
+
+      window.backend.edit( {id, title: content} );
+      document.removeEventListener('keydown', submitHandler);
+      document.removeEventListener('click', clickSubmit);
+      document.removeEventListener('keydown', resetHandler);
+      evt.target.addEventListener('click', taskContentClickHandler);
+
+      editingTask.removeAttribute('status', 'editing');
+    }
+  }
+
   function editContent(taskContent) {
-    let prieviousContent = '';
-
-    function taskContentClickHandler(evt) {
-      prieviousContent = evt.target.textContent;
-
-      document.addEventListener('keydown', submitHandler);
-      document.addEventListener('keydown', resetHandler);
-      evt.target.removeEventListener('click', taskContentClickHandler);
-    }
-
-
-    function resetHandler(evt) {
-      if (evt.keyCode === 27) {
-        taskContent.blur();
-        taskContent.textContent = prieviousContent;
-        document.removeEventListener('keydown', resetHandler);
-        document.removeEventListener('keydown', submitHandler);
-        taskContent.addEventListener('click', taskContentClickHandler);
-      }
-    }
-
-    function submitHandler(evt) {
-      if (evt.keyCode === 13) {
-        evt.preventDefault();
-        evt.target.blur();
-        const checkboxSibling = evt.target.previousSibling;
-        const id = checkboxSibling.getAttribute('id');
-        const content = evt.target.textContent;
-
-        window.backend.edit( {id, title: content} );
-        document.removeEventListener('keydown', submitHandler);
-        document.addEventListener('keydown', resetHandler);
-
-        taskContent.addEventListener('click', taskContentClickHandler);
-      }
-    }
-
     taskContent.addEventListener('click', taskContentClickHandler);
   }
 
