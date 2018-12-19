@@ -16,7 +16,7 @@
     });
   }
 
-  function edit(data, onLoad) {
+  function edit(data) {
     let xhr = new XMLHttpRequest();
     xhr.responseType = 'json';
     xhr.open('POST', '/edit');
@@ -64,10 +64,7 @@
     complite,
     expel,
     buildList,
-
-    // work
     edit
-    //
   }
 })();
 

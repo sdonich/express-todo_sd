@@ -50,58 +50,56 @@
     prieviousContent = evt.target.textContent;
     evt.target.setAttribute('status', 'editing');
 
-    document.addEventListener('keydown', submitHandler);
+    document.addEventListener('keydown', enterSubmit);
     document.addEventListener('keydown', resetHandler);
     document.addEventListener('click', clickSubmit);
     evt.target.removeEventListener('click', taskContentClickHandler);
   }
+
+  function submit(evt) {
+    evt.preventDefault();
+
+    const editingTask = document.querySelector('div[status="editing"]');
+    const checkboxSibling = editingTask.previousSibling;
+    const id = checkboxSibling.getAttribute('id');
+    const content = editingTask.textContent || '-';
+    editingTask.blur();
+
+    window.backend.edit( {id, title: content} );
+    
+    document.removeEventListener('keydown', enterSubmit);
+    document.removeEventListener('click', clickSubmit);
+    document.removeEventListener('keydown', resetHandler);
+    editingTask.addEventListener('click', taskContentClickHandler);
+
+    editingTask.removeAttribute('status', 'editing');
+  }
   
   function clickSubmit(evt) {
-    const editingTask = document.querySelector('div[status="editing"]');
-
-    if (evt.target !== editingTask) {
-      const checkboxSibling = editingTask.previousSibling;
-      const id = checkboxSibling.getAttribute('id');
-      const content = editingTask.textContent;
-
-      window.backend.edit( {id, title: content} );
-      document.removeEventListener('keydown', submitHandler);
-      document.removeEventListener('click', clickSubmit);
-      document.removeEventListener('keydown', resetHandler);
-      evt.target.addEventListener('click', taskContentClickHandler);
-
-      editingTask.removeAttribute('status', 'editing');
+    if (evt.target !== document.querySelector('div[status="editing"]')) {
+      submit(evt);
     }
   }
 
   function resetHandler(evt) {
+    const editingTask = document.querySelector('div[status="editing"]');
+
     if (evt.keyCode === 27) {
-      evt.target.blur();
-      evt.target.textContent = prieviousContent;
+      evt.preventDefault();
+      editingTask.blur();
+      editingTask.textContent = prieviousContent;
       document.removeEventListener('keydown', resetHandler);
-      document.removeEventListener('keydown', submitHandler);
+      document.removeEventListener('keydown', enterSubmit);
       document.removeEventListener('click', clickSubmit);
-      evt.target.addEventListener('click', taskContentClickHandler);
+      editingTask.addEventListener('click', taskContentClickHandler);
 
       editingTask.removeAttribute('status', 'editing');
     }
   }
 
-  function submitHandler(evt) {
+  function enterSubmit(evt) {
     if (evt.keyCode === 13) {
-      evt.preventDefault();
-      evt.target.blur();
-      const checkboxSibling = evt.target.previousSibling;
-      const id = checkboxSibling.getAttribute('id');
-      const content = evt.target.textContent;
-
-      window.backend.edit( {id, title: content} );
-      document.removeEventListener('keydown', submitHandler);
-      document.removeEventListener('click', clickSubmit);
-      document.removeEventListener('keydown', resetHandler);
-      evt.target.addEventListener('click', taskContentClickHandler);
-
-      editingTask.removeAttribute('status', 'editing');
+      submit(evt);
     }
   }
 

@@ -15,7 +15,7 @@
   
   function submit() {
     let task = createField.textContent;
-    window.backend.create(task, window.action.add);
+    if (task.length > 0) window.backend.create(task, window.action.add);
 
     setDefaultState();
   }
@@ -39,9 +39,7 @@
   function createNoteHandler(evt) {
     okMarkdown.style.opacity = 0.5;
 
-    if (evt.target.textContent === 'new task...') {
-      evt.target.textContent = '';
-    }
+    if (evt.target.textContent === 'new task...') evt.target.textContent = '';
     
     createField.style.color = 'black';
 
