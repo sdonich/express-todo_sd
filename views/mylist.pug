@@ -2,7 +2,7 @@
 html(lang='en')
   head
     meta(charset='UTF-8')
-    title Noting
+    title To-Do
     link(rel='stylesheet', href='/css/style.css')
   body
     h1(class='title') My task list
@@ -12,11 +12,19 @@ html(lang='en')
     div(class='wrapper_list')
       ul(class='list not_done')
       ul(class='list done')
-    div(class='test')
+    //- work  
+    div(class='tasklist-box')
+      h2(class='tasklists-title') Your tasklists
+      ul(class='tasklists')
+    //-
 
     script(src='js/handler.js')
     script(src='js/backend.js')
     script(src='js/action.js')
     script(src='js/task.js')
     script(src='js/tasklist.js')
+
+    //- work
+    script(src='js/lists.js')
+    //-
     

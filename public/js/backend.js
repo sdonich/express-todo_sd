@@ -52,6 +52,19 @@
     })
   }
 
+  // work
+  function titleTasklists(onLoad) {
+    let xhr = new XMLHttpRequest();
+    xhr.open('GET', `/tasklists`);
+    xhr.responseType = 'json';
+    xhr.send();
+  
+    xhr.addEventListener('load', function () {
+      onLoad(xhr.response);
+    })
+  }
+  // -
+
   function getLastTask(tasks) {
     const lastIndex = tasks.length;
     const task = tasks[lastIndex - 1];
@@ -64,7 +77,10 @@
     complite,
     expel,
     buildList,
-    edit
+    edit,
+    // work
+    titleTasklists
+    // -
   }
 })();
 

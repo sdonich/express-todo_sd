@@ -6,7 +6,9 @@ const path = require('path');
 const jsonParse = bodyParser.json();
 const url = require('url');
 const edit = require('./utils/edit');
-
+// work
+const titles = require('./utils/titles');
+//-
 const app = express();
 
 app.use(express.static(__dirname + '/public'));
@@ -79,6 +81,16 @@ app.get('/expel', (req, res) => {
     });
   });
 });
+
+// work
+app.get('/tasklists', (req, res) => {
+  fs.readFile(path.resolve('data', 'tasklist.json'), (err, data) => {
+    let tasklist = JSON.parse(data);
+    let uniqueTitles = titles(tasklist);
+    res.json(uniqueTitles);
+  });
+});
+//-
 
 app.get('/', (req, res) => {
   fs.readFile(path.resolve('data', 'tasklist.json'), (err, data) => {
