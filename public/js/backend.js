@@ -2,7 +2,7 @@
 
 (function() {
   function create(data, tasklist, onLoad) {
-    const task = { title: data, tasklist };
+    const task = { content: data, tasklist };
     
     let xhr = new XMLHttpRequest();
     xhr.responseType = 'json';

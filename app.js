@@ -6,33 +6,33 @@ const path = require('path');
 const jsonParse = bodyParser.json();
 const url = require('url');
 const edit = require('./utils/edit');
-// work
-const titles = require('./utils/titles');
-//-
+
+// const titles = require('./utils/titles');
+
 const app = express();
 
 app.use(express.static(__dirname + '/public'));
 app.set('view engine', 'pug');
 
 app.post('/add', jsonParse, (req, res) => {
-  fs.readFile(path.resolve('data', 'tasklist.json'), (err, data) => {
-    let newTasklist = JSON.parse(data);
+  fs.readFile(path.resolve('data', 'tasks.json'), (err, data) => {
+    let newTasks = JSON.parse(data);
     const newTask = padding(req.body);
-    newTasklist.push(newTask);
+    newTasks.push(newTask);
 
-    fs.writeFile(path.resolve('data', 'tasklist.json'), JSON.stringify(newTasklist), (err) => {
-      res.json(newTasklist);
+    fs.writeFile(path.resolve('data', 'tasks.json'), JSON.stringify(newTasks), (err) => {
+      res.json(newTasks);
     });
   });
 });
 
 app.post('/edit', jsonParse, (req, res) => {
   let editTask = req.body;
-  fs.readFile(path.resolve('data', 'tasklist.json'), (err, data) => {
-    let tasklist = JSON.parse(data);
-    let newTasklist = edit(editTask, tasklist);
+  fs.readFile(path.resolve('data', 'tasks.json'), (err, data) => {
+    let tasks = JSON.parse(data);
+    let newTasks = edit(editTask, tasks);
 
-    fs.writeFile(path.resolve('data', 'tasklist.json'), JSON.stringify(newTasklist), (err) => {
+    fs.writeFile(path.resolve('data', 'tasks.json'), JSON.stringify(newTasks), (err) => {
       res.send('ok');
 
     });
@@ -40,25 +40,25 @@ app.post('/edit', jsonParse, (req, res) => {
 });
 
 app.get('/notes', (req, res) => {
-  fs.readFile(path.resolve('data', 'tasklist.json'), (err, data) => {
-    let tasklist = JSON.parse(data);
-    res.json(tasklist);
+  fs.readFile(path.resolve('data', 'tasks.json'), (err, data) => {
+    let tasks = JSON.parse(data);
+    res.json(tasks);
   });
 });
 
 app.get('/complite', (req, res) => {
   const changeTask = url.parse(req.url, true).query;
 
-  fs.readFile(path.resolve('data', 'tasklist.json'), (err, data) => {
-    let tasklist = JSON.parse(data);
-    tasklist.forEach(task => {
+  fs.readFile(path.resolve('data', 'tasks.json'), (err, data) => {
+    let tasks = JSON.parse(data);
+    tasks.forEach(task => {
       if (task.id.toString() === changeTask.id) {
         task.complited = (changeTask.complited == 'true');
       }
     });
 
-    let jsonTasklist = JSON.stringify(tasklist);
-    fs.writeFile(path.resolve('data', 'tasklist.json'), jsonTasklist, (err) => {
+    let jsonTasks = JSON.stringify(tasks);
+    fs.writeFile(path.resolve('data', 'tasks.json'), jsonTasks, (err) => {
       res.send('ok');
     });
   });
@@ -67,35 +67,44 @@ app.get('/complite', (req, res) => {
 app.get('/expel', (req, res) => {
   const expelTaskId = url.parse(req.url, true).query;
 
-  fs.readFile(path.resolve('data', 'tasklist.json'), (err, data) => {
-    let tasklist = JSON.parse(data);
-    tasklist.forEach((task, i) => {
+  fs.readFile(path.resolve('data', 'tasks.json'), (err, data) => {
+    let tasks = JSON.parse(data);
+    tasks.forEach((task, i) => {
       if (task.id == expelTaskId.id) {
-        tasklist.splice(i, 1);
+        tasks.splice(i, 1);
       }
     });
 
-    let jsonTasklist = JSON.stringify(tasklist);
-    fs.writeFile(path.resolve('data', 'tasklist.json'), jsonTasklist, (err) => {
+    let jsonTasks = JSON.stringify(tasks);
+    fs.writeFile(path.resolve('data', 'tasks.json'), jsonTasks, (err) => {
       res.send('ok');
     });
   });
 });
 
 // work
+// app.get('/lists', (req, res) => {
+//   fs.readFile(path.resolve('data', 'tasks.json'), (err, data) => {
+//     let tasks = JSON.parse(data);
+//     let uniqueTitles = titles(tasks);
+//     res.json(uniqueTitles);
+//   });
+// });
+
 app.get('/tasklists', (req, res) => {
-  fs.readFile(path.resolve('data', 'tasklist.json'), (err, data) => {
-    let tasklist = JSON.parse(data);
-    let uniqueTitles = titles(tasklist);
-    res.json(uniqueTitles);
+  fs.readFile(path.resolve('data', 'tasklists.json'), (err, data) => {
+    let tasklists = JSON.parse(data);
+    // let uniqueTitles = titles(tasks);
+    res.json(tasklists);
   });
 });
+
 //-
 
 app.get('/', (req, res) => {
-  fs.readFile(path.resolve('data', 'tasklist.json'), (err, data) => {
-    let tasklist = JSON.parse(data);
-    res.render('mylist', { tasklist });
+  fs.readFile(path.resolve('data', 'tasks.json'), (err, data) => {
+    let tasks = JSON.parse(data);
+    res.render('home', { tasks });
   });
 });
 

@@ -1,11 +1,11 @@
-function edit(editTask, tasklist) {
-  tasklist.forEach(task => {
+function edit(editTask, tasks) {
+  tasks.forEach(task => {
     if (task.id == editTask.id) {
-      task.title = editTask.title;
+      task.content = editTask.content;
     }
   });
 
-  return tasklist;
+  return tasks;
 }
 
 module.exports = edit;

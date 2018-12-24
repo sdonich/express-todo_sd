@@ -65,7 +65,7 @@
     const content = editingTask.textContent || '-';
     editingTask.blur();
 
-    window.backend.edit( {id, title: content} );
+    window.backend.edit( {id, content} );
     
     document.removeEventListener('keydown', enterSubmit);
     document.removeEventListener('click', clickSubmit);
