@@ -2,11 +2,8 @@
 
 // work
 
-// let title = document.querySelector('.title').textContent;
-// console.log()
 
-
-window.backend.titleTasklists((data)=> {
+window.backend.tasklists((data)=> {
 
   let tasklists = document.querySelector('.tasklists');
 

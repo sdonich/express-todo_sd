@@ -41,9 +41,9 @@
     xhr.send();
   }
   
-  function buildList(onLoad) {
+  function buildTasklist(onLoad) {
     let xhr = new XMLHttpRequest();
-    xhr.open('GET', `/notes`);
+    xhr.open('GET', `/tasks`);
     xhr.responseType = 'json';
     xhr.send();
   
@@ -53,7 +53,7 @@
   }
 
   // work
-  function titleTasklists(onLoad) {
+  function tasklists(onLoad) {
     let xhr = new XMLHttpRequest();
     xhr.open('GET', `/tasklists`);
     xhr.responseType = 'json';
@@ -76,10 +76,10 @@
     create,
     complite,
     expel,
-    buildList,
+    buildTasklist,
     edit,
     // work
-    titleTasklists
+    tasklists
     // -
   }
 })();
