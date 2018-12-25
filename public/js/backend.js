@@ -41,9 +41,9 @@
     xhr.send();
   }
   
-  function buildTasklist(onLoad) {
+  function buildTasklist(title, onLoad) {
     let xhr = new XMLHttpRequest();
-    xhr.open('GET', `/tasks`);
+    xhr.open('GET', `/tasks?title=${title}`);
     xhr.responseType = 'json';
     xhr.send();
   
@@ -52,7 +52,6 @@
     })
   }
 
-  // work
   function tasklists(onLoad) {
     let xhr = new XMLHttpRequest();
     xhr.open('GET', `/tasklists`);
@@ -63,8 +62,7 @@
       onLoad(xhr.response);
     })
   }
-  // -
-
+  
   function getLastTask(tasks) {
     const lastIndex = tasks.length;
     const task = tasks[lastIndex - 1];
@@ -78,9 +76,7 @@
     expel,
     buildTasklist,
     edit,
-    // work
     tasklists
-    // -
   }
 })();
 

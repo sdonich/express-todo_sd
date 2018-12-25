@@ -1,9 +1,16 @@
 'use strict';
 
 (function() {
-  window.backend.buildTasklist((tasks) => {
-    tasks.forEach(task => {
-      window.action.add(task);
+  function build(title) {
+    window.backend.buildTasklist(title, (tasks) => {
+      tasks.forEach(task => {
+        window.action.add(task);
+      });
     });
-  });
+  }
+
+  window.tasklist = {
+    build
+  };
+
 })();
