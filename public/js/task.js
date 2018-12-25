@@ -2,7 +2,7 @@
 
 (function() {
   let createField = document.querySelector('.create_field');
-  let okMarkdown = document.querySelector('.ok_markdown');
+  let okMarkdown = document.querySelector('.wrapper_create .ok_markdown');
 
   function setDefaultState() {
     createField.style.color = 'grey';

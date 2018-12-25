@@ -52,16 +52,22 @@
     })
   }
 
-  function tasklists(onLoad) {
+  // work
+  function tasklists(onLoadFull, onLoadEmpty) {
     let xhr = new XMLHttpRequest();
     xhr.open('GET', `/tasklists`);
     xhr.responseType = 'json';
     xhr.send();
   
     xhr.addEventListener('load', function () {
-      onLoad(xhr.response);
+      if (xhr.response.length !== 0) {
+        onLoadFull(xhr.response);
+      }  else {
+        onLoadEmpty();
+      }
     })
   }
+  // end
   
   function getLastTask(tasks) {
     const lastIndex = tasks.length;

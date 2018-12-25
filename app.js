@@ -91,6 +91,16 @@ app.get('/tasklists', (req, res) => {
   });
 });
 
+// work
+app.get('/enter-field', (req, res) => {
+  fs.readFile(path.resolve('template', 'enter-field.html'), (err, data) => {
+    // let html = JSON.parse(data);
+    res.send(data); 
+  });
+  // res.send('enter-field.pug');
+});
+// end
+
 app.get('/', (req, res) => {
   fs.readFile(path.resolve('data', 'tasks.json'), (err, data) => {
     let tasks = JSON.parse(data);
