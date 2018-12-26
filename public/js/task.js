@@ -15,7 +15,7 @@
   
   function submit() {
     let task = createField.textContent;
-    let tasklist = document.querySelector('.tasklist-title').textContent;
+    let tasklist = document.querySelector('.tasklist_head-title').textContent;
     
     if (task.length > 0) window.backend.create(task, tasklist, window.action.add);
 

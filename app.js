@@ -105,10 +105,8 @@ app.post('/addTasklist', jsonParse, (req, res) => {
 });
 
 app.get('/', (req, res) => {
-  fs.readFile(path.resolve('data', 'tasks.json'), (err, data) => {
-    let tasks = JSON.parse(data);
-    res.render('home', { tasks });
-  });
+  res.render('home');
+  
 });
 
 app.listen(3000, () => console.log('Server is listening'));

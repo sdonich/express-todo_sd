@@ -108,7 +108,7 @@
   }
 
   function tasklistClickHandler(tasklist) {
-    let tasklistHeadTitle = document.querySelector('.tasklist-title');
+    let tasklistHeadTitle = document.querySelector('.tasklist_head-title');
     tasklist.addEventListener('click', (evt) => {
       while (document.querySelector('.taskBox')) {
         document.querySelector('.taskBox').remove();

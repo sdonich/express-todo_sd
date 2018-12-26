@@ -3,7 +3,7 @@ body {
   font-family: 'Courier New', Courier, monospace;
 }
 
-.tasklist-title {
+.tasklist_head-title {
   text-align: center;
 }
 
@@ -129,7 +129,7 @@ input {
 }
 
 
-.tasklist-enter_field {
+.tasklist_enter-field {
   z-index: 10;
   position: absolute;
   border: 1px solid black;
@@ -140,5 +140,6 @@ input {
   top: 36%;
   left: 29%;
   height: 40px;
+  outline: none;
 }
 

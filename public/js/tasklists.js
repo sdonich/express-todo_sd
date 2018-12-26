@@ -3,11 +3,11 @@
 (function() {
   let tasklistsBox = document.querySelector('.tasklists-box');
   let tasklists = document.querySelector('.tasklists');
-  let tasklistHeadTitle = document.querySelector('.tasklist-title');
+  let tasklistHeadTitle = document.querySelector('.tasklist_head-title');
 
   function setDefaultState() {
-    let tasklist = document.querySelector('.tasklist-enter_field');
-    tasklist.remove();
+    let tasklistEnter = document.querySelector('.tasklist_enter-field');
+    tasklistEnter.remove();
   }
 
   function addTasklistTitle(title) {
@@ -21,12 +21,12 @@
   }
 
   function submit() {
-    let tasklist = document.querySelector('.tasklist-enter_field');
-    let title = tasklist.textContent;
+    let tasklistEnter = document.querySelector('.tasklist_enter-field');
+    let title = tasklistEnter.textContent;
     
     if (title.length > 0) {
       window.backend.sendTasklistTitle(title);
-      tasklist.remove();
+      tasklistEnter.remove();
       addTasklistTitle(title);
     } else {
       setDefaultState();
@@ -51,7 +51,7 @@
     placeholder.insertAdjacentHTML('afterBegin', 'There is no tasklists yet<br><b>Press to create</b>');
     placeholder.addEventListener('click', () => {
       let tasklistEnter = document.createElement('div');
-      tasklistEnter.classList.add('tasklist-enter_field');
+      tasklistEnter.classList.add('tasklist_enter-field');
       tasklistsBox.insertAdjacentElement('beforeEnd', tasklistEnter);
       tasklistEnter.setAttribute('contenteditable', true);
       tasklistEnter.focus();
