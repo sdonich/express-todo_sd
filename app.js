@@ -91,15 +91,18 @@ app.get('/tasklists', (req, res) => {
   });
 });
 
-// work
-app.get('/enter-field', (req, res) => {
-  fs.readFile(path.resolve('template', 'enter-field.html'), (err, data) => {
-    // let html = JSON.parse(data);
-    res.send(data); 
+app.post('/addTasklist', jsonParse, (req, res) => {
+
+  fs.readFile(path.resolve('data', 'tasklists.json'), (err, data) => {
+    let tasklists = JSON.parse(data);
+    tasklists.push(req.body.title);
+
+    let jsonTasklists = JSON.stringify(tasklists);
+    fs.writeFile(path.resolve('data', 'tasklists.json'), jsonTasklists, (err) => {
+      res.send('ok');
+    });
   });
-  // res.send('enter-field.pug');
 });
-// end
 
 app.get('/', (req, res) => {
   fs.readFile(path.resolve('data', 'tasks.json'), (err, data) => {

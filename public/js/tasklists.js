@@ -6,9 +6,59 @@
   let tasklists = document.querySelector('.tasklists');
   let tasklistTitle = document.querySelector('.tasklist-title');
 
-  window.backend.tasklists((data)=> {
+  function setDefaultState() {
+    let tasklist = document.querySelector('.tasklist-enter_field');
+    tasklist.remove();
+  }
+
+  function addTitle(title) {
+    tasklistsBox.querySelector('p').remove();
+    let tasklist = document.createElement('li');
+    tasklist.textContent = title;
+    tasklists.append(tasklist);
+    tasklistTitle.textContent = title;
     
+  }
+
+  // при добавлении li нужно на него вешать обработку событий
+
+  function sendTasklist(data) {
+    const tasklist = { title: data };
+
+    let xhr = new XMLHttpRequest();
+    xhr.responseType = 'json';
+    xhr.open('POST', '/addTasklist');
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify(tasklist));
+  }
+
+  function submit() {
+    let tasklist = document.querySelector('.tasklist-enter_field');
+    let title = tasklist.textContent;
+    
+    if (title.length > 0) {
+      sendTasklist(title);
+      tasklist.remove();
+      addTitle(title);
+    } else {
+      setDefaultState();
+    }
+  }
+
+  function keydownHandler(evt) {
+    if (evt.keyCode === 27) {
+      evt.preventDefault();
+      setDefaultState();
+    }
   
+    if (evt.keyCode === 13) {
+      evt.preventDefault();
+
+      submit();
+    }
+  }
+
+  window.backend.tasklists((data)=> {
     data.forEach(title => {
       let tasklist = document.createElement('li');
       tasklist.textContent = title;
@@ -37,20 +87,13 @@
     placeholder.addEventListener('click', () => {
       let tasklistEnter = document.createElement('div');
       tasklistEnter.classList.add('tasklist-enter_field');
-      document.body.insertAdjacentElement('beforeEnd', tasklistEnter);
+      tasklistsBox.insertAdjacentElement('beforeEnd', tasklistEnter);
       tasklistEnter.setAttribute('contenteditable', true);
       tasklistEnter.focus();
 
-      let xhr = new XMLHttpRequest();
-      xhr.open('GET', `/enter-field`);
-      // xhr.responseType = 'json';
-      xhr.send();
-      xhr.addEventListener('load', function() {
-        console.log(xhr.response);
-        let html = xhr.response;
-        placeholder.insertAdjacentHTML('afterbegin', html);
+      tasklistEnter.addEventListener('keydown', keydownHandler);
 
-      })
+      
     });
   }); 
 })();
