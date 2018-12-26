@@ -52,7 +52,6 @@
     })
   }
 
-  // work
   function tasklists(onLoadFull, onLoadEmpty) {
     let xhr = new XMLHttpRequest();
     xhr.open('GET', `/tasklists`);
@@ -67,8 +66,17 @@
       }
     })
   }
-  // end
-  
+
+  function sendTasklistTitle(data) {
+    const tasklist = { title: data };
+
+    let xhr = new XMLHttpRequest();
+    xhr.responseType = 'json';
+    xhr.open('POST', '/addTasklist');
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify(tasklist));
+  }
+    
   function getLastTask(tasks) {
     const lastIndex = tasks.length;
     const task = tasks[lastIndex - 1];
@@ -82,7 +90,8 @@
     expel,
     buildTasklist,
     edit,
-    tasklists
+    tasklists,
+    sendTasklistTitle
   }
 })();
 

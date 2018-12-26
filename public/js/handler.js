@@ -107,10 +107,23 @@
     taskContent.addEventListener('click', taskContentClickHandler);
   }
 
+  function tasklistClickHandler(tasklist) {
+    let tasklistHeadTitle = document.querySelector('.tasklist-title');
+    tasklist.addEventListener('click', (evt) => {
+      while (document.querySelector('.taskBox')) {
+        document.querySelector('.taskBox').remove();
+      }
+
+      tasklistHeadTitle.textContent = evt.target.textContent;
+      window.tasklist.build(tasklistHeadTitle.textContent);
+    });
+  }
+
   window.handler = {
     inputChange,
     crossAppear,
     crossDelete,
-    editContent
+    editContent,
+    tasklistClickHandler
   }
 })();
