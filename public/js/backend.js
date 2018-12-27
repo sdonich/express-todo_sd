@@ -46,7 +46,7 @@
     xhr.open('GET', `/tasks?title=${title}`);
     xhr.responseType = 'json';
     xhr.send();
-  
+
     xhr.addEventListener('load', function () {
       onLoad(xhr.response);
     })

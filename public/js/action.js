@@ -7,7 +7,7 @@
   function add(task) {
     // создание листа
     let taskBox = document.createElement('li');
-    taskBox.classList.add('taskBox');
+    taskBox.classList.add('task_box');
 
     // чекбокс для такса
     let checkbox = document.createElement('input');

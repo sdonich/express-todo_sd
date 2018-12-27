@@ -4,6 +4,17 @@
   let tasklistsBox = document.querySelector('.tasklists-box');
   let tasklists = document.querySelector('.tasklists');
   let tasklistHeadTitle = document.querySelector('.tasklist_head-title');
+  let addTasklistButton = tasklistsBox.querySelector('.add-tasklist');
+
+  addTasklistButton.addEventListener('click', () => {
+    let tasklistEnter = document.createElement('div');
+    tasklistEnter.classList.add('tasklist_enter-field');
+    tasklistsBox.insertAdjacentElement('beforeEnd', tasklistEnter);
+    tasklistEnter.setAttribute('contenteditable', true);
+    tasklistEnter.focus();
+
+    tasklistEnter.addEventListener('keydown', keydownHandler);
+  });
 
   function setDefaultState() {
     let tasklistEnter = document.querySelector('.tasklist_enter-field');
@@ -11,7 +22,10 @@
   }
 
   function addTasklistTitle(title) {
-    tasklistsBox.querySelector('p').remove();
+    while (tasklistsBox.querySelector('p')) {
+      tasklistsBox.querySelector('p').remove();
+    }
+
     let tasklist = document.createElement('li');
     tasklist.textContent = title;
     tasklists.append(tasklist);
@@ -28,6 +42,7 @@
       window.backend.sendTasklistTitle(title);
       tasklistEnter.remove();
       addTasklistTitle(title);
+      window.tasklist.build(title);
     } else {
       setDefaultState();
     }
@@ -48,16 +63,7 @@
   function emptyDataCallback() {
     let placeholder = document.createElement('p');
     tasklistsBox.append(placeholder);
-    placeholder.insertAdjacentHTML('afterBegin', 'There is no tasklists yet<br><b>Press to create</b>');
-    placeholder.addEventListener('click', () => {
-      let tasklistEnter = document.createElement('div');
-      tasklistEnter.classList.add('tasklist_enter-field');
-      tasklistsBox.insertAdjacentElement('beforeEnd', tasklistEnter);
-      tasklistEnter.setAttribute('contenteditable', true);
-      tasklistEnter.focus();
-
-      tasklistEnter.addEventListener('keydown', keydownHandler);
-    });
+    placeholder.insertAdjacentHTML('afterBegin', 'There is no tasklists yet<br><b>Press PLUS to create</b>');
   }
 
   function fullDataCallback(data) {

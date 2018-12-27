@@ -12,7 +12,7 @@ body {
   padding-left: 10px;
 }
 
-.taskBox {
+.task_box {
   display: flex;
   position: relative;
 }
@@ -102,7 +102,7 @@ input {
 
 .tasklists-box {
   width: 300px;
-  height: 200px;
+  min-height: 200px;
   background-color: white;
   border-radius: 10px;
   box-shadow: -1px 1px 3px 2px #2021243e;
@@ -124,7 +124,6 @@ input {
 }
 
 .tasklists-title {
-  text-align: center;
   margin: 10px 0;
 }
 
@@ -143,3 +142,10 @@ input {
   outline: none;
 }
 
+.add-tasklist {
+  background-image: url('/img/plus.png');
+  width: 40px;
+  height: 40px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}

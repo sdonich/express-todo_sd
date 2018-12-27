@@ -6,7 +6,6 @@ function select(tasks, tasklist) {
       result.push(task);
     }
   });
-
   return result;
 }
 
