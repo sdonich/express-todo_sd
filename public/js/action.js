@@ -1,13 +1,13 @@
 'use strict';
 
 (function () {
-  let notDone = document.querySelector('.not_done');
-  let done = document.querySelector('.done');
+  let notDone = document.querySelector('.tasks_not-done');
+  let done = document.querySelector('.tasks_done');
 
   function add(task) {
     // создание листа
     let taskBox = document.createElement('li');
-    taskBox.classList.add('task_box');
+    taskBox.classList.add('task-box');
 
     // чекбокс для такса
     let checkbox = document.createElement('input');
@@ -17,13 +17,13 @@
     
     // контейнер для задачи
     let taskContent = document.createElement('div');
-    taskContent.classList.add('taskContent');
+    taskContent.classList.add('task-box__content');
     taskContent.setAttribute('contenteditable', true);
     taskContent.textContent = task.content;
        
-    // cross для удаления задачи
+    // task-box__cross для удаления задачи
     let cross = document.createElement('div');
-    cross.classList.add('cross');
+    cross.classList.add('task-box__cross');
 
     // вставка в DOM
     taskBox.append(checkbox);
@@ -57,9 +57,26 @@
       notDone.append(copy);
     }
   }
+
+  function addTasklist(title) {
+    while (document.querySelector('.tasklists-box p')) {
+      document.querySelector('.tasklists-box p').remove();
+    }
+
+    let tasklists = document.querySelector('.tasklists-box__tasklist-title');
+    let tasklistTitleHead = document.querySelector('.tasklist-header__title');
+    let tasklist = document.createElement('li');
+
+    tasklist.textContent = title;
+    tasklists.append(tasklist);
+    tasklistTitleHead.textContent = title;
+
+    window.handler.tasklistClickHandler(tasklist);
+  }
   
   window.action = {
     add,
-    moving
+    moving,
+    addTasklist
   };
 })();

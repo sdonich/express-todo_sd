@@ -2,7 +2,7 @@
 
 (function() {
   function build(title) {
-    while (document.querySelector('.task_box')) document.querySelector('.task_box').remove();
+    while (document.querySelector('.task-box')) document.querySelector('.task-box').remove();
 
     window.backend.buildTasklist(title, (tasks) => {
       tasks.forEach(task => {

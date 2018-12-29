@@ -3,12 +3,12 @@ const bodyParser = require('body-parser');
 const padding = require('./utils/padding');
 const fs = require('fs');
 const path = require('path');
-const jsonParse = bodyParser.json();
 const url = require('url');
 const edit = require('./utils/edit');
 const select = require('./utils/select');
 
 const app = express();
+const jsonParse = bodyParser.json();
 
 app.use(express.static(__dirname + '/public'));
 app.set('view engine', 'pug');
@@ -105,8 +105,10 @@ app.post('/addTasklist', jsonParse, (req, res) => {
 });
 
 app.get('/', (req, res) => {
-  res.render('home');
-  
+  fs.readFile(path.resolve('data', 'tasklists.json'), (err, data) => {
+    let tasklists = JSON.parse(data);
+    res.render('home', { title: tasklists[0] });
+  });
 });
 
 app.listen(3000, () => console.log('Server is listening'));

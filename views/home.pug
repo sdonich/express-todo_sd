@@ -5,17 +5,21 @@ html(lang='en')
     title To-Do
     link(rel='stylesheet', href='/css/style.css')
   body
-    h1(class='tasklist_head-title') 
-    div(class='wrapper_create')
-      div(class='create_field' contenteditable='true') new task...
-      div(class='ok_markdown')
-    div(class='wrapper_list')
-      ul(class='list not_done')
-      ul(class='list done')
+    if title
+      h1(class='tasklist-header__title') #{title}
+    else
+      h1(class='tasklist-header__title') give me a name please...
+      
+    div(class='new-task__wrapper')
+      div(class='new-task__add-field' contenteditable='true') new task...
+      div(class='new-task__add-button')
+    div(class='tasks')
+      ul(class='tasks-box__list tasks_not-done')
+      ul(class='tasks-box__list tasks_done')
     div(class='tasklists-box')
-      h2(class='tasklists-title') Your tasklists
-      ul(class='tasklists')
-      button(class='add-tasklist')
+      h2(class='tasklists-box__title') Your tasklists
+      ul(class='tasklists-box__tasklist-title')
+      button(class='tasklists-box__add-button')
     
     script(src='js/handler.js')
     script(src='js/backend.js')

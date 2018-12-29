@@ -108,14 +108,14 @@
   }
 
   function tasklistClickHandler(tasklist) {
-    let tasklistHeadTitle = document.querySelector('.tasklist_head-title');
+    let tasklistTitleHead = document.querySelector('.tasklist-header__title');
     tasklist.addEventListener('click', (evt) => {
-      while (document.querySelector('.task_box')) {
-        document.querySelector('.task_box').remove();
+      while (document.querySelector('.task-box')) {
+        document.querySelector('.task-box').remove();
       }
 
-      tasklistHeadTitle.textContent = evt.target.textContent;
-      window.tasklist.build(tasklistHeadTitle.textContent);
+      tasklistTitleHead.textContent = evt.target.textContent;
+      window.tasklist.build(tasklistTitleHead.textContent);
     });
   }
 

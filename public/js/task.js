@@ -1,8 +1,8 @@
 'use strict';
 
 (function() {
-  let createField = document.querySelector('.create_field');
-  let okMarkdown = document.querySelector('.wrapper_create .ok_markdown');
+  let createField = document.querySelector('.new-task__add-field');
+  let okMarkdown = document.querySelector('.new-task__wrapper .new-task__add-button');
 
   function setDefaultState() {
     createField.style.color = 'grey';
@@ -15,7 +15,7 @@
   
   function submit() {
     let task = createField.textContent;
-    let tasklist = document.querySelector('.tasklist_head-title').textContent;
+    let tasklist = document.querySelector('.tasklist-header__title').textContent;
     
     if (task.length > 0) window.backend.create(task, tasklist, window.action.add);
 
