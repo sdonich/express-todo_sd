@@ -135,9 +135,10 @@ input {
   background-color: white;
   padding: 15px;
   border-radius: 10px;
-  width: 200px;
+  width: 100%;
   top: 36%;
-  left: 29%;
+  left: 0;
+  box-sizing: border-box;
   height: 40px;
   outline: none;
 }
