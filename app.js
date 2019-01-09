@@ -92,7 +92,6 @@ app.get('/tasklists', (req, res) => {
 });
 
 app.post('/addTasklist', jsonParse, (req, res) => {
-
   fs.readFile(path.resolve('data', 'tasklists.json'), (err, data) => {
     let tasklists = JSON.parse(data);
     tasklists.push(req.body.title);

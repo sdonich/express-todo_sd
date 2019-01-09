@@ -61,8 +61,6 @@
   function emptyDataCallback() {
     let placeholder = document.createElement('p');
     placeholder.classList.add('tasklists-box__placeholder');
-    // tasklistsBox.append(placeholder);
-    // placeholder.before(addTasklistButton);
     addTasklistButton.before(placeholder);
     placeholder.insertAdjacentHTML('afterBegin', 'There is no tasklists yet<br><b>Press PLUS</b> to create <br> your first tasklist');
   }

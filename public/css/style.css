@@ -1,15 +1,23 @@
 body {
-  background-color: #8b96a8;
-  font-family: 'Courier New', Courier, monospace;
+  background-color: white;
+  font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
 }
 
 .tasklist-header__title {
   text-align: center;
+  margin: 0;
+  font-size: 30px;
+  font-weight: normal;
+  height: 32px;
+  color: #707070;
 }
 
 .tasks-box__list {
   list-style-type: none;
   padding-left: 10px;
+  font-size: 26px;
+  margin-top: 30px;
+  margin-bottom: 0;
 }
 
 .task-box {
@@ -29,12 +37,12 @@ body {
   flex-grow: 3;
   width: 100%;
   word-break: break-all;
-  margin: 10px 20px;
+  margin: 2px 20px;
   outline: none;
 }
 
 .new-task__add-button {
-  width: 50px;
+  min-width: 50px;
   position: relative;
   background-image: url('/img/checkmark.png');
   background-position: center;
@@ -47,27 +55,26 @@ body {
 
 .new-task__add-button:active {
   transform: scale(0.9);
-
 }
 
 .new-task__wrapper {
-  width: 700px;
-  min-height: 40px;
+  width: 595px;
+  min-height: 73px;
   border-radius: 10px;
   box-shadow: -1px 1px 3px 2px #2021243e;
-  margin: 25px;
+  margin-top: 50px;
   position: relative;
-  left: 30%;
-  padding: 10px 15px;
+  left: 485px;
+  padding: 12px 15px 10px 20px;
+  box-sizing: border-box;
   display: flex;
   background-color: white;
 }
 
 .new-task__add-field {
   outline: none;
-  width: 650px;
-  font-size: 26px;
-  padding-top: 4px;
+  flex-grow: 2;
+  font-size: 30px;
   color: grey;
   word-break: break-all;
 }
@@ -76,39 +83,46 @@ body {
   background-color: white;
   border-radius: 10px;
   box-shadow: -1px 1px 3px 2px #2021243e;
-  padding: 10px 15px;
-  width: 700px;
-  position: relative;
-  left: 30%;
-  margin: 25px;
+  padding: 20px 15px 20px 15px;
+
+  width: 595px;
+  /* position: relative; */
+  /* left: 30%; */
+  /* margin-top: 35px; */
   font-size: 20px;
-  min-height: 300px;
+  min-height: 620px;
+  box-sizing: border-box;
 }
 
-.tasks_done div {
+.tasks_done .task-box__content {
   text-decoration: line-through;
 }
 
 .task-box input {
   align-self: center;
+  margin: 0;
 
 }
 
 .tasklists-box {
   width: 300px;
-  min-height: 200px;
+  min-height: 620px;
   background-color: white;
   border-radius: 10px;
   box-shadow: -1px 1px 3px 2px #2021243e;
-  position: absolute;
-  top: 83px;
-  padding: 10px 15px;
+  /* position: absolute; */
+  margin-right: 35px;
+  /* top: 83px; */
+  padding: 20px 15px;
+  margin-left: 150px;
+  box-sizing: border-box;
 }
 
 .tasklists-box__tasklist-title {
   list-style-type: none;
   padding: 10px;
   margin: 0;
+  font-size: 26px;
 
 
 }
@@ -120,6 +134,9 @@ body {
 .tasklists-box__title {
   margin: 10px 0;
   text-align: center;
+  font-weight: normal;
+  color: #707070;
+  font-size: 30px;
 }
 
 
@@ -154,4 +171,9 @@ body {
 
 .tasklists-box__placeholder {
   text-align: center;
+}
+
+.board-wrapper {
+  display: flex;
+  margin-top: 35px;
 }

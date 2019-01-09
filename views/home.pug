@@ -5,21 +5,21 @@ html(lang='en')
     title To-Do
     link(rel='stylesheet', href='/css/style.css')
   body
-    if title
-      h1(class='tasklist-header__title') #{title}
-    else
-      h1(class='tasklist-header__title') give me a name please...
-      
     div(class='new-task__wrapper')
       div(class='new-task__add-field' contenteditable='true') new task...
       div(class='new-task__add-button')
-    div(class='tasks')
-      ul(class='tasks-box__list tasks_not-done')
-      ul(class='tasks-box__list tasks_done')
-    div(class='tasklists-box')
-      h2(class='tasklists-box__title') Your tasklists
-      ul(class='tasklists-box__tasklist-title')
-      button(class='tasklists-box__add-button')
+    div(class='board-wrapper')
+      div(class='tasklists-box')
+        h2(class='tasklists-box__title') Your tasklists
+        ul(class='tasklists-box__tasklist-title')
+        button(class='tasklists-box__add-button')  
+      div(class='tasks')
+        if title
+          h2(class='tasklist-header__title') #{title}
+        else
+          h2(class='tasklist-header__title') give me a name please...
+        ul(class='tasks-box__list tasks_not-done')
+        ul(class='tasks-box__list tasks_done')
     
     script(src='js/handler.js')
     script(src='js/backend.js')
