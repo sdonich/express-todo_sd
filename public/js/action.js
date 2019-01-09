@@ -10,10 +10,13 @@
     taskBox.classList.add('task-box');
 
     // чекбокс для такса
-    let checkbox = document.createElement('input');
-    checkbox.setAttribute('type', 'checkbox');
+    let checkbox = document.createElement('div');
+    checkbox.setAttribute('role', 'checkbox');
     checkbox.setAttribute('complited', task.complited);
     checkbox.setAttribute('id', task.id);
+
+    // let placeholderCheckbox = document.createElement('div');
+    // placeholderCheckbox.classList.add('task-box__checkbox-placeholder');
     
     // контейнер для задачи
     let taskContent = document.createElement('div');
@@ -27,14 +30,19 @@
 
     // вставка в DOM
     taskBox.append(checkbox);
+    // taskBox.append(placeholderCheckbox);
     taskBox.append(taskContent);
     taskBox.append(cross);
 
-    if (task.complited) {
-      checkbox.checked = true;
+    if (task.complited === true) {
+      // checkbox.checked = true;
+      checkbox.setAttribute('checked', true);
       done.append(taskBox);
     }
     if (task.complited === false) {
+
+      checkbox.setAttribute('checked', false);
+
       notDone.append(taskBox);
     }
 

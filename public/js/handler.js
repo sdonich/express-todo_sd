@@ -2,17 +2,30 @@
 
 (function() {
   function inputChange(checkbox) {
-    checkbox.addEventListener('change', (evt) => {
-      let task = evt.target;
+    checkbox.addEventListener('click', (evt) => {
+      // let task = evt.target;
+      // console.log('heldddd');
+      let check = checkbox.getAttribute('checked');
+      // console.log(check);
+      // console.log(true);
   
-      if (task.checked === true) {
-        task.setAttribute('complited', true);
-      } else {
-        task.setAttribute('complited', false);
+      // if (task.checked === true) {
+      if (check === 'true') {
+        console.log('hel');
+
+        checkbox.setAttribute('checked', false);
+        checkbox.setAttribute('complited', false);
+
+      } 
+      if (check === 'false') {
+        console.log('hel2');
+
+        checkbox.setAttribute('checked', true);
+        checkbox.setAttribute('complited', true);
       }
   
-      const complited = task.getAttribute('complited');
-      const id = task.getAttribute('id');
+      const complited = checkbox.getAttribute('complited');
+      const id = checkbox.getAttribute('id');
   
       window.backend.complite(complited, id);
       window.action.moving(evt);
