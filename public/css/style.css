@@ -46,7 +46,7 @@ body {
 }
 
 .new-task__add-button {
-  min-width: 50px;
+  min-width: 45px;
   position: relative;
   background-image: url('/img/checkmark.png');
   background-position: center;
@@ -55,7 +55,17 @@ body {
   align-self: stretch;
   margin-left: 20px;
   opacity: 0;
-} 
+}
+
+.new-task__add-note {
+  min-width: 45px;
+  position: relative;
+  background-image: url('/img/note.png');
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  align-self: stretch;
+}
 
 .new-task__add-button:active {
   transform: scale(0.9);
@@ -65,7 +75,10 @@ body {
   width: 595px;
   min-height: 73px;
   border-radius: 10px;
-  box-shadow: -1px 1px 3px 2px #2021243e;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0.4);
+  box-shadow: 0px 5px 5px 0 rgba(0, 0, 0, 0.4);
   margin-top: 50px;
   position: relative;
   left: 485px;
@@ -86,8 +99,9 @@ body {
 .tasks {
   background-color: white;
   border-radius: 10px;
-  box-shadow: -1px 1px 3px 2px #2021243e;
+  /* box-shadow: -1px 1px 3px 2px #2021243e; */
   padding: 20px 15px 20px 15px;
+  border: 1px solid rgba(0, 0, 0, 0.4);
 
   width: 595px;
   /* position: relative; */
@@ -113,10 +127,11 @@ body {
   min-height: 620px;
   background-color: white;
   border-radius: 10px;
-  box-shadow: -1px 1px 3px 2px #2021243e;
-  /* position: absolute; */
+  /* box-shadow: -1px 1px 3px 2px #2021243e; */
+  position: relative;
   margin-right: 35px;
   /* top: 83px; */
+  border: 1px solid rgba(0, 0, 0, 0.4);
   padding: 20px 15px;
   margin-left: 150px;
   box-sizing: border-box;
@@ -147,31 +162,42 @@ body {
 .tasklists-box__input-field {
   z-index: 10;
   position: absolute;
-  border: 1px solid black;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  box-shadow: 0px 5px 5px 0 rgba(0, 0, 0, 0.4);
   background-color: white;
-  padding: 15px;
+  padding: 12px 15px 15px 15px;
   border-radius: 10px;
   width: 100%;
-  top: 36%;
+  top: 11%;
   left: 0;
   box-sizing: border-box;
-  height: 50px;
+  min-height: 50px;
   outline: none;
   font-size: 18px;
+  word-break: break-all;
+
 }
 
 .tasklists-box__add-button {
   background-image: url('/img/plus.png');
+  background-color: white;
   width: 40px;
   height: 40px;
   background-size: contain;
   background-repeat: no-repeat;
   position: absolute;
-  bottom: 10px;
-  left: 10px;
+  /* bottom: 10px; */
+  top: 23px;
+  right: 10px;
+  /* left: 10px; */
   border-radius: 25px;
-  border: none;
 }
+
+.tasklists-box__add-button:active {
+  transform: scale(0.9);
+}
+
+
 
 .tasklists-box__placeholder {
   text-align: center;

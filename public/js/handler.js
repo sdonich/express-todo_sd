@@ -43,9 +43,15 @@
     });
     cross.addEventListener('mouseover', (evt) => {
       cross.style.opacity = 0.5;
+
+      let textContent = evt.target.previousSibling;
+      textContent.style.color = 'red';
     });
     cross.addEventListener('mouseout', (evt) => {
       cross.style.opacity = 0;
+      
+      let textContent = evt.target.previousSibling;
+      textContent.style.color = 'black';
     });
   }
 

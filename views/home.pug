@@ -8,11 +8,12 @@ html(lang='en')
     div(class='new-task__wrapper')
       div(class='new-task__add-field' contenteditable='true') new task...
       div(class='new-task__add-button')
+      div(class='new-task__add-note')
     div(class='board-wrapper')
       div(class='tasklists-box')
-        h2(class='tasklists-box__title') Your tasklists
+        h2(class='tasklists-box__title') Tasklists
         ul(class='tasklists-box__tasklist-title')
-        button(class='tasklists-box__add-button')  
+        div(class='tasklists-box__add-button')  
       div(class='tasks')
         if title
           h2(class='tasklist-header__title') #{title}

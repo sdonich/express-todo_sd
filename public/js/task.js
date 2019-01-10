@@ -39,7 +39,7 @@
   }
   
   function createNoteHandler(evt) {
-    okMarkdown.style.opacity = 0.5;
+    okMarkdown.style.opacity = 1;
 
     if (evt.target.textContent === 'new task...') evt.target.textContent = '';
     
@@ -50,6 +50,11 @@
 
     document.addEventListener('mousedown', (evt) => {
       if (evt.target !== okMarkdown || evt.target !== createField) {
+
+        if (createField.textContent.length === 0) {
+          return setDefaultState();
+        }
+
         createField.style.color = 'grey';
 
         document.removeEventListener('keydown', keydownHandler);
