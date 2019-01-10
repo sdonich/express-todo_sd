@@ -3,15 +3,6 @@ body {
   font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
 }
 
-.tasklist-header__title {
-  text-align: center;
-  margin: 0;
-  font-size: 30px;
-  font-weight: normal;
-  height: 32px;
-  color: #707070;
-}
-
 .tasks-box__list {
   list-style-type: none;
   padding-left: 10px;
@@ -47,14 +38,41 @@ body {
 
 .new-task__add-button {
   min-width: 45px;
-  position: relative;
+  
+  /* position: relative; */
+  background-image: url('/img/checkmark.png');
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  /* align-self: stretch; */
+  /* margin-left: 20px; */
+  opacity: 0;
+}
+
+.tasklist-header__edit-tasklist {
+  min-width: 40px;
+  /* position: absolute; */
   background-image: url('/img/checkmark.png');
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
   align-self: stretch;
   margin-left: 20px;
-  opacity: 0;
+}
+
+.tasklist-header {
+  display: flex;
+}
+
+.tasklist-header__title {
+  flex-grow: 2;
+  text-align: center;
+  margin: 0;
+  font-size: 30px;
+  font-weight: normal;
+  /* height: 32px; */
+  color: #707070;
+  word-break: break-all;
 }
 
 .new-task__add-note {
@@ -148,6 +166,7 @@ body {
 
 .tasklists-box__tasklist-title li {
   margin: 10px 0;
+  word-break: break-all;
 }
 
 .tasklists-box__title {
@@ -165,11 +184,11 @@ body {
   border: 1px solid rgba(0, 0, 0, 0.4);
   box-shadow: 0px 5px 5px 0 rgba(0, 0, 0, 0.4);
   background-color: white;
-  padding: 12px 15px 15px 15px;
+  padding: 10px 15px;
   border-radius: 10px;
-  width: 100%;
+  width: 280px;
   top: 11%;
-  left: 0;
+  left: 10px;
   box-sizing: border-box;
   min-height: 50px;
   outline: none;

@@ -15,10 +15,13 @@ html(lang='en')
         ul(class='tasklists-box__tasklist-title')
         div(class='tasklists-box__add-button')  
       div(class='tasks')
-        if title
-          h2(class='tasklist-header__title') #{title}
-        else
-          h2(class='tasklist-header__title') give me a name please...
+        div(class='tasklist-header')
+          if title
+            h2(class='tasklist-header__title') #{title}
+          else
+            h2(class='tasklist-header__title') give me a name please...
+          div(class='tasklist-header__edit-tasklist')
+
         ul(class='tasks-box__list tasks_not-done')
         ul(class='tasks-box__list tasks_done')
     
