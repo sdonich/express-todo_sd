@@ -19,8 +19,12 @@ html(lang='en')
           if title
             h2(class='tasklist-header__title') #{title}
           else
-            h2(class='tasklist-header__title') give me a name please...
-          div(class='tasklist-header__edit-tasklist')
+            h2(class='tasklist-header__title') add your first tasklist...
+          div(class='tasklist-header__edit-tasklist_button')
+          ul(class='tasklist-header__edit-tasklist_menu invisible')
+              li rename
+              li delete
+
 
         ul(class='tasks-box__list tasks_not-done')
         ul(class='tasks-box__list tasks_done')
@@ -30,6 +34,7 @@ html(lang='en')
     script(src='js/action.js')
     script(src='js/task.js')
     script(src='js/tasklist.js')
+    script(src='js/title.js')
     script(src='js/main.js')
     
     
