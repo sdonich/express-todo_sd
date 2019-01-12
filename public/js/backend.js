@@ -83,6 +83,18 @@
 
     return task;
   }
+
+  function editTitle(titles) {
+    let xhr = new XMLHttpRequest();
+    xhr.responseType = 'json';
+    xhr.open('POST', '/editTitle');
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify(titles));
+
+   
+
+
+  }
   
   window.backend = {
     create,
@@ -91,7 +103,8 @@
     buildTasklist,
     edit,
     tasklists,
-    sendTasklistTitle
+    sendTasklistTitle,
+    editTitle
   }
 })();
 
