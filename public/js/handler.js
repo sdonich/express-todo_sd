@@ -3,23 +3,13 @@
 (function() {
   function inputChange(checkbox) {
     checkbox.addEventListener('click', (evt) => {
-      // let task = evt.target;
-      // console.log('heldddd');
       let check = checkbox.getAttribute('checked');
-      // console.log(check);
-      // console.log(true);
   
-      // if (task.checked === true) {
       if (check === 'true') {
-        console.log('hel');
-
         checkbox.setAttribute('checked', false);
         checkbox.setAttribute('complited', false);
-
       } 
       if (check === 'false') {
-        console.log('hel2');
-
         checkbox.setAttribute('checked', true);
         checkbox.setAttribute('complited', true);
       }

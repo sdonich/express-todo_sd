@@ -90,10 +90,6 @@
     xhr.open('POST', '/editTitle');
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(JSON.stringify(titles));
-
-   
-
-
   }
   
   window.backend = {

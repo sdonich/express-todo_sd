@@ -10,7 +10,7 @@
     okMarkdown.style.opacity = 0;
     document.removeEventListener('keydown', keydownHandler);
     okMarkdown.removeEventListener('click', submit);
-    createField.addEventListener('click', createNoteHandler);
+    createField.addEventListener('click', createTaskHandler);
   }
   
   function submit() {
@@ -38,7 +38,7 @@
     }
   }
   
-  function createNoteHandler(evt) {
+  function createTaskHandler(evt) {
     okMarkdown.style.opacity = 1;
 
     if (evt.target.textContent === 'new task...') evt.target.textContent = '';
@@ -58,11 +58,11 @@
         createField.style.color = 'grey';
 
         document.removeEventListener('keydown', keydownHandler);
-        createField.addEventListener('click', createNoteHandler);
+        createField.addEventListener('click', createTaskHandler);
       }
     });
 
-    createField.removeEventListener('click', createNoteHandler);
+    createField.removeEventListener('click', createTaskHandler);
   }
   
   function clearSelection() {
@@ -74,7 +74,7 @@
     }
   }
   
-  createField.addEventListener('click', createNoteHandler);
+  createField.addEventListener('click', createTaskHandler);
 })();
 
 

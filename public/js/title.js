@@ -6,87 +6,93 @@
   let tasklistHeader = document.querySelector('.tasklist-header');
   let tasklistTitle = document.querySelector('.tasklist-header__title');
 
+  function renameTitle(titles) {
+    let tasklists = document.querySelectorAll('.tasklists-box__tasklist-title li');
+
+    tasklists.forEach((elem) => {
+      if (elem.textContent === titles.previous) {
+        elem.textContent = titles.new;
+      }      
+    });
+
+    tasklistTitle.textContent = titles.new;
+  }
+
   function submit(evt) {
     let titles = {
       new: evt.target.textContent,
       previous: tasklistTitle.textContent
     };
 
-
+    renameTitle(titles);
     window.backend.editTitle(titles);
-    // console.log(newTitle);
-    // console.log(previousTitle);
-
-
   }
 
-  function keydownHandler(evt) {
+  function keydownInputFiledHandler(evt) {
     if (evt.keyCode === 27) {
       evt.preventDefault();
-      // console.log('hello');
-      // clearSelection();
       setDefaultState();
     }
   
     if (evt.keyCode === 13) {
       evt.preventDefault();
-      // console.log(evt.target);
-      
-      // console.log('ddd');
-
-      // clearSelection();
       submit(evt);
       setDefaultState();
-      
     }
+  }
 
-    // tasklistTitleInputField.removeEventListener('keydown', keydownHandler);
-
+  function keydownMenuHandler(evt) {
+    if (evt.keyCode === 27) {
+      evt.preventDefault();
+      resetTasklistMenu();
+    }
   }
 
   function setDefaultState() {
     document.querySelector('.tasklist-header__input-field').remove();
-
-    document.removeEventListener('keydown', keydownHandler);
-
   }
 
   function tasklistMenuClickHandler(evt) {
     if (evt.target.tagName === 'li'.toUpperCase()) {
-      tasklistMenu.classList.toggle('invisible');
-
-      // let tasklistOperation = evt.target.textContent;
-      
-      // let tasklistTitle = document.querySelector('.tasklist-header__title');
-      
-      // tasklistTitle.setAttribute('contenteditable', true);
-      // tasklistTitle.focus();
+      resetTasklistMenu();
 
       let tasklistTitleInputField = document.createElement('div');
       tasklistTitleInputField.classList.add('tasklist-header__input-field');
       tasklistTitleInputField.setAttribute('contenteditable', true);
-      tasklistHeader.append(tasklistTitleInputField);
+      tasklistHeader.append(tasklistTitleInputField); 
       tasklistTitleInputField.focus();
 
-      document.addEventListener('keydown', keydownHandler);
+      tasklistTitleInputField.addEventListener('keydown', keydownInputFiledHandler);
       tasklistMenu.removeEventListener('click', tasklistMenuClickHandler);
-
     }
+  }
 
+  function resetClickMenuHandler(evt) {
+    if (evt.target.closest('ul') !== tasklistMenu) {
+      resetTasklistMenu();
+    }
+  }
 
-    
+  function resetTasklistMenu() {
+    tasklistMenu.classList.toggle('invisible');
+
+    tasklistMenu.removeEventListener('click', tasklistMenuClickHandler);
+    document.removeEventListener('keydown', keydownMenuHandler);
+    document.removeEventListener('mousedown', resetClickMenuHandler);
   }
 
   tasklistMenuButton.addEventListener('click', () => {
-    tasklistMenu.classList.toggle('invisible');
+    if (tasklistMenu.classList.contains('invisible')) {
+      tasklistMenu.classList.toggle('invisible');
 
-    tasklistMenu.addEventListener('click', tasklistMenuClickHandler);
-   
+      tasklistMenu.addEventListener('click', tasklistMenuClickHandler);
+      document.addEventListener('keydown', keydownMenuHandler);
+      document.addEventListener('mousedown', resetClickMenuHandler);
+
+    } else {
+      resetTasklistMenu();
+    }
   });
-
-
-
-
 })();
 
 
