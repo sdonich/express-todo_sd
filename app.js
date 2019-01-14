@@ -6,7 +6,8 @@ const path = require('path');
 const url = require('url');
 const edit = require('./utils/edit');
 const select = require('./utils/select');
-const editTitle = require('./utils/edit-title');
+const editTasklist = require('./utils/edit-tasklist');
+const deleteTasklist = require('./utils/delete-tasklist');
 
 const app = express();
 const jsonParse = bodyParser.json();
@@ -104,11 +105,18 @@ app.post('/addTasklist', jsonParse, (req, res) => {
   });
 });
 
-app.post('/editTitle', jsonParse, (req, res) => {
-  editTitle(req.body, 'tasklists');
-  editTitle(req.body, 'tasks');
+app.post('/editTasklist', jsonParse, (req, res) => {
+  editTasklist(req.body, 'tasklists');
+  editTasklist(req.body, 'tasks');
 
   res.send('ok');
+});
+
+app.post('/deleteTasklist', jsonParse, (req, res) => {
+  deleteTasklist(req.body.tasklist);
+
+  res.send('ok');
+
 });
 
 app.get('/', (req, res) => {

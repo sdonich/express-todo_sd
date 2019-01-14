@@ -25,10 +25,10 @@
     };
 
     renameTitle(titles);
-    window.backend.editTitle(titles);
+    window.backend.editTasklist(titles);
   }
 
-  function keydownInputFiledHandler(evt) {
+  function keydownInputFieldHandler(evt) {
     if (evt.keyCode === 27) {
       evt.preventDefault();
       setDefaultState();
@@ -50,28 +50,49 @@
 
   function setDefaultState() {
     document.querySelector('.tasklist-header__input-field').remove();
-    document.removeEventListener('keydown', keydownInputFiledHandler);
+    document.removeEventListener('keydown', keydownInputFieldHandler);
   }
 
-  function tasklistMenuClickHandler(evt) {
-    if (evt.target.tagName === 'li'.toUpperCase()) {
-      resetTasklistMenu();
-
+  let tasklistOperation = {
+    rename() {
       let tasklistTitleInputField = document.createElement('div');
       tasklistTitleInputField.classList.add('tasklist-header__input-field');
       tasklistTitleInputField.setAttribute('contenteditable', true);
       tasklistHeader.append(tasklistTitleInputField); 
       tasklistTitleInputField.focus();
 
-      document.addEventListener('keydown', keydownInputFiledHandler);
+      document.addEventListener('keydown', keydownInputFieldHandler);
+    },
+    delete() {
+      // console.log(tasklistTitle.textContent);
+      let tasklist = tasklistTitle.textContent;
+      window.backend.deleteTasklist(tasklist);
+    }
+  }
+
+  function tasklistMenuClickHandler(evt) {
+    if (evt.target.tagName === 'li'.toUpperCase()) {
+      resetTasklistMenu();
       tasklistMenu.removeEventListener('click', tasklistMenuClickHandler);
+
+      let operation = evt.target.textContent;
+
+      tasklistOperation[operation]();
     }
   }
 
   function resetClickMenuHandler(evt) {
-    if (evt.target.closest('ul') !== tasklistMenu) {
+    if (evt.target.closest('ul') !== tasklistMenu && evt.target !== tasklistMenuButton) {
       resetTasklistMenu();
     }
+  }
+
+  function addTasklistMenu() {
+    tasklistMenu.classList.toggle('invisible');
+
+    tasklistMenu.addEventListener('click', tasklistMenuClickHandler);
+    document.addEventListener('keydown', keydownMenuHandler);
+    document.addEventListener('mousedown', resetClickMenuHandler);    
   }
 
   function resetTasklistMenu() {
@@ -84,12 +105,7 @@
 
   tasklistMenuButton.addEventListener('click', () => {
     if (tasklistMenu.classList.contains('invisible')) {
-      tasklistMenu.classList.toggle('invisible');
-
-      tasklistMenu.addEventListener('click', tasklistMenuClickHandler);
-      document.addEventListener('keydown', keydownMenuHandler);
-      document.addEventListener('mousedown', resetClickMenuHandler);
-
+      addTasklistMenu();
     } else {
       resetTasklistMenu();
     }

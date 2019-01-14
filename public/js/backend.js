@@ -84,12 +84,20 @@
     return task;
   }
 
-  function editTitle(titles) {
+  function editTasklist(titles) {
     let xhr = new XMLHttpRequest();
     xhr.responseType = 'json';
-    xhr.open('POST', '/editTitle');
+    xhr.open('POST', '/editTasklist');
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(JSON.stringify(titles));
+  }
+
+  function deleteTasklist(tasklist) {
+    let xhr = new XMLHttpRequest();
+    xhr.responseType = 'json';
+    xhr.open('POST', '/deleteTasklist');
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify( { tasklist }));
   }
   
   window.backend = {
@@ -100,7 +108,8 @@
     edit,
     tasklists,
     sendTasklistTitle,
-    editTitle
+    editTasklist,
+    deleteTasklist
   }
 })();
 

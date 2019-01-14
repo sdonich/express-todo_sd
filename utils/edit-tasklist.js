@@ -12,9 +12,9 @@ const edit = {
     return data;
   },
   tasks(titles, data) {
-    data.forEach((elem, i) => {
-      if (data[i].tasklist === titles.previous) {
-        data[i].tasklist = titles.new;
+    data.forEach((elem) => {
+      if (elem.tasklist === titles.previous) {
+        elem.tasklist = titles.new;
       } 
     });
   
@@ -22,7 +22,7 @@ const edit = {
   }
 }
 
-function editTitle(titles, filename) {
+function editTasklist(titles, filename) {
   fs.readFile(path.resolve('data', `${filename}.json`), (err, data) => {
     let parseData = JSON.parse(data);
     let result = edit[filename](titles, parseData);
@@ -32,7 +32,7 @@ function editTitle(titles, filename) {
   });
 }
 
-module.exports = editTitle;
+module.exports = editTasklist;
 
 
 
