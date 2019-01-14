@@ -53,6 +53,14 @@
     document.removeEventListener('keydown', keydownInputFieldHandler);
   }
 
+  function setTitle(title) {
+    if (title) {
+      tasklistTitle.textContent = title;
+    } else {
+      tasklistTitle.textContent = 'add your first tasklist...';
+    }
+  }
+
   let tasklistOperation = {
     rename() {
       let tasklistTitleInputField = document.createElement('div');
@@ -64,9 +72,15 @@
       document.addEventListener('keydown', keydownInputFieldHandler);
     },
     delete() {
-      // console.log(tasklistTitle.textContent);
       let tasklist = tasklistTitle.textContent;
-      window.backend.deleteTasklist(tasklist);
+      while(document.querySelector('.tasklists-box__tasklist-title li')) {
+        document.querySelector('.tasklists-box__tasklist-title li').remove();
+      }
+      while(document.querySelector('.task-box')) {
+        document.querySelector('.task-box').remove();
+      }
+      window.backend.deleteTasklist(tasklist, window.main.fullDataCallback, window.main.emptyDataCallback, setTitle);
+
     }
   }
 

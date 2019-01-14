@@ -41,7 +41,7 @@
     xhr.send();
   }
   
-  function buildTasklist(title, onLoad) {
+  function getTasklist(title, onLoad) {
     let xhr = new XMLHttpRequest();
     xhr.open('GET', `/tasks?title=${title}`);
     xhr.responseType = 'json';
@@ -92,19 +92,29 @@
     xhr.send(JSON.stringify(titles));
   }
 
-  function deleteTasklist(tasklist) {
+  function deleteTasklist(tasklist, onLoadFull, onLoadEmpty, setTitle) {
     let xhr = new XMLHttpRequest();
     xhr.responseType = 'json';
     xhr.open('POST', '/deleteTasklist');
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(JSON.stringify( { tasklist }));
+
+    xhr.addEventListener('load', function () {
+      if (xhr.response.length !== 0) {
+        onLoadFull(xhr.response);
+        setTitle(xhr.response[0]);
+      }  else {
+        onLoadEmpty();
+        setTitle();
+      }
+    })
   }
   
   window.backend = {
     create,
     complite,
     expel,
-    buildTasklist,
+    getTasklist,
     edit,
     tasklists,
     sendTasklistTitle,

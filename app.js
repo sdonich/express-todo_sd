@@ -113,9 +113,9 @@ app.post('/editTasklist', jsonParse, (req, res) => {
 });
 
 app.post('/deleteTasklist', jsonParse, (req, res) => {
-  deleteTasklist(req.body.tasklist);
-
-  res.send('ok');
+  deleteTasklist(req.body.tasklist, (tasklists) => {
+    res.json(tasklists);
+  });
 
 });
 

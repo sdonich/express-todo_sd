@@ -80,5 +80,10 @@
     window.tasklist.build(title);
   }
 
-  window.backend.tasklists(fullDataCallback, emptyDataCallback); 
+  window.main = {
+    fullDataCallback,
+    emptyDataCallback
+  }
+
+  window.backend.tasklists(fullDataCallback, emptyDataCallback);
 })();
