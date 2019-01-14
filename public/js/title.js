@@ -50,6 +50,7 @@
 
   function setDefaultState() {
     document.querySelector('.tasklist-header__input-field').remove();
+    document.removeEventListener('keydown', keydownInputFiledHandler);
   }
 
   function tasklistMenuClickHandler(evt) {
@@ -62,7 +63,7 @@
       tasklistHeader.append(tasklistTitleInputField); 
       tasklistTitleInputField.focus();
 
-      tasklistTitleInputField.addEventListener('keydown', keydownInputFiledHandler);
+      document.addEventListener('keydown', keydownInputFiledHandler);
       tasklistMenu.removeEventListener('click', tasklistMenuClickHandler);
     }
   }
