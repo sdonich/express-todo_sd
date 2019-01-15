@@ -122,6 +122,9 @@
       while (document.querySelector('.task-box')) {
         document.querySelector('.task-box').remove();
       }
+      let previousSelected = document.querySelector('.tasklists-box__tasklist-title__selected');
+      previousSelected.classList.remove('tasklists-box__tasklist-title__selected');
+      evt.target.classList.add('tasklists-box__tasklist-title__selected');
 
       tasklistTitleHead.textContent = evt.target.textContent;
       window.tasklist.build(tasklistTitleHead.textContent);

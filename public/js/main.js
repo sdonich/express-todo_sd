@@ -69,12 +69,14 @@
     data.forEach(title => {
       let tasklist = document.createElement('li');
       tasklist.textContent = title;
+      tasklist.classList.add('tasklists-box__tasklist-title__element');
       tasklists.append(tasklist);
 
       window.handler.tasklistClickHandler(tasklist);
     });
   
     let selectedTasklist = tasklists.firstChild;
+    selectedTasklist.classList.add('tasklists-box__tasklist-title__selected');
     let title = selectedTasklist.textContent;
 
     window.tasklist.build(title);

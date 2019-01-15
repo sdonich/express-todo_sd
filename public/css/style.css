@@ -76,6 +76,7 @@ body {
   /* height: 32px; */
   color: #707070;
   word-break: break-all;
+  cursor: default;
 }
 
 .new-task__add-note {
@@ -151,33 +152,41 @@ body {
   margin-right: 35px;
   /* top: 83px; */
   border: 1px solid rgba(0, 0, 0, 0.4);
-  padding: 20px 15px;
+  padding: 0;
   margin-left: 150px;
   box-sizing: border-box;
 }
 
 .tasklists-box__tasklist-title {
   list-style-type: none;
-  padding: 10px;
+  padding: 0;
   margin: 0;
   font-size: 26px;
-
+  margin-top: 14px;
+  /* display: flex; */
+  /* flex-direction: column; */
 
 }
 
-.tasklists-box__tasklist-title li {
-  margin: 10px 0;
+.tasklists-box__tasklist-title__element {
   word-break: break-all;
-  font-size: 18px;
+  font-size: 26px;
   cursor: pointer;
+  padding: 0px 14px;
+}
+
+.tasklists-box__tasklist-title__element:hover {
+  background-color: rgba(115, 145, 185, 0.3);
 }
 
 .tasklists-box__title {
   margin: 0;
+  margin-top: 20px;
   text-align: center;
   font-weight: normal;
   color: #707070;
   font-size: 30px;
+  cursor: default;
 }
 
 
@@ -213,6 +222,10 @@ body {
   right: 10px;
   /* left: 10px; */
   border-radius: 25px;
+}
+
+.button {
+  cursor: pointer;
 }
 
 .tasklists-box__add-button:active {
@@ -296,4 +309,16 @@ div[ddd="zzz"] {
   outline: none;
   font-size: 18px;
   word-break: break-all;
+}
+
+.tasklists-box__tasklist-title__selected {
+  background-color: #5FCFD4;
+  width: 327px;
+  position: relative;
+  right: 28px;
+  padding: 6px 0 10px 42px;
+  border-top-left-radius: 29px;
+  border-bottom-left-radius: 29px;
+  box-sizing: border-box;
+  font-size: 30px;
 }

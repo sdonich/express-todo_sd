@@ -7,23 +7,23 @@ html(lang='en')
   body
     div(class='new-task__wrapper')
       div(class='new-task__add-field' contenteditable='true') new task...
-      div(class='new-task__add-button')
-      div(class='new-task__add-note')
+      div(class='new-task__add-button button')
+      div(class='new-task__add-note button')
     div(class='board-wrapper')
       div(class='tasklists-box')
         h2(class='tasklists-box__title') Tasklists
         ul(class='tasklists-box__tasklist-title')
-        div(class='tasklists-box__add-button')  
+        div(class='tasklists-box__add-button button')  
       div(class='tasks')
         div(class='tasklist-header')
           if title
             h2(class='tasklist-header__title') #{title}
           else
             h2(class='tasklist-header__title') add your first tasklist...
-          div(class='tasklist-header__edit-tasklist_button')
+          div(class='tasklist-header__edit-tasklist_button button')
           ul(class='tasklist-header__edit-tasklist_menu invisible')
-              li rename
-              li delete
+              li(class='button') rename
+              li(class='button') delete
 
 
         ul(class='tasks-box__list tasks_not-done')
