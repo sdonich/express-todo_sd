@@ -93,8 +93,10 @@
       sel.removeAllRanges();
     }
   }
-  
-  createField.addEventListener('click', createTaskHandler);
+
+  window.task = {
+    createTaskHandler
+  }
 })();
 
 

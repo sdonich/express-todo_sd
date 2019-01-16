@@ -4,6 +4,8 @@
   let tasklistsBox = document.querySelector('.tasklists-box');
   let tasklists = document.querySelector('.tasklists-box__tasklist-title');
   let addTasklistButton = tasklistsBox.querySelector('.tasklists-box__add-button');
+  let createField = document.querySelector('.new-task__add-field');
+  let tasklistMenuButton = document.querySelector('.tasklist-header__edit-tasklist_button');
 
   function setDefaultState() {
     let tasklistInputField = document.querySelector('.tasklists-box__input-field');
@@ -56,17 +58,6 @@
     return tasklist;
   }
 
-  addTasklistButton.addEventListener('click', () => {
-    let tasklistInputField = document.createElement('div');
-    tasklistInputField.classList.add('tasklists-box__input-field');
-    tasklistInputField.setAttribute('contenteditable', true);
-    tasklistsBox.append(tasklistInputField);
-    tasklistInputField.focus();
-
-    document.addEventListener('click', resetInputTitle, true);
-    tasklistInputField.addEventListener('keydown', keydownHandler);
-  });
-
   function emptyDataCallback() {
     let placeholder = document.createElement('p');
     placeholder.classList.add('tasklists-box__placeholder');
@@ -94,4 +85,18 @@
   }
 
   window.backend.tasklists(fullDataCallback, emptyDataCallback);
+
+  createField.addEventListener('click', window.task.createTaskHandler);
+  tasklistMenuButton.addEventListener('click', window.tasklistSetting.editMenuHandler);
+  addTasklistButton.addEventListener('click', () => {
+    let tasklistInputField = document.createElement('div');
+    tasklistInputField.classList.add('tasklists-box__input-field');
+    tasklistInputField.setAttribute('contenteditable', true);
+    tasklistsBox.append(tasklistInputField);
+    tasklistInputField.focus();
+
+    document.addEventListener('click', resetInputTitle, true);
+    tasklistInputField.addEventListener('keydown', keydownHandler);
+  });
+
 })();
