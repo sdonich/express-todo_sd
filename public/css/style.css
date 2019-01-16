@@ -55,11 +55,16 @@ body {
   min-width: 40px;
   /* position: absolute; */
   background-image: url('/img/setting.png');
-  background-position: center;
+  background-position: 1px 3px;
   background-size: contain;
   background-repeat: no-repeat;
   align-self: stretch;
   margin-left: 20px;
+  border-radius: 25px;
+}
+
+.tasklist-header__edit-tasklist_button:hover {
+  background-color: rgba(115, 145, 185, 0.2);
 }
 
 .tasklist-header {
@@ -175,8 +180,8 @@ body {
   padding: 0px 14px;
 }
 
-.tasklists-box__tasklist-title__element:hover {
-  background-color: rgba(115, 145, 185, 0.3);
+.tasklists-box__tasklist-title__element:hover:not(.tasklists-box__tasklist-title__selected) {
+  background-color: rgba(115, 145, 185, 0.2);
 }
 
 .tasklists-box__title {
@@ -277,16 +282,20 @@ div[ddd="zzz"] {
   border-radius: 10px;
   border: 1px solid rgba(0, 0, 0, 0.4);
   box-shadow: 0px 5px 5px 0 rgba(0, 0, 0, 0.4);
-  right: 36px;
+  right: 42px;
   top: 6px;
   margin: 0;
   list-style-type: none;
-  padding: 10px 15px;
+  padding: 10px 0;
   z-index: 2;
 }
 
 .invisible {
   display: none;
+}
+
+.tasklist-header__edit-tasklist_menu li {
+  padding-left: 10px;
 }
 
 .tasklist-header__edit-tasklist_menu li:not(:last-child) {
@@ -321,4 +330,33 @@ div[ddd="zzz"] {
   border-bottom-left-radius: 29px;
   box-sizing: border-box;
   font-size: 30px;
+}
+
+.tasklists-box__add-button:hover {
+  background-color: rgba(115, 145, 185, 0.2);
+}
+
+.task-box:hover {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+
+}
+
+.tasks_done div[role="checkbox"] {
+  background-image: url('/img/task_checkmark.png');
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+
+}
+
+.tasklist-header__edit-tasklist_menu li:hover {
+  /* background-color: rgba(0, 0, 0, 0.2);
+   */
+  background-color: rgba(115, 145, 185, 0.2);
+
+}
+
+.new-task__add-button:hover,
+.new-task__add-note:hover {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }

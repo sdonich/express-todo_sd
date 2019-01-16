@@ -74,7 +74,11 @@
     let tasklists = document.querySelector('.tasklists-box__tasklist-title');
     let tasklistTitleHead = document.querySelector('.tasklist-header__title');
     let tasklist = document.createElement('li');
-    // tasklist.classList.add('tasklists-box__tasklist-title__element');
+    tasklist.classList.add('tasklists-box__tasklist-title__element');
+
+    let previousSelected = document.querySelector('.tasklists-box__tasklist-title__selected');
+    previousSelected.classList.remove('tasklists-box__tasklist-title__selected');
+    tasklist.classList.add('tasklists-box__tasklist-title__selected');
 
     tasklist.textContent = title;
     tasklists.append(tasklist);
