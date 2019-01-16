@@ -1,16 +1,12 @@
 const express = require('express');
-const bodyParser = require('body-parser');
-const padding = require('./utils/padding');
 const fs = require('fs');
 const path = require('path');
 const url = require('url');
-const edit = require('./utils/edit');
-const select = require('./utils/select');
-const editTasklist = require('./utils/edit-tasklist');
-const deleteTasklist = require('./utils/delete-tasklist');
-
 const app = express();
+const bodyParser = require('body-parser');
 const jsonParse = bodyParser.json();
+
+const {padding, edit, select, editTasklist, deleteTasklist} = require('./utils/index');
 
 app.use(express.static(__dirname + '/public'));
 app.set('view engine', 'pug');

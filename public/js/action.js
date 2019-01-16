@@ -15,9 +15,6 @@
     checkbox.setAttribute('complited', task.complited);
     checkbox.setAttribute('id', task.id);
 
-    // let placeholderCheckbox = document.createElement('div');
-    // placeholderCheckbox.classList.add('task-box__checkbox-placeholder');
-    
     // контейнер для задачи
     let taskContent = document.createElement('div');
     taskContent.classList.add('task-box__content');
@@ -30,7 +27,6 @@
 
     // вставка в DOM
     taskBox.append(checkbox);
-    // taskBox.append(placeholderCheckbox);
     taskBox.append(taskContent);
     taskBox.append(cross);
 
@@ -76,8 +72,10 @@
     let tasklist = document.createElement('li');
     tasklist.classList.add('tasklists-box__tasklist-title__element');
 
-    let previousSelected = document.querySelector('.tasklists-box__tasklist-title__selected');
-    previousSelected.classList.remove('tasklists-box__tasklist-title__selected');
+    if (document.querySelector('.tasklists-box__tasklist-title__selected')) {
+      let selectedList = document.querySelector('.tasklists-box__tasklist-title__selected');
+      selectedList.classList.remove('tasklists-box__tasklist-title__selected');
+    }
     tasklist.classList.add('tasklists-box__tasklist-title__selected');
 
     tasklist.textContent = title;

@@ -19,13 +19,15 @@
   }
 
   function submit(evt) {
-    let titles = {
-      new: evt.target.textContent,
-      previous: tasklistTitle.textContent
-    };
+    if (evt.target.textContent.length > 0) {
+      let titles = {
+        new: evt.target.textContent,
+        previous: tasklistTitle.textContent
+      };
 
-    renameTitle(titles);
-    window.backend.editTasklist(titles);
+      renameTitle(titles);
+      window.backend.editTasklist(titles);
+    }
   }
 
   function keydownInputFieldHandler(evt) {

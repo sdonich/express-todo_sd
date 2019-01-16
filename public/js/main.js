@@ -47,6 +47,15 @@
     }
   }
 
+  function pasteTasklist(title) {
+    let tasklist = document.createElement('li');
+    tasklist.textContent = title;
+    tasklist.classList.add('tasklists-box__tasklist-title__element');
+    tasklists.append(tasklist);
+
+    return tasklist;
+  }
+
   addTasklistButton.addEventListener('click', () => {
     let tasklistInputField = document.createElement('div');
     tasklistInputField.classList.add('tasklists-box__input-field');
@@ -67,11 +76,7 @@
 
   function fullDataCallback(data) {
     data.forEach(title => {
-      let tasklist = document.createElement('li');
-      tasklist.textContent = title;
-      tasklist.classList.add('tasklists-box__tasklist-title__element');
-      tasklists.append(tasklist);
-
+      let tasklist = pasteTasklist(title);
       window.handler.tasklistClickHandler(tasklist);
     });
   
@@ -84,7 +89,8 @@
 
   window.main = {
     fullDataCallback,
-    emptyDataCallback
+    emptyDataCallback,
+    pasteTasklist
   }
 
   window.backend.tasklists(fullDataCallback, emptyDataCallback);
