@@ -5,33 +5,27 @@
   let done = document.querySelector('.tasks_done');
 
   function add(task) {
-    // создание листа
     let taskBox = document.createElement('li');
     taskBox.classList.add('task-box');
 
-    // чекбокс для такса
     let checkbox = document.createElement('div');
     checkbox.setAttribute('role', 'checkbox');
     checkbox.setAttribute('complited', task.complited);
     checkbox.setAttribute('id', task.id);
 
-    // контейнер для задачи
     let taskContent = document.createElement('div');
     taskContent.classList.add('task-box__content');
     taskContent.setAttribute('contenteditable', true);
     taskContent.textContent = task.content;
        
-    // task-box__cross для удаления задачи
     let cross = document.createElement('div');
     cross.classList.add('task-box__cross');
 
-    // вставка в DOM
     taskBox.append(checkbox);
     taskBox.append(taskContent);
     taskBox.append(cross);
 
     if (task.complited === true) {
-      // checkbox.checked = true;
       checkbox.setAttribute('checked', true);
       done.append(taskBox);
     }
@@ -42,14 +36,12 @@
       notDone.append(taskBox);
     }
 
-    // событие на завершение задачи и перенос в другой список
     window.handler.crossAppear(taskContent, cross);
     window.handler.inputChange(checkbox);
     window.handler.crossDelete(task, taskBox, cross);
     window.handler.editContent(taskContent);
   }
 
-  // перемещение задачи между невыполненными и выполненными
   function moving(evt) {
     let taskBox = evt.target.parentElement;
     let parent = taskBox.parentElement;

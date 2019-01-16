@@ -53,7 +53,6 @@
     });
   }
 
-  // обработка редактирования задачи
   let prieviousContent = '';
   function taskContentClickHandler(evt) {
     prieviousContent = evt.target.textContent;
