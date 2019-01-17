@@ -55,9 +55,7 @@
   }
 
   function addTasklist(title) {
-    while (document.querySelector('.tasklists-box p')) {
-      document.querySelector('.tasklists-box p').remove();
-    }
+    window.domElement.remove('.tasklists-box p');
 
     let tasklists = document.querySelector('.tasklists-box__tasklist-title');
     let tasklistTitleHead = document.querySelector('.tasklist-header__title');

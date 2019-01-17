@@ -118,9 +118,7 @@
   function tasklistClickHandler(tasklist) {
     let tasklistTitleHead = document.querySelector('.tasklist-header__title');
     tasklist.addEventListener('click', (evt) => {
-      while (document.querySelector('.task-box')) {
-        document.querySelector('.task-box').remove();
-      }
+      window.domElement.remove('.task-box');
 
       if (document.querySelector('.tasklists-box__tasklist-title__selected')) {
         let selectedList = document.querySelector('.tasklists-box__tasklist-title__selected');

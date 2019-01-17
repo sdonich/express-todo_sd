@@ -10,6 +10,8 @@
   function setDefaultState() {
     let tasklistInputField = document.querySelector('.tasklists-box__input-field');
     tasklistInputField.remove();
+
+    document.removeEventListener('click', resetInputTitle, true);
   }
 
   function submit() {
@@ -18,20 +20,16 @@
     
     if (title.length > 0) {
       window.backend.sendTasklistTitle(title);
-      tasklistInputField.remove();
       window.action.addTasklist(title);
       window.tasklist.build(title);
+    } 
 
-    } else {
-      setDefaultState();
-    }
-    document.removeEventListener('click', resetInputTitle, true);
+    setDefaultState();
   }
 
   function keydownHandler(evt) {
     if (evt.keyCode === 27) {
       evt.preventDefault();
-      document.removeEventListener('click', resetInputTitle, true);
       setDefaultState();
     }
   
@@ -44,8 +42,8 @@
   function resetInputTitle(evt) {
     if (evt.target !== document.querySelector('.tasklists-box__input-field')) {
       evt.stopPropagation();
-      document.querySelector('.tasklists-box__input-field').remove();
-      document.removeEventListener('click', resetInputTitle, true);
+
+      setDefaultState();
     }
   }
 
@@ -84,7 +82,7 @@
     pasteTasklist
   }
 
-  window.backend.tasklists(fullDataCallback, emptyDataCallback);
+  window.backend.getTasklists(fullDataCallback, emptyDataCallback);
 
   createField.addEventListener('click', window.task.createTaskHandler);
   tasklistMenuButton.addEventListener('click', window.tasklistSetting.editMenuHandler);

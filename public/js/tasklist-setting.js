@@ -74,15 +74,11 @@
       document.addEventListener('keydown', keydownInputFieldHandler);
     },
     delete() {
-      let tasklist = tasklistTitle.textContent;
-      while(document.querySelector('.tasklists-box__tasklist-title li')) {
-        document.querySelector('.tasklists-box__tasklist-title li').remove();
-      }
-      while(document.querySelector('.task-box')) {
-        document.querySelector('.task-box').remove();
-      }
-      window.backend.deleteTasklist(tasklist, window.main.fullDataCallback, window.main.emptyDataCallback, setTitle);
+      window.domElement.remove('.tasklists-box__tasklist-title li');
+      window.domElement.remove('.task-box');
 
+      let tasklist = tasklistTitle.textContent;
+      window.backend.deleteTasklist(tasklist, window.main.fullDataCallback, window.main.emptyDataCallback, setTitle);
     }
   }
 

@@ -52,7 +52,7 @@
     })
   }
 
-  function tasklists(onLoadFull, onLoadEmpty) {
+  function getTasklists(onLoadFull, onLoadEmpty) {
     let xhr = new XMLHttpRequest();
     xhr.open('GET', `/tasklists`);
     xhr.responseType = 'json';
@@ -114,9 +114,9 @@
     create,
     complite,
     expel,
-    getTasklist,
     edit,
-    tasklists,
+    getTasklist,
+    getTasklists,
     sendTasklistTitle,
     editTasklist,
     deleteTasklist

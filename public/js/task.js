@@ -17,9 +17,7 @@
   function submit() {
     let task = createField.textContent;
     if (!document.querySelector('.tasklists-box__tasklist-title__selected')) {
-      while (document.querySelector('.tasklists-box p')) {
-        document.querySelector('.tasklists-box p').remove();
-      }
+      window.domElement.remove('.tasklists-box p');
 
       window.main.pasteTasklist('default list');
       let selectedTasklist = document.querySelector('.tasklists-box__tasklist-title__element');
