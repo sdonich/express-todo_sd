@@ -20,7 +20,7 @@
     
     if (title.length > 0) {
       window.backend.sendTasklistTitle(title);
-      window.action.addTasklist(title);
+      window.tasklist.add(title);
       window.tasklist.build(title);
     } 
 
@@ -66,7 +66,7 @@
   function fullDataCallback(data) {
     data.forEach(title => {
       let tasklist = pasteTasklist(title);
-      window.handler.tasklistClickHandler(tasklist);
+      window.tasklistToggle.tasklistClickHandler(tasklist);
     });
   
     let selectedTasklist = tasklists.firstChild;
@@ -74,12 +74,6 @@
     let title = selectedTasklist.textContent;
 
     window.tasklist.build(title);
-  }
-
-  window.main = {
-    fullDataCallback,
-    emptyDataCallback,
-    pasteTasklist
   }
 
   window.backend.getTasklists(fullDataCallback, emptyDataCallback);
@@ -97,4 +91,9 @@
     tasklistInputField.addEventListener('keydown', keydownHandler);
   });
 
+  window.main = {
+    fullDataCallback,
+    emptyDataCallback,
+    pasteTasklist
+  }
 })();

@@ -18,7 +18,7 @@
       const id = checkbox.getAttribute('id');
   
       window.backend.complite(complited, id);
-      window.action.moving(evt);
+      moving(evt);
     });
   }
 
@@ -32,7 +32,7 @@
       cross.style.opacity = 0;
     });
     cross.addEventListener('mouseover', (evt) => {
-      cross.style.opacity = 0.5;
+      cross.style.opacity = 1;
 
       let textContent = evt.target.previousSibling;
       textContent.style.color = 'red';
@@ -115,27 +115,25 @@
     taskContent.addEventListener('click', taskContentClickHandler);
   }
 
-  function tasklistClickHandler(tasklist) {
-    let tasklistTitleHead = document.querySelector('.tasklist-header__title');
-    tasklist.addEventListener('click', (evt) => {
-      window.domElement.remove('.task-box');
-
-      if (document.querySelector('.tasklists-box__tasklist-title__selected')) {
-        let selectedList = document.querySelector('.tasklists-box__tasklist-title__selected');
-        selectedList.classList.remove('tasklists-box__tasklist-title__selected');
-      }
-      evt.target.classList.add('tasklists-box__tasklist-title__selected');
-
-      tasklistTitleHead.textContent = evt.target.textContent;
-      window.tasklist.build(tasklistTitleHead.textContent);
-    });
+  function moving(evt) {
+    let notDone = document.querySelector('.tasks_not-done');
+    let done = document.querySelector('.tasks_done');
+  
+    let taskBox = evt.target.parentElement;
+    let parent = taskBox.parentElement;
+    let copy = parent.removeChild(taskBox);
+    
+    if (parent === notDone) {
+      done.append(copy);
+    } else {
+      notDone.append(copy);
+    }
   }
 
-  window.handler = {
+  window.taskHandler = {
     inputChange,
     crossAppear,
     crossDelete,
-    editContent,
-    tasklistClickHandler
+    editContent
   }
 })();

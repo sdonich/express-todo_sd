@@ -15,27 +15,30 @@
   }
   
   function submit() {
-    let task = createField.textContent;
-    if (!document.querySelector('.tasklists-box__tasklist-title__selected')) {
-      window.domElement.remove('.tasklists-box p');
-
-      window.main.pasteTasklist('default list');
-      let selectedTasklist = document.querySelector('.tasklists-box__tasklist-title__element');
-      selectedTasklist.classList.add('tasklists-box__tasklist-title__selected');
-
-      let tasklistHeadTitle = document.querySelector('.tasklist-header__title');
-      tasklistHeadTitle.textContent = 'default list';
-      window.backend.sendTasklistTitle(tasklistHeadTitle.textContent);
+    if (createField.textContent.length > 0) {
+      let task = createField.textContent;
+      if (!document.querySelector('.tasklists-box__tasklist-title__selected')) {
+        window.domElement.remove('.tasklists-box p');
+  
+        window.main.pasteTasklist('default list');
+        let selectedTasklist = document.querySelector('.tasklists-box__tasklist-title__element');
+        selectedTasklist.classList.add('tasklists-box__tasklist-title__selected');
+  
+        let tasklistHeadTitle = document.querySelector('.tasklist-header__title');
+        tasklistHeadTitle.textContent = 'default list';
+        
+        window.tasklistToggle.tasklistClickHandler(selectedTasklist);
+        window.backend.sendTasklistTitle(tasklistHeadTitle.textContent);
+      }
+  
+      let tasklist = document.querySelector('.tasklists-box__tasklist-title__selected');
+      let tasklistTitle = tasklist.textContent;
+      
+      window.backend.create(task, tasklistTitle, addTask);
+      setDefaultState();
+    } else {
+      setDefaultState();
     }
-
-    let tasklist = document.querySelector('.tasklists-box__tasklist-title__selected');
-    let tasklistTitle = tasklist.textContent;
-
-    window.handler.tasklistClickHandler(tasklist);
-    
-    if (task.length > 0) window.backend.create(task, tasklistTitle, window.action.add);
-
-    setDefaultState();
   }
   
   function keydownHandler(evt) {
@@ -82,6 +85,45 @@
 
     createField.removeEventListener('click', createTaskHandler);
   }
+
+  function addTask(task) {
+    let notDone = document.querySelector('.tasks_not-done');
+    let done = document.querySelector('.tasks_done');
+
+    let taskBox = document.createElement('li');
+    taskBox.classList.add('task-box');
+
+    let checkbox = document.createElement('div');
+    checkbox.setAttribute('role', 'checkbox');
+    checkbox.setAttribute('complited', task.complited);
+    checkbox.setAttribute('id', task.id);
+
+    let taskContent = document.createElement('div');
+    taskContent.classList.add('task-box__content');
+    taskContent.setAttribute('contenteditable', true);
+    taskContent.textContent = task.content;
+       
+    let cross = document.createElement('div');
+    cross.classList.add('task-box__cross');
+
+    taskBox.append(checkbox);
+    taskBox.append(taskContent);
+    taskBox.append(cross);
+
+    if (task.complited === true) {
+      checkbox.setAttribute('checked', true);
+      done.append(taskBox);
+    }
+    if (task.complited === false) {
+      checkbox.setAttribute('checked', false);
+      notDone.append(taskBox);
+    }
+
+    window.taskHandler.crossAppear(taskContent, cross);
+    window.taskHandler.inputChange(checkbox);
+    window.taskHandler.crossDelete(task, taskBox, cross);
+    window.taskHandler.editContent(taskContent);
+  }
   
   function clearSelection() {
     if (document.selection && document.selection.empty) {
@@ -93,7 +135,8 @@
   }
 
   window.task = {
-    createTaskHandler
+    createTaskHandler,
+    addTask
   }
 })();
 
