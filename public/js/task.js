@@ -120,7 +120,7 @@
     }
 
     window.taskHandler.crossAppear(taskContent, cross);
-    window.taskHandler.inputChange(checkbox);
+    window.taskHandler.checkTask(checkbox);
     window.taskHandler.crossDelete(task, taskBox, cross);
     window.taskHandler.editContent(taskContent);
   }

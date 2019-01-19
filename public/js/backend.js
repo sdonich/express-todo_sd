@@ -30,14 +30,14 @@
     xhr.send();
   }
   
-  function expel(id, onLoad) {
+  function deleteTask(id, onLoad) {
     let xhr = new XMLHttpRequest();
     
     xhr.addEventListener('load', function () {
       onLoad();
     });
     
-    xhr.open('GET', `/expel?id=${id}`);
+    xhr.open('GET', `/deleteTask?id=${id}`);
     xhr.send();
   }
   
@@ -113,7 +113,7 @@
   window.backend = {
     create,
     complite,
-    expel,
+    deleteTask,
     edit,
     getTasklist,
     getTasklists,

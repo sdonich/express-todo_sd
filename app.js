@@ -30,7 +30,7 @@ app.post('/edit', jsonParse, (req, res) => {
     let newTasks = edit(editTask, tasks);
 
     fs.writeFile(path.resolve('data', 'tasks.json'), JSON.stringify(newTasks), (err) => {
-      res.send('ok');
+      res.send();
 
     });
   });
@@ -59,25 +59,25 @@ app.get('/complite', (req, res) => {
 
     let jsonTasks = JSON.stringify(tasks);
     fs.writeFile(path.resolve('data', 'tasks.json'), jsonTasks, (err) => {
-      res.send('ok');
+      res.send();
     });
   });
 });
 
-app.get('/expel', (req, res) => {
-  const expelTaskId = url.parse(req.url, true).query;
+app.get('/deleteTask', (req, res) => {
+  const deleteTaskId = url.parse(req.url, true).query;
 
   fs.readFile(path.resolve('data', 'tasks.json'), (err, data) => {
     let tasks = JSON.parse(data);
     tasks.forEach((task, i) => {
-      if (task.id == expelTaskId.id) {
+      if (task.id == deleteTaskId.id) {
         tasks.splice(i, 1);
       }
     });
 
     let jsonTasks = JSON.stringify(tasks);
     fs.writeFile(path.resolve('data', 'tasks.json'), jsonTasks, (err) => {
-      res.send('ok');
+      res.send();
     });
   });
 });
@@ -96,7 +96,7 @@ app.post('/addTasklist', jsonParse, (req, res) => {
 
     let jsonTasklists = JSON.stringify(tasklists);
     fs.writeFile(path.resolve('data', 'tasklists.json'), jsonTasklists, (err) => {
-      res.send('ok');
+      res.send();
     });
   });
 });
@@ -105,7 +105,7 @@ app.post('/editTasklist', jsonParse, (req, res) => {
   editTasklist(req.body, 'tasklists');
   editTasklist(req.body, 'tasks');
 
-  res.send('ok');
+  res.send();
 });
 
 app.post('/deleteTasklist', jsonParse, (req, res) => {

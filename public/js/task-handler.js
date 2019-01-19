@@ -1,7 +1,7 @@
 'use strict';
 
 (function() {
-  function inputChange(checkbox) {
+  function checkTask(checkbox) {
     checkbox.addEventListener('click', (evt) => {
       let check = checkbox.getAttribute('checked');
   
@@ -23,31 +23,25 @@
   }
 
   function crossAppear(taskContent, cross) {
-    taskContent.addEventListener('mouseover', (evt) => {
-      let cross = evt.target.nextSibling;
+    taskContent.addEventListener('mouseover', () => {
       cross.style.opacity = 0.5;
     });
-    taskContent.addEventListener('mouseout', (evt) => {
-      let cross = evt.target.nextSibling;
+    taskContent.addEventListener('mouseout', () => {
       cross.style.opacity = 0;
     });
-    cross.addEventListener('mouseover', (evt) => {
+    cross.addEventListener('mouseover', () => {
       cross.style.opacity = 1;
-
-      let textContent = evt.target.previousSibling;
-      textContent.style.color = 'red';
+      taskContent.style.color = 'red';
     });
-    cross.addEventListener('mouseout', (evt) => {
+    cross.addEventListener('mouseout', () => {
       cross.style.opacity = 0;
-      
-      let textContent = evt.target.previousSibling;
-      textContent.style.color = 'black';
+      taskContent.style.color = 'black';
     });
   }
 
   function crossDelete(task, taskBox, cross) {
     cross.addEventListener('click', () => {
-      window.backend.expel(task.id, () => {
+      window.backend.deleteTask(task.id, () => {
         taskBox.remove();
       });
     });
@@ -58,15 +52,23 @@
     prieviousContent = evt.target.textContent;
     evt.target.setAttribute('status', 'editing');
 
-    document.addEventListener('keydown', enterSubmit);
-    document.addEventListener('keydown', resetHandler);
+    document.addEventListener('keydown', keydownEditHandler);
     document.addEventListener('click', clickSubmit);
     evt.target.removeEventListener('click', taskContentClickHandler);
   }
 
-  function submit(evt) {
-    evt.preventDefault();
+  function keydownEditHandler(evt) {
+    if (evt.keyCode === 27) {
+      evt.preventDefault();
+      resetEditTask();
+    }
+    if (evt.keyCode === 13) {
+      evt.preventDefault();
+      submitEditTask();
+    }
+  }
 
+  function submitEditTask() {
     const editingTask = document.querySelector('div[status="editing"]');
     const checkboxSibling = editingTask.previousSibling;
     const id = checkboxSibling.getAttribute('id');
@@ -75,9 +77,8 @@
 
     window.backend.edit( {id, content} );
     
-    document.removeEventListener('keydown', enterSubmit);
     document.removeEventListener('click', clickSubmit);
-    document.removeEventListener('keydown', resetHandler);
+    document.removeEventListener('keydown', keydownEditHandler);
     editingTask.addEventListener('click', taskContentClickHandler);
 
     editingTask.removeAttribute('status', 'editing');
@@ -85,30 +86,20 @@
   
   function clickSubmit(evt) {
     if (evt.target !== document.querySelector('div[status="editing"]')) {
-      submit(evt);
+      submitEditTask();
     }
   }
 
-  function resetHandler(evt) {
+  function resetEditTask() {
     const editingTask = document.querySelector('div[status="editing"]');
 
-    if (evt.keyCode === 27) {
-      evt.preventDefault();
-      editingTask.blur();
-      editingTask.textContent = prieviousContent;
-      document.removeEventListener('keydown', resetHandler);
-      document.removeEventListener('keydown', enterSubmit);
-      document.removeEventListener('click', clickSubmit);
-      editingTask.addEventListener('click', taskContentClickHandler);
+    editingTask.blur();
+    editingTask.textContent = prieviousContent;
+    document.removeEventListener('keydown', keydownEditHandler);
 
-      editingTask.removeAttribute('status', 'editing');
-    }
-  }
-
-  function enterSubmit(evt) {
-    if (evt.keyCode === 13) {
-      submit(evt);
-    }
+    document.removeEventListener('click', clickSubmit);
+    editingTask.addEventListener('click', taskContentClickHandler);
+    editingTask.removeAttribute('status', 'editing');
   }
 
   function editContent(taskContent) {
@@ -131,7 +122,7 @@
   }
 
   window.taskHandler = {
-    inputChange,
+    checkTask,
     crossAppear,
     crossDelete,
     editContent

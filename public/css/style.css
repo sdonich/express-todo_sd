@@ -152,8 +152,6 @@ body {
   border-bottom-left-radius: 29px;
 
   background-color: #5FCFD4;
-  
-  font-size: 30px;
 }
 
 .tasklists-box__input-field {
@@ -287,6 +285,8 @@ body {
 .task-box {
   position: relative;
   display: flex;
+
+  border: 1px solid rgba(0, 0, 0, 0);
 }
 
 .task-box:hover {
