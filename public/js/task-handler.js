@@ -121,10 +121,14 @@
     }
   }
 
+  function setHandlers(task, taskBox, checkbox, taskContent, cross) {
+    checkTask(checkbox);
+    editContent(taskContent);
+    crossAppear(taskContent, cross);
+    crossDelete(task, taskBox, cross);
+  }
+
   window.taskHandler = {
-    checkTask,
-    crossAppear,
-    crossDelete,
-    editContent
+    setHandlers
   }
 })();

@@ -41,15 +41,19 @@
     xhr.send();
   }
   
-  function getTasklist(title, onLoad) {
+  function getTasklist(title, onLoadFull, onLoadEmpty) {
     let xhr = new XMLHttpRequest();
     xhr.open('GET', `/tasks?title=${title}`);
     xhr.responseType = 'json';
     xhr.send();
 
     xhr.addEventListener('load', function () {
-      onLoad(xhr.response);
-    })
+      if (xhr.response.length !== 0) {
+        onLoadFull(xhr.response);
+      }  else {
+        onLoadEmpty();
+      }
+    });
   }
 
   function getTasklists(onLoadFull, onLoadEmpty) {
@@ -64,7 +68,7 @@
       }  else {
         onLoadEmpty();
       }
-    })
+    });
   }
 
   function sendTasklistTitle(data) {

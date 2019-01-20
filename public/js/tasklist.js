@@ -3,11 +3,18 @@
 (function() {
   function build(title) {
     window.domElement.remove('.task-box');
+    window.domElement.remove('.motivation-box');
 
     window.backend.getTasklist(title, (tasks) => {
       tasks.forEach(task => {
         window.task.addTask(task);
       });
+    }, () => {
+      let motivationBox = document.createElement('div');
+      motivationBox.classList.add('motivation-box');
+      
+      document.querySelector('.tasks').append(motivationBox);
+      motivationBox.insertAdjacentHTML('beforeend', `<img src="/img/motivation-checkmark.png"> no task, let's play in videogames`);
     });
   }
 

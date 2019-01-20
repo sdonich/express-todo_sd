@@ -119,10 +119,7 @@
       notDone.append(taskBox);
     }
 
-    window.taskHandler.crossAppear(taskContent, cross);
-    window.taskHandler.checkTask(checkbox);
-    window.taskHandler.crossDelete(task, taskBox, cross);
-    window.taskHandler.editContent(taskContent);
+    window.taskHandler.setHandlers(task, taskBox, checkbox, taskContent, cross);
   }
   
   function clearSelection() {

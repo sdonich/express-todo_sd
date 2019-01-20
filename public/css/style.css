@@ -131,7 +131,7 @@ body {
 }
 
 .tasklists-box__tasklist-title__element {
-  padding: 0px 14px;
+  padding: 2px 14px;
   cursor: pointer;
   font-size: 26px;
   word-break: break-all;
@@ -344,4 +344,18 @@ body {
   background-size: contain;
   background-position: right 50% top 13px;
   opacity: 0;
+}
+
+/*Элементы мотивационного блока*/
+
+.motivation-box {
+  margin-top: 180px;
+  text-align: center;
+  opacity: 0.2;
+}
+
+.motivation-box img {
+  display: block;
+  width: 130px;
+  margin: 5px auto;
 }
