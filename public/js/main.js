@@ -57,10 +57,12 @@
   }
 
   function emptyDataCallback() {
+    window.motivation.add();
+
     let placeholder = document.createElement('p');
     placeholder.classList.add('tasklists-box__placeholder');
     addTasklistButton.before(placeholder);
-    placeholder.insertAdjacentHTML('afterBegin', 'There is no tasklists yet<br><b>Press PLUS</b> to create <br> your first tasklist');
+    placeholder.insertAdjacentHTML('afterBegin', 'There is no tasklists yet,<br><b>press PLUS</b> to create');
   }
 
   function fullDataCallback(data) {

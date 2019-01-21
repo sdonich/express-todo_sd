@@ -43,6 +43,10 @@
     cross.addEventListener('click', () => {
       window.backend.deleteTask(task.id, () => {
         taskBox.remove();
+        
+        if (!document.querySelector('.task-box')) {
+          window.motivation.add();
+        }
       });
     });
   }

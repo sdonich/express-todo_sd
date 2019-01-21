@@ -176,7 +176,9 @@ body {
 }
 
 .tasklists-box__placeholder {
+  margin-top: 230px;
   text-align: center;
+  opacity: 0.4;
 }
 
 /*Элементы списка задач*/
@@ -185,6 +187,7 @@ body {
   width: 595px;
   min-height: 620px;
   padding: 20px 15px 20px 15px;
+  margin-right: 35px;
   border: 1px solid rgba(0, 0, 0, 0.4);
   border-radius: 10px;
   box-sizing: border-box;
@@ -346,16 +349,37 @@ body {
   opacity: 0;
 }
 
+/*Элементы блока заметок*/
+.notes {
+  display: flex;
+
+  width: 595px;
+  min-height: 620px;
+  padding: 20px 15px 20px 15px;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  border-radius: 10px;
+  box-sizing: border-box;
+
+  background-color: white;
+
+  font-size: 20px;
+}
+
+
+
+
+
 /*Элементы мотивационного блока*/
 
 .motivation-box {
   margin-top: 180px;
   text-align: center;
-  opacity: 0.2;
+  opacity: 0.4;
 }
 
 .motivation-box img {
   display: block;
   width: 130px;
   margin: 5px auto;
+  opacity: 0.35;
 }
