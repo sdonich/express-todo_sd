@@ -3,6 +3,7 @@
 (function() {
 
   function add() {
+    window.domElement.remove('.motivation-box');
     let motivationBox = document.createElement('div');
     motivationBox.classList.add('motivation-box');
       

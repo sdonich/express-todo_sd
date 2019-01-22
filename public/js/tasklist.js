@@ -2,10 +2,9 @@
 
 (function() {
   function build(title) {
-    window.domElement.remove('.task-box');
-    window.domElement.remove('.motivation-box');
-
     window.backend.getTasklist(title, (tasks) => {
+      window.domElement.remove('.task-box');
+
       tasks.forEach(task => {
         window.task.addTask(task);
       });

@@ -31,6 +31,7 @@ body {
 
 .new-task__add-field {
   flex-grow: 2;
+  margin-right: 25px;
   outline: none;
   color: grey;
   font-size: 30px;
@@ -38,7 +39,9 @@ body {
 }
 
 .new-task__add-button {
+  align-self: center;
   min-width: 45px;
+  min-height: 45px;
   background-image: url('/img/checkmark.png');
   background-position: center;
   background-size: contain;
@@ -51,9 +54,9 @@ body {
 }
 
 .new-task__add-note {
-  position: relative;
-  align-self: stretch;
+  align-self: center;
   min-width: 45px;
+  min-height: 45px;
   background-image: url('/img/note.png');
   background-position: center;
   background-size: contain;
@@ -364,9 +367,6 @@ body {
 
   font-size: 20px;
 }
-
-
-
 
 
 /*Элементы мотивационного блока*/
