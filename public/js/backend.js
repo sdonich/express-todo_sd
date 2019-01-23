@@ -6,6 +6,7 @@
     
     let xhr = new XMLHttpRequest();
     xhr.responseType = 'json';
+    
     xhr.open('POST', '/add');
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(JSON.stringify(task));
@@ -19,6 +20,7 @@
   function edit(data) {
     let xhr = new XMLHttpRequest();
     xhr.responseType = 'json';
+
     xhr.open('POST', '/edit');
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(JSON.stringify(data));
@@ -26,25 +28,29 @@
   
   function complite(complited, id) {
     let xhr = new XMLHttpRequest();
+    xhr.responseType = 'json';
+
     xhr.open('GET', `/complite?id=${id}&complited=${complited}`);
     xhr.send();
   }
   
   function deleteTask(id, onLoad) {
     let xhr = new XMLHttpRequest();
-    
+    xhr.responseType = 'json';
+
+    xhr.open('GET', `/deleteTask?id=${id}`);
+    xhr.send();
+
     xhr.addEventListener('load', function () {
       onLoad();
     });
-    
-    xhr.open('GET', `/deleteTask?id=${id}`);
-    xhr.send();
   }
   
   function getTasklist(title, onLoadFull, onLoadEmpty) {
     let xhr = new XMLHttpRequest();
-    xhr.open('GET', `/tasks?title=${title}`);
     xhr.responseType = 'json';
+
+    xhr.open('GET', `/tasks?title=${title}`);
     xhr.send();
 
     xhr.addEventListener('load', function () {

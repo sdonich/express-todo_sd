@@ -16,12 +16,15 @@
     let noteAdd = document.createElement('div');
     noteAdd.classList.add('new-note__add-button');
     
-
     createBox.append(noteHeader);
     createBox.append(noteText);
     createBox.append(noteAdd);
 
     noteText.focus();
+
+    noteAdd.addEventListener('click', () => {
+      console.log('hello');
+    });
   }
 
 
