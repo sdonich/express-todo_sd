@@ -2,7 +2,7 @@
 
 (function() {
   let createField = document.querySelector('.new-task__add-field');
-  let okMarkdown = document.querySelector('.new-task__wrapper .new-task__add-button');
+  let okMarkdown = document.querySelector('.create-box__wrapper .new-task__add-button');
 
   function setDefaultState() {
     createField.style.color = 'grey';

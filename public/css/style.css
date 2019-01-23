@@ -11,11 +11,12 @@ body {
 
 /*Элементы верхнего меню (создание заметок и задач, поиск и т.д)*/
 
-.new-task__wrapper {
+.create-box__wrapper {
   position: relative;
   left: 485px;
 
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 45px 45px;
 
   width: 595px;
   min-height: 73px;
@@ -30,11 +31,11 @@ body {
 }
 
 .new-task__add-field {
-  flex-grow: 2;
   margin-right: 25px;
+  min-height: 45px;
   outline: none;
   color: grey;
-  font-size: 30px;
+  font-size: 32px;
   word-break: break-all;
 }
 
@@ -53,7 +54,7 @@ body {
   transform: scale(0.9);
 }
 
-.new-task__add-note {
+.create-box__note-mode {
   align-self: center;
   min-width: 45px;
   min-height: 45px;
@@ -64,7 +65,7 @@ body {
 }
 
 .new-task__add-button:hover,
-.new-task__add-note:hover {
+.create-box__note-mode:hover {
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
@@ -354,7 +355,7 @@ body {
 
 /*Элементы блока заметок*/
 .notes {
-  display: flex;
+  display: grid;
 
   width: 595px;
   min-height: 620px;
@@ -367,6 +368,49 @@ body {
 
   font-size: 20px;
 }
+
+.create-box__wrapper.notes-mod {
+  grid-template-rows: auto auto 45px;
+  grid-template-areas: "header header header" "text text text" ". add switch";
+  grid-row-gap: 10px;
+}
+
+.new-note__note-header {
+  grid-area: header;
+
+  min-height: 45px;
+  margin-right: 25px;
+  outline: none;
+  color: grey;
+  font-size: 26px;
+  word-break: break-all;
+}
+
+.new-note__note-text {
+  grid-area: text;
+
+  min-height: 45px;
+  margin-right: 25px;
+  outline: none;
+  font-size: 30px;
+  word-break: break-all;
+}
+
+.new-note__add-button {
+  grid-area: add;
+
+  align-self: center;
+  min-width: 45px;
+  min-height: 45px;
+  background-image: url('/img/checkmark.png');
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 1;
+}
+
+
+
 
 
 /*Элементы мотивационного блока*/

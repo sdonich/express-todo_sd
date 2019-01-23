@@ -6,6 +6,7 @@
   let addTasklistButton = tasklistsBox.querySelector('.tasklists-box__add-button');
   let createField = document.querySelector('.new-task__add-field');
   let tasklistMenuButton = document.querySelector('.tasklist-header__edit-tasklist_button');
+  let noteMode = document.querySelector('.create-box__note-mode');
 
   function setDefaultState() {
     let tasklistInputField = document.querySelector('.tasklists-box__input-field');
@@ -92,6 +93,7 @@
     document.addEventListener('click', resetInputTitle, true);
     tasklistInputField.addEventListener('keydown', keydownHandler);
   });
+  noteMode.addEventListener('click', window.note.switchMode);
 
   window.main = {
     fullDataCallback,
