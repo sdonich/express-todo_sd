@@ -6,7 +6,7 @@
   function paddingBox() {
     let noteHeader = document.createElement('div');
     noteHeader.classList.add('new-note__note-header');
-    noteHeader.textContent = 'Enter header...'
+    noteHeader.textContent = 'type header...'
     noteHeader.setAttribute('contenteditable', true);
 
     let noteText = document.createElement('div');
