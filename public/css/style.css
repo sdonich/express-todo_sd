@@ -54,7 +54,7 @@ body {
   transform: scale(0.9);
 }
 
-.create-box__note-mode {
+.create-box__mode-button {
   align-self: center;
   min-width: 45px;
   min-height: 45px;
@@ -65,7 +65,7 @@ body {
 }
 
 .new-task__add-button:hover,
-.create-box__note-mode:hover {
+.create-box__mode-button[mode="check"]:hover {
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
@@ -378,6 +378,8 @@ body {
 .new-note__note-header {
   grid-area: header;
 
+  display: none;
+
   min-height: 45px;
   margin-right: 25px;
   outline: none;
@@ -389,6 +391,8 @@ body {
 .new-note__note-text {
   grid-area: text;
 
+  display: none;
+
   min-height: 45px;
   margin-right: 25px;
   outline: none;
@@ -398,6 +402,8 @@ body {
 
 .new-note__add-button {
   grid-area: add;
+
+  display: none;
 
   align-self: center;
   min-width: 45px;
@@ -409,21 +415,12 @@ body {
   background-repeat: no-repeat;
 }
 
-.create-box__check-mode {
+.create-box__mode-button[mode='note'] {
   grid-area: switch;
-
-  align-self: center;
-  min-width: 45px;
-  min-height: 45px;
-
-  background-image: url('/img/check.png');
-  background-position: center;
-  background-size: contain;
-  background-repeat: no-repeat;
+  border-bottom: 2px solid #edbc12;
 }
 
-.new-note__add-button:hover,
-.create-box__check-mode:hover {
+.new-note__add-button:hover {
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 

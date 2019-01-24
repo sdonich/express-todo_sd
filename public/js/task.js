@@ -73,9 +73,7 @@
   }
   
   function createTaskHandler(evt) {
-    debugger;
     okMarkdown.style.opacity = 1;
-    console.log(okMarkdown);
 
     if (evt.target.textContent === 'new task...') evt.target.textContent = '';
     

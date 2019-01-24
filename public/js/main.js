@@ -6,7 +6,7 @@
   let addTasklistButton = tasklistsBox.querySelector('.tasklists-box__add-button');
   let createField = document.querySelector('.new-task__add-field');
   let tasklistMenuButton = document.querySelector('.tasklist-header__edit-tasklist_button');
-  let noteMode = document.querySelector('.create-box__note-mode');
+  let noteMode = document.querySelector('.create-box__mode-button');
 
   function setDefaultState() {
     let tasklistInputField = document.querySelector('.tasklists-box__input-field');
