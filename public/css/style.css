@@ -402,11 +402,29 @@ body {
   align-self: center;
   min-width: 45px;
   min-height: 45px;
+  
   background-image: url('/img/checkmark.png');
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
-  opacity: 1;
+}
+
+.create-box__check-mode {
+  grid-area: switch;
+
+  align-self: center;
+  min-width: 45px;
+  min-height: 45px;
+
+  background-image: url('/img/check.png');
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.new-note__add-button:hover,
+.create-box__check-mode:hover {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 /*Элементы мотивационного блока*/
