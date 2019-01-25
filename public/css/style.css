@@ -65,7 +65,7 @@ body {
 }
 
 .new-task__add-button:hover,
-.create-box__mode-button[mode="check"]:hover {
+.create-box__mode-button[mode="checkMode"]:hover {
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
@@ -238,7 +238,7 @@ body {
   position: absolute;
   right: 42px;
   top: 6px;
-  z-index: 2;
+  z-index: 3;
 
   width: 100px;
   height: 60px;
@@ -250,6 +250,7 @@ body {
   list-style-type: none;
 
   box-shadow: 0px 5px 5px 0 rgba(0, 0, 0, 0.4);
+  background-color: white;
 }
 
 .tasklist-header__edit-tasklist_menu li {
@@ -396,8 +397,10 @@ body {
   min-height: 45px;
   margin-right: 25px;
   outline: none;
+  
   font-size: 30px;
   word-break: break-all;
+  color: grey;
 }
 
 .new-note__add-button {
@@ -415,9 +418,9 @@ body {
   background-repeat: no-repeat;
 }
 
-.create-box__mode-button[mode='note'] {
+.create-box__mode-button[mode='noteMode'] {
   grid-area: switch;
-  border-bottom: 2px solid #edbc12;
+  border-bottom: 2px solid #4ab6a3;
 }
 
 .new-note__add-button:hover {

@@ -2,28 +2,39 @@
 
 (function() {
   let createBox = document.querySelector('.create-box__wrapper');
+  let switchModeButton = document.querySelector('.create-box__mode-button');
 
-  
-
-
-  function switchMode() {
-    let noteMode = document.querySelector('.create-box__mode-button');
-
-    noteMode.setAttribute('mode', 'note');
-
-    createBox.classList.add('notes-mod');
-    document.querySelector('.new-task__add-field').style.display = 'none';
-    document.querySelector('.new-task__add-button').style.display = 'none';
-
-    document.querySelector('.new-note__note-header').style.display = 'block';
-    document.querySelector('.new-note__note-text').style.display = 'block';
-    document.querySelector('.new-note__add-button').style.display = 'block';
-
-
- 
+  let switcher = {
+    checkMode: {
+      check: 'block',
+      note: 'none'
+    },
+    noteMode: {
+      check: 'none',
+      note: 'block'
+    }
   }
 
-  window.note = {
-    switchMode
+  function pull(evt) {
+    createBox.classList.toggle('notes-mod');
+
+    if (switchModeButton.getAttribute('mode') === 'checkMode') {
+      switchModeButton.setAttribute('mode', 'noteMode');
+    } else {
+      switchModeButton.setAttribute('mode', 'checkMode');
+    }
+    let mode = switchModeButton.getAttribute('mode');
+
+    document.querySelector('.new-task__add-field').style.display = switcher[mode].check;
+    document.querySelector('.new-task__add-button').style.display = switcher[mode].check;
+
+    document.querySelector('.new-note__note-header').style.display = switcher[mode].note;
+    document.querySelector('.new-note__note-text').style.display = switcher[mode].note;
+    document.querySelector('.new-note__add-button').style.display = switcher[mode].note;
+    
+  }
+
+  window.switchMode = {
+    pull
   }
 })();
