@@ -3,6 +3,7 @@
 (function() {
   let createField = document.querySelector('.new-task__add-field');
   let okMarkdown = document.querySelector('.create-box__wrapper .new-task__add-button');
+  let switchModeButton = document.querySelector('.create-box__mode-button');
 
   function setDefaultState() {
     createField.style.color = 'grey';
@@ -69,6 +70,9 @@
       document.removeEventListener('keydown', keydownHandler);
       document.removeEventListener('mousedown', resetInputMousedownHandler);
       createField.addEventListener('click', createTaskHandler);
+    }
+    if (evt.target === switchModeButton) {
+      setDefaultState();
     }
   }
   

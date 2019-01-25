@@ -15,11 +15,14 @@
     }
   }
 
-  function pull(evt) {
+  function pull() {
+    // debugger;    
     createBox.classList.toggle('notes-mod');
 
     if (switchModeButton.getAttribute('mode') === 'checkMode') {
       switchModeButton.setAttribute('mode', 'noteMode');
+
+
     } else {
       switchModeButton.setAttribute('mode', 'checkMode');
     }
@@ -31,6 +34,10 @@
     document.querySelector('.new-note__note-header').style.display = switcher[mode].note;
     document.querySelector('.new-note__note-text').style.display = switcher[mode].note;
     document.querySelector('.new-note__add-button').style.display = switcher[mode].note;
+
+    if (mode === 'noteMode') {
+      window.note.setNoteHandler();
+    }
     
   }
 
