@@ -16,13 +16,10 @@
   }
 
   function pull() {
-    // debugger;    
     createBox.classList.toggle('notes-mod');
 
     if (switchModeButton.getAttribute('mode') === 'checkMode') {
       switchModeButton.setAttribute('mode', 'noteMode');
-
-
     } else {
       switchModeButton.setAttribute('mode', 'checkMode');
     }

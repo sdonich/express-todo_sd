@@ -18,7 +18,7 @@ body {
   display: grid;
   grid-template-columns: auto 45px 45px;
 
-  width: 595px;
+  width: 600px;
   min-height: 73px;
   box-sizing: border-box;
   margin-top: 50px;
@@ -74,6 +74,7 @@ body {
 .board-wrapper {
   display: flex;
   margin-top: 35px;
+  height: 680px;
 }
 
 /*Элементы списка тасклистов*/
@@ -188,7 +189,7 @@ body {
 /*Элементы списка задач*/
 
 .tasks {
-  width: 595px;
+  width: 600px;
   min-height: 620px;
   padding: 20px 15px 20px 15px;
   margin-right: 35px;
@@ -357,23 +358,55 @@ body {
 /*Элементы блока заметок*/
 .notes {
   display: grid;
+  grid-template-columns: 270px 270px;
+  row-gap: 30px;
+  column-gap: 42px;
+  align-self: flex-start;
 
-  width: 595px;
-  min-height: 620px;
-  padding: 20px 15px 20px 15px;
-  border: 1px solid rgba(0, 0, 0, 0.4);
+  width: 640px;
+  padding: 0;
   border-radius: 10px;
   box-sizing: border-box;
-
+  overflow-y: auto;
   background-color: white;
-
+  max-height: 680px;
   font-size: 20px;
+}
+
+.note-box {
+  display: flex;
+  flex-direction: column;
+
+  width: 285px;
+  height: 183px;
+  box-sizing: border-box;
+  border: 1px solid black;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+}
+
+.note-box__header {
+  min-height: 30px;
+  padding: 5px 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  background-color: rgba(255, 217, 102, 0.7);
+}
+
+.note-box__text {
+  flex-grow: 2;
+  padding: 0 10px;
+  overflow: hidden;
+}
+
+.note-box__setting {
+  min-height: 40px;
 }
 
 .create-box__wrapper.notes-mod {
   grid-template-rows: auto auto 45px;
   grid-template-areas: "header header header" "text text text" ". add switch";
-  grid-row-gap: 10px;
+  row-gap: 10px;
 }
 
 .new-note__note-header {

@@ -1,10 +1,12 @@
 'use strict';
 
 (function() {
+  let create
   let noteHeader = document.querySelector('.new-note__note-header');
   let noteText = document.querySelector('.new-note__note-text');
   let addNoteButton = document.querySelector('.new-note__add-button');
   let switchModeButton = document.querySelector('.create-box__mode-button');
+  let createBoxWrapper = document.querySelector('.create-box__wrapper');
 
   function submit() {
     console.log(noteHeader.textContent);
@@ -24,6 +26,7 @@
     addNoteButton.removeEventListener('click', submit);
     noteHeader.removeEventListener('click', noteHeaderHandler);
     switchModeButton.removeEventListener('click', setDefaultState);
+    document.removeEventListener('mousedown', resetInputMousedownHandler);
     document.removeEventListener('keydown', keydownHandler);
   }
 
@@ -33,14 +36,21 @@
 
       setDefaultState();
       window.switchMode.pull();
-
-      // здесь должен быть переключение мода
     }
   
     if (evt.keyCode === 13) {
       evt.preventDefault();
 
       submit();
+    }
+  }
+
+  function resetInputMousedownHandler(evt) {
+    if (evt.target.parentElement !== createBoxWrapper && evt.target !== createBoxWrapper) {
+      evt.stopPropagation();
+      setDefaultState();
+      window.switchMode.pull();
+
     }
   }
 
@@ -51,11 +61,10 @@
     noteHeader.addEventListener('click', noteHeaderHandler);
     switchModeButton.addEventListener('click', setDefaultState);
     document.addEventListener('keydown', keydownHandler);
+    document.addEventListener('mousedown', resetInputMousedownHandler);
   }
 
   window.note = {
     setNoteHandler
   }
-
-
 })();
