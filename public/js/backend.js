@@ -119,6 +119,33 @@
       }
     })
   }
+
+  function notelist(onLoadFull, onLoadEmpty) {
+    let xhr = new XMLHttpRequest();
+    xhr.open('GET', `/notelist`);
+    xhr.responseType = 'json';
+    xhr.send();
+  
+    xhr.addEventListener('load', function () {
+      if (xhr.response.length !== 0) {
+        onLoadFull(xhr.response);
+      }  else {
+        onLoadEmpty();
+      }
+    });
+  }
+
+  function addNote(note, onLoad) {
+    let xhr = new XMLHttpRequest();
+    xhr.responseType = 'json';
+    xhr.open('POST', '/addnote');
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify({ note }));
+    
+    xhr.addEventListener('load', function () {
+      onLoad(xhr.response);
+    });
+  }
   
   window.backend = {
     create,
@@ -129,7 +156,9 @@
     getTasklists,
     sendTasklistTitle,
     editTasklist,
-    deleteTasklist
+    deleteTasklist,
+    notelist,
+    addNote
   }
 })();
 

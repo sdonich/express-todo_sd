@@ -95,6 +95,8 @@
   });
   switchModeButton.addEventListener('click', window.switchMode.pull);
 
+  window.notelist.render();
+
   window.main = {
     fullDataCallback,
     emptyDataCallback,

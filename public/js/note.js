@@ -11,6 +11,20 @@
   function submit() {
     console.log(noteHeader.textContent);
     console.log(noteText.textContent);
+
+    if (noteText.textContent.length > 0 && noteHeader.textContent.length > 0) {
+      let note = {
+        header: noteHeader.textContent,
+        content: noteText.textContent
+      }
+
+      // window.backend.addNote(note, () => {
+
+      // });
+    }
+
+
+
     setDefaultState();
     window.switchMode.pull();
   }
@@ -50,7 +64,6 @@
       evt.stopPropagation();
       setDefaultState();
       window.switchMode.pull();
-
     }
   }
 

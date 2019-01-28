@@ -14,7 +14,7 @@ app.set('view engine', 'pug');
 app.post('/add', jsonParse, (req, res) => {
   fs.readFile(path.resolve('data', 'tasks.json'), (err, data) => {
     let newTasks = JSON.parse(data);
-    const newTask = padding(req.body);
+    const newTask = padding.task(req.body);
     newTasks.push(newTask);
 
     fs.writeFile(path.resolve('data', 'tasks.json'), JSON.stringify(newTasks), (err) => {
@@ -31,7 +31,6 @@ app.post('/edit', jsonParse, (req, res) => {
 
     fs.writeFile(path.resolve('data', 'tasks.json'), JSON.stringify(newTasks), (err) => {
       res.send();
-
     });
   });
 });
@@ -112,7 +111,27 @@ app.post('/deleteTasklist', jsonParse, (req, res) => {
   deleteTasklist(req.body.tasklist, (tasklists) => {
     res.json(tasklists);
   });
+});
 
+app.get('/notelist', (req, res) => {
+  fs.readFile(path.resolve('data', 'notelist.json'), (err, data) => {
+    let notelist = JSON.parse(data);
+    res.json(notelist);
+  });
+});
+
+app.post('/addnote', jsonParse, (req, res) => {
+  fs.readFile(path.resolve('data', 'notelist.json'), (err, data) => {
+    let notelist = JSON.parse(data);
+    // const newTask = padding(req.body);
+    // newTasks.push(newTask);
+    const newNote = padding.note(req.body);
+
+
+    // fs.writeFile(path.resolve('data', 'notelist.json'), JSON.stringify(), (err) => {
+    //   res.json();
+    // });
+  });
 });
 
 app.get('/', (req, res) => {

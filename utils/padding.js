@@ -4,11 +4,21 @@ function random() {
   return rand;
 }
 
-function padding(note) {
+function task(note) {
   const task = note;
   task.complited = false;
   task.id = random();
   return task;
 }
 
-module.exports = padding;
+function note(note) {
+  // console.log(note.header);
+  // console.log(note.content);
+  console.log(typeof note);
+
+}
+
+module.exports = {
+  task,
+  note
+};
