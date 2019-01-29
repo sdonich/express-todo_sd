@@ -27,33 +27,37 @@
 
   function submit() {
     if (noteText.textContent.length > 0 && noteHeader.textContent.length > 0) {
-      let note = {
-        header: noteHeader.textContent,
-        content: noteText.textContent
+      if (noteText.textContent !== 'type note...') {
+        let note = {
+          header: noteHeader.textContent,
+          content: noteText.textContent
+        }
+  
+        window.backend.addNote(note, (response) => {
+          addNote(response);
+        });
       }
-
-      window.backend.addNote(note, (response) => {
-        addNote(response);
-      });
+      
     }
 
     setDefaultState();
     window.switchMode.pull();
   }
-  function noteHeaderHandler() {
-    noteHeader.textContent = '';
-    noteHeader.style.color = 'black';
-  }
+  
   function setDefaultState() {
-    noteHeader.textContent = 'type header';
+    noteHeader.textContent = 'type header...';
     noteHeader.style.color = 'grey';
     noteText.textContent = '';
 
     addNoteButton.removeEventListener('click', submit);
-    noteHeader.removeEventListener('click', noteHeaderHandler);
+    
     switchModeButton.removeEventListener('click', setDefaultState);
     document.removeEventListener('mousedown', resetInputMousedownHandler);
     document.removeEventListener('keydown', keydownHandler);
+    noteText.removeEventListener('blur', noteTextBlurHandler);
+    noteText.removeEventListener('focus', noteTextFocusHandler);
+    noteHeader.removeEventListener('blur', noteHeaderBlurHandler);
+    noteHeader.removeEventListener('focus', noteHeaderFocusHandler);
   }
 
   function keydownHandler(evt) {
@@ -79,14 +83,45 @@
     }
   }
 
+  function noteTextBlurHandler() {
+    if (noteText.textContent.length === 0) {
+      noteText.textContent = 'type note...';
+      noteText.style.color = 'grey';
+    }
+  }
+
+  function noteTextFocusHandler() {
+    if (noteText.textContent === 'type note...') {
+      noteText.textContent = '';
+      noteText.style.color = 'black';
+    }
+  }
+  function noteHeaderBlurHandler() {
+    if (noteHeader.textContent.length === 0) {
+      noteHeader.textContent = 'type header...';
+      noteHeader.style.color = 'grey';
+    }
+  }
+
+  function noteHeaderFocusHandler() {
+    if (noteHeader.textContent === 'type header...') {
+      noteHeader.textContent = '';
+      noteHeader.style.color = 'black';
+    }
+  }
+
+
   function setNoteHandler() {
     noteText.focus();
 
     addNoteButton.addEventListener('click', submit);
-    noteHeader.addEventListener('click', noteHeaderHandler);
     switchModeButton.addEventListener('click', setDefaultState);
     document.addEventListener('keydown', keydownHandler);
     document.addEventListener('mousedown', resetInputMousedownHandler);
+    noteText.addEventListener('blur', noteTextBlurHandler);
+    noteText.addEventListener('focus', noteTextFocusHandler);
+    noteHeader.addEventListener('blur', noteHeaderBlurHandler);
+    noteHeader.addEventListener('focus', noteHeaderFocusHandler);
   }
 
   window.note = {
