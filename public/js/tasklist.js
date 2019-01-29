@@ -8,7 +8,9 @@
       tasks.forEach(task => {
         window.task.addTask(task);
       });
-    }, window.motivation.add);
+    }, () => {
+      window.motivation.add('tasks');
+    });
   }
 
   function add(title) {

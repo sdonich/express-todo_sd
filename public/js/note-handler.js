@@ -30,6 +30,10 @@
       let noteId = noteBox.getAttribute('id');
       window.backend.deleteNote(noteId, () => {
         noteBox.remove();
+
+        if (!document.querySelector('.note-box')) {
+          window.motivation.add('notes');
+        }
       });
 
     }); 

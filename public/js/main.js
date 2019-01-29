@@ -58,7 +58,7 @@
   }
 
   function emptyDataCallback() {
-    window.motivation.add();
+    window.motivation.add('tasks');
 
     let placeholder = document.createElement('p');
     placeholder.classList.add('tasklists-box__placeholder');

@@ -9,7 +9,7 @@
   
   }
   function emptyDataCallback() {
-    console.log('nothing to render');
+    window.motivation.add('notes');
   }
 
   function render() {

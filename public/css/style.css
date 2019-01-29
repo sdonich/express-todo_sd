@@ -192,7 +192,7 @@ body {
   width: 600px;
   min-height: 620px;
   padding: 20px 15px 20px 15px;
-  margin-right: 35px;
+  margin-right: 25px;
   border: 1px solid rgba(0, 0, 0, 0.4);
   border-radius: 10px;
   box-sizing: border-box;
@@ -359,12 +359,12 @@ body {
 .notes {
   display: grid;
   grid-template-columns: 270px 270px;
-  row-gap: 30px;
+  row-gap: 20px;
   column-gap: 42px;
   align-self: flex-start;
 
   width: 640px;
-  padding: 0;
+  padding: 0 10px;
   box-sizing: border-box;
   overflow-y: auto;
   background-color: white;
@@ -380,6 +380,7 @@ body {
 
   width: 285px;
   height: 183px;
+  margin-bottom: 10px;
   box-sizing: border-box;
   border-radius: 10px;
   border: 1px solid rgba(0, 0, 0, 0.4);
@@ -484,13 +485,29 @@ body {
 
 /*Элементы мотивационного блока*/
 
-.motivation-box {
-  margin-top: 180px;
+.motivation-box__tasks {
+  width: 200px;
+  margin: 124px auto;
   text-align: center;
   opacity: 0.4;
 }
 
-.motivation-box img {
+.motivation-box__tasks img {
+  display: block;
+  width: 130px;
+  margin: 5px auto;
+  opacity: 0.35;
+}
+
+.motivation-box__notes {
+  width: 200px;
+  margin-top: 180px;
+  margin-left: 183px;
+  text-align: center;
+  opacity: 0.4;
+}
+
+.motivation-box__notes img {
   display: block;
   width: 130px;
   margin: 5px auto;

@@ -91,7 +91,7 @@
   }
 
   function addTask(task) {
-    window.domElement.remove('.motivation-box');
+    window.domElement.remove('.motivation-box__tasks');
 
     let notDone = document.querySelector('.tasks_not-done');
     let done = document.querySelector('.tasks_done');

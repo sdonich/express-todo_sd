@@ -45,7 +45,7 @@
         taskBox.remove();
         
         if (!document.querySelector('.task-box')) {
-          window.motivation.add();
+          window.motivation.add('tasks');
         }
       });
     });

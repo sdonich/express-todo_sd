@@ -10,6 +10,8 @@
   let template = document.querySelector('template').content;
 
   function addNote(note) {
+    window.domElement.remove('.motivation-box__notes');
+
     let noteBox = template.querySelector('.note-box').cloneNode(true);
     noteBox.setAttribute('id', note.id);
 
