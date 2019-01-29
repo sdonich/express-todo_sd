@@ -123,14 +123,30 @@ app.get('/notelist', (req, res) => {
 app.post('/addnote', jsonParse, (req, res) => {
   fs.readFile(path.resolve('data', 'notelist.json'), (err, data) => {
     let notelist = JSON.parse(data);
-    // const newTask = padding(req.body);
-    // newTasks.push(newTask);
     const newNote = padding.note(req.body);
 
+    notelist.push(newNote);
+    fs.writeFile(path.resolve('data', 'notelist.json'), JSON.stringify(notelist), (err) => {
+      res.json(newNote);
+    });
+  });
+});
 
-    // fs.writeFile(path.resolve('data', 'notelist.json'), JSON.stringify(), (err) => {
-    //   res.json();
-    // });
+app.get('/deleteNote', (req, res) => {
+  const deleteNoteId = url.parse(req.url, true).query;
+
+  fs.readFile(path.resolve('data', 'notelist.json'), (err, data) => {
+    let notes = JSON.parse(data);
+    notes.forEach((note, i) => {
+      if (note.id == deleteNoteId.id) {
+        notes.splice(i, 1);
+      }
+    });
+
+    let jsonNotes = JSON.stringify(notes);
+    fs.writeFile(path.resolve('data', 'notelist.json'), jsonNotes, (err) => {
+      res.send();
+    });
   });
 });
 

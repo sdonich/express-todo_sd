@@ -12,10 +12,9 @@ function task(note) {
 }
 
 function note(note) {
-  // console.log(note.header);
-  // console.log(note.content);
-  console.log(typeof note);
-
+  const newNote = note;
+  newNote.id = random();
+  return newNote;
 }
 
 module.exports = {

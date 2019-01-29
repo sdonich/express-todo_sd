@@ -1,29 +1,39 @@
 'use strict';
 
 (function() {
-  let create
   let noteHeader = document.querySelector('.new-note__note-header');
   let noteText = document.querySelector('.new-note__note-text');
   let addNoteButton = document.querySelector('.new-note__add-button');
   let switchModeButton = document.querySelector('.create-box__mode-button');
   let createBoxWrapper = document.querySelector('.create-box__wrapper');
+  let notes = document.querySelector('.notes');
+  let template = document.querySelector('template').content;
+
+  function addNote(note) {
+    let noteBox = template.querySelector('.note-box').cloneNode(true);
+    noteBox.setAttribute('id', note.id);
+
+    let noteHeader = noteBox.querySelector('.note-box__header');
+    noteHeader.textContent = note.header;
+    let noteText = noteBox.querySelector('.note-box__text');
+    noteText.textContent = note.content;
+
+    notes.append(noteBox);
+    let cross = noteBox.querySelector('.note-box__cross');
+    window.noteHandler.setHandlers(noteBox, noteHeader, noteText, cross);
+  }
 
   function submit() {
-    console.log(noteHeader.textContent);
-    console.log(noteText.textContent);
-
     if (noteText.textContent.length > 0 && noteHeader.textContent.length > 0) {
       let note = {
         header: noteHeader.textContent,
         content: noteText.textContent
       }
 
-      // window.backend.addNote(note, () => {
-
-      // });
+      window.backend.addNote(note, (response) => {
+        addNote(response);
+      });
     }
-
-
 
     setDefaultState();
     window.switchMode.pull();
@@ -78,6 +88,7 @@
   }
 
   window.note = {
-    setNoteHandler
+    setNoteHandler,
+    addNote
   }
 })();

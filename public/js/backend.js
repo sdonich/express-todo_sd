@@ -140,10 +140,22 @@
     xhr.responseType = 'json';
     xhr.open('POST', '/addnote');
     xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.send(JSON.stringify({ note }));
+    xhr.send(JSON.stringify(note));
     
     xhr.addEventListener('load', function () {
       onLoad(xhr.response);
+    });
+  }
+
+  function deleteNote(id, onLoad) {
+    let xhr = new XMLHttpRequest();
+    xhr.responseType = 'json';
+
+    xhr.open('GET', `/deleteNote?id=${id}`);
+    xhr.send();
+
+    xhr.addEventListener('load', function () {
+      onLoad();
     });
   }
   
@@ -158,7 +170,8 @@
     editTasklist,
     deleteTasklist,
     notelist,
-    addNote
+    addNote,
+    deleteNote
   }
 })();
 
