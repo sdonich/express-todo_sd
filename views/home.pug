@@ -31,12 +31,22 @@ html(lang='en')
         ul(class='tasks-box__list tasks_not-done')
         ul(class='tasks-box__list tasks_done')
       div(class='notes')
+    div(class='note-box__editor-popup')
+      div(class='editor-popup__header' contenteditable='true') header...
+      div(class='editor-popup__text' contenteditable='true') text...
+      div(class='editor-popup__setting')
+        div(class='editor-popup__setting__submit button')
     template
       div(class='note-box')
         div(class='note-box__header') header...
         div(class='note-box__text') text...
         div(class='note-box__setting')
         div(class='note-box__cross button')
+      div(class='note-box__editor-popup')
+        div(class='editor-popup__header') header...
+        div(class='editor-popup__text') text...
+        div(class='editor-popup__setting')
+        div(class='editor-popup__cross button')
     script(src='js/dom-element.js')
     script(src='js/motivation.js')
     script(src='js/task-handler.js')

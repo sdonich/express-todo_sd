@@ -39,9 +39,24 @@
     }); 
   }
 
+  function noteBoxClickHandler(evt) {
+    let id = evt.currentTarget.getAttribute('id');
+    let header = evt.currentTarget.querySelector('.note-box__header').textContent;
+    let content = evt.currentTarget.querySelector('.note-box__text').textContent;
+    console.log(header);
+    console.log(content);
+    console.log(id);
+
+  }
+
+  function editContent(noteBox) {
+    noteBox.addEventListener('click', noteBoxClickHandler);
+  }
+
   function setHandlers(noteBox, noteHeader, noteText, cross) {
     crossAppear(noteBox, noteHeader, noteText, cross);
     crossDelete(cross, noteBox);
+    editContent(noteBox);
   }
 
   window.noteHandler = {
