@@ -6,7 +6,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const jsonParse = bodyParser.json();
 
-const {padding, edit, select, editTasklist, deleteTasklist} = require('./utils/index');
+const {padding, edit, select, editTasklist, deleteTasklist, editNote} = require('./utils/index');
 
 app.use(express.static(__dirname + '/public'));
 app.set('view engine', 'pug');
@@ -145,6 +145,20 @@ app.get('/deleteNote', (req, res) => {
 
     let jsonNotes = JSON.stringify(notes);
     fs.writeFile(path.resolve('data', 'notelist.json'), jsonNotes, (err) => {
+      res.send();
+    });
+  });
+});
+
+app.post('/editNote', jsonParse, (req, res) => {
+  let note = req.body;
+
+  fs.readFile(path.resolve('data', 'notelist.json'), (err, data) => {
+    let notelist = JSON.parse(data);
+    let newNotelist = editNote(note, notelist);
+
+    let JsonNewNotelist = JSON.stringify(newNotelist);
+    fs.writeFile(path.resolve('data', 'notelist.json'), JsonNewNotelist, (err) => {
       res.send();
     });
   });

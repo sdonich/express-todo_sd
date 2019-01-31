@@ -158,6 +158,21 @@
       onLoad();
     });
   }
+
+  function editNote(note, onLoad) {
+    let xhr = new XMLHttpRequest();
+    xhr.responseType = 'json';
+
+    xhr.open('POST', '/editNote');
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify(note));
+
+    xhr.addEventListener('load', () => {
+      if (xhr.status === 200) {
+        onLoad();
+      }
+    });
+  }
   
   window.backend = {
     create,
@@ -171,7 +186,8 @@
     deleteTasklist,
     notelist,
     addNote,
-    deleteNote
+    deleteNote,
+    editNote
   }
 })();
 

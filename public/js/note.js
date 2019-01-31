@@ -109,7 +109,6 @@
     }
   }
 
-
   function setNoteHandler() {
     noteText.focus();
 

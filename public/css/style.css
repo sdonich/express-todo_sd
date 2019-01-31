@@ -492,6 +492,7 @@ body {
   position: fixed;
   top: 100px;
   left: calc(50% - 300px);
+  z-index: 5;
 
   width: 600px;
   height: 300px;

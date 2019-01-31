@@ -1,6 +1,8 @@
 'use strict';
 
 (function() {
+  let template = document.querySelector('template').content;
+  
   function crossAppear(noteBox, noteHeader, noteText, cross) {
     noteText.addEventListener('mouseover', () => {
       cross.style.opacity = 0.5;
@@ -40,13 +42,37 @@
   }
 
   function noteBoxClickHandler(evt) {
-    let id = evt.currentTarget.getAttribute('id');
-    let header = evt.currentTarget.querySelector('.note-box__header').textContent;
-    let content = evt.currentTarget.querySelector('.note-box__text').textContent;
-    console.log(header);
-    console.log(content);
-    console.log(id);
-
+    if (evt.target !== evt.currentTarget.querySelector('.note-box__cross')) {
+      let id = evt.currentTarget.getAttribute('id');
+      let header = evt.currentTarget.querySelector('.note-box__header');
+      let content = evt.currentTarget.querySelector('.note-box__text');
+      let noteEditor = template.querySelector('.note-box__editor-popup').cloneNode(true);
+  
+      let noteHeader = noteEditor.querySelector('.editor-popup__header');
+      noteHeader.textContent = header.textContent;
+      let noteText = noteEditor.querySelector('.editor-popup__text');
+      noteText.textContent = content.textContent;
+  
+      document.body.prepend(noteEditor);
+  
+      let submitEditingButton = noteEditor.querySelector('.editor-popup__setting__submit');
+      submitEditingButton.addEventListener('click', () => {
+  
+        let note = {
+          id,
+          header: noteHeader.textContent,
+          content: noteText.textContent
+        }
+  
+        window.backend.editNote(note, () => {
+          header.textContent = note.header;
+          content.textContent = note.content;
+  
+        });
+  
+        noteEditor.remove();
+      });
+    }
   }
 
   function editContent(noteBox) {
