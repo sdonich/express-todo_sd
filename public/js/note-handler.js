@@ -75,8 +75,34 @@
     }
   }
 
+  function setDefaultState() {
+
+  }
+
+  function resetEditNote() {
+    
+  }
+
+  function submitEditNote() {
+    
+  }
+
   function editContent(noteBox) {
     noteBox.addEventListener('click', noteBoxClickHandler);
+    document.addEventListener('keydown', keydownEditHandler);
+  }
+
+  function keydownEditHandler(evt) {
+    if (evt.keyCode === 27) {
+      evt.preventDefault();
+      // resetEditTask();
+    }
+    if (evt.keyCode === 13) {
+      evt.preventDefault();
+      // submitEditTask();
+    }
+
+
   }
 
   function setHandlers(noteBox, noteHeader, noteText, cross) {
