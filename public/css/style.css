@@ -578,3 +578,17 @@ body {
   margin: 5px auto;
   opacity: 0.35;
 }
+
+/*Подложка*/
+
+.substrate {
+  position: fixed;
+  z-index: 4;
+  top: 0;
+
+  width: 1920px;
+  height: 555px;
+
+  background-color: rgba(89, 80, 56, 0.5);
+  opacity: 0.3;
+}
