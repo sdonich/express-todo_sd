@@ -70,6 +70,7 @@
   
       let noteHeader = noteEditor.querySelector('.editor-popup__header');
       noteHeader.textContent = header.textContent;
+      noteHeader.setAttribute('color', header.getAttribute('color'));
       let noteText = noteEditor.querySelector('.editor-popup__text');
       noteText.textContent = content.textContent;
   

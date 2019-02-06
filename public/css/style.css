@@ -9,6 +9,10 @@ body {
   cursor: pointer;
 }
 
+.button:active {
+  transform: scale(0.9);
+}
+
 /*Элементы верхнего меню (создание заметок и задач, поиск и т.д)*/
 
 .create-box__wrapper {
@@ -48,10 +52,6 @@ body {
   background-size: contain;
   background-repeat: no-repeat;
   opacity: 0;
-}
-
-.new-task__add-button:active {
-  transform: scale(0.9);
 }
 
 .create-box__mode-button {
@@ -546,10 +546,15 @@ body {
   align-self: center;
   min-width: 45px;
   min-height: 45px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0);
   background-image: url('/img/checkmark.png');
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
+}
+
+.editor-popup__setting__submit:hover {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 /*Элементы мотивационного блока*/
@@ -591,7 +596,7 @@ body {
   top: 0;
 
   width: 1920px;
-  height: 555px;
+  height: 1200px;
 
   background-color: rgba(89, 80, 56, 0.5);
   opacity: 0.3;

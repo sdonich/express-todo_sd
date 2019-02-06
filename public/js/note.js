@@ -20,6 +20,7 @@
 
     let noteHeader = noteBox.querySelector('.note-box__header');
     noteHeader.textContent = note.header;
+    noteHeader.setAttribute('color', note.color);
     let noteText = noteBox.querySelector('.note-box__text');
     noteText.textContent = note.content;
 
@@ -28,14 +29,21 @@
     window.noteHandler.setHandlers(noteBox, noteHeader, noteText, cross);
   }
 
+  function getColor() {
+    for (let i = 0; i <= paints.length; i++) {
+      if (paints[i].hasAttribute('status', 'selected')) {
+        return paints[i].getAttribute('color');
+      }
+    }
+  }
+
   function submit() {
-
-
     if (noteText.textContent.length > 0 && noteHeader.textContent.length > 0) {
       if (noteText.textContent !== 'type note...') {
         let note = {
           header: noteHeader.textContent,
-          content: noteText.textContent
+          content: noteText.textContent,
+          color: getColor()
         }
   
         window.backend.addNote(note, (response) => {
