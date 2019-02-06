@@ -31,6 +31,7 @@
     document.querySelector('.new-note__note-header').style.display = switcher[mode].note;
     document.querySelector('.new-note__note-text').style.display = switcher[mode].note;
     document.querySelector('.new-note__add-button').style.display = switcher[mode].note;
+    document.querySelector('.palette-button').style.display = switcher[mode].note;
 
     if (mode === 'noteMode') {
       window.note.setNoteHandler();

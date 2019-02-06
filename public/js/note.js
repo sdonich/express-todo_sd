@@ -6,6 +6,9 @@
   let addNoteButton = document.querySelector('.new-note__add-button');
   let switchModeButton = document.querySelector('.create-box__mode-button');
   let createBoxWrapper = document.querySelector('.create-box__wrapper');
+  let paletteButton = document.querySelector('.palette-button');
+  let palette = document.querySelector('.palette');
+  let paints = palette.querySelectorAll('.paint');
   let notes = document.querySelector('.notes');
   let template = document.querySelector('template').content;
 
@@ -47,6 +50,17 @@
     noteHeader.textContent = 'type header...';
     noteHeader.style.color = 'grey';
     noteText.textContent = '';
+    palette.style.display = 'none'; 
+
+    if (!paints[0].hasAttribute('status', 'selected')) {
+      paints[0].setAttribute('status', 'selected');
+      for (let i = 1; i <= paints.length; i++) {
+        if (paints[i].hasAttribute('status', 'selected')) {
+          paints[i].removeAttribute('status', 'selected');
+          break;
+        }
+      }
+    }
 
     addNoteButton.removeEventListener('click', submit);
     
@@ -75,7 +89,9 @@
   }
 
   function resetInputMousedownHandler(evt) {
-    if (evt.target.parentElement !== createBoxWrapper && evt.target !== createBoxWrapper) {
+    if (evt.target.parentElement !== createBoxWrapper && 
+        evt.target !== createBoxWrapper &&
+        evt.target.parentElement !== palette) {
       evt.stopPropagation();
       setDefaultState();
       window.switchMode.pull();
@@ -109,6 +125,41 @@
     }
   }
 
+  function closePaletteHandler(evt) {
+    if (evt.target !== paletteButton && evt.target !== palette) {
+      setTimeout(() => {
+        palette.style.display = 'none';
+        createBoxWrapper.removeEventListener('click', closePaletteHandler);
+        palette.removeEventListener('click', selectNoteColorHandler);
+      }, 200);
+    }
+  }
+
+  function displayPalette() {
+    let display = getComputedStyle(palette, null).display;
+
+    if (display === 'none') {
+      palette.style.display = 'grid';
+
+      createBoxWrapper.addEventListener('click', closePaletteHandler);
+    }
+    if (display === 'grid') {
+      palette.style.display = 'none';
+      createBoxWrapper.removeEventListener('click', closePaletteHandler);
+    }
+  }
+
+  function selectNoteColorHandler(evt) {
+    if (evt.target !== palette) {
+      paints.forEach(paint => {
+      if (paint.hasAttribute('status', 'selected')) {
+        paint.removeAttribute('status', 'selected')
+      }
+      evt.target.setAttribute('status', 'selected');
+    })
+    }
+  }
+
   function setNoteHandler() {
     noteText.focus();
 
@@ -120,6 +171,8 @@
     noteText.addEventListener('focus', noteTextFocusHandler);
     noteHeader.addEventListener('blur', noteHeaderBlurHandler);
     noteHeader.addEventListener('focus', noteHeaderFocusHandler);
+    paletteButton.addEventListener('click', displayPalette);
+    palette.addEventListener('click', selectNoteColorHandler);
   }
 
   window.note = {

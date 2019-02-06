@@ -392,6 +392,8 @@ body {
 
 .note-box__header {
   min-height: 30px;
+  max-height: 30px;
+
   padding: 5px 0 5px 10px;
   overflow: hidden;  
   border-top-left-radius: 10px;
@@ -399,6 +401,8 @@ body {
   border-right: 35px solid rgba(0, 0, 0, 0);
   background-color: rgba(255, 217, 102, 0.7);
   cursor: default;
+  line-height: 28px;
+  word-break: break-all;
 }
 
 .note-box__text {
@@ -429,7 +433,7 @@ body {
 
 .create-box__wrapper.notes-mod {
   grid-template-rows: auto auto 45px;
-  grid-template-areas: "header header header" "text text text" ". add switch";
+  grid-template-areas: "header header header" "text text text" "setting add switch";
   row-gap: 10px;
 }
 
@@ -591,4 +595,78 @@ body {
 
   background-color: rgba(89, 80, 56, 0.5);
   opacity: 0.3;
+}
+
+/*Палитра*/
+
+.palette {
+  position: absolute;
+  left: 14px;
+  top: 29px;
+  z-index: 5;
+
+  display: none;
+  grid-template-columns: 30px 30px 30px;
+	grid-template-rows: 30px 30px;
+  grid-gap: 10px;
+  grid-area: setting;
+
+	width: 130px;
+  height: 90px;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+	border-radius: 10px;
+	
+	background-color: white;
+	box-shadow: 0px 5px 5px 0 rgba(0, 0, 0, 0.4);
+}
+
+.palette-button {
+  position: relative;
+  top: 10px;
+  left: -21px;
+
+  grid-area: setting;
+  display: none;
+
+  width: 45px;
+  height: 45px;
+  background-image: url('/img/palette.png');
+  background-position: center;
+  background-size: 50%;
+  background-repeat: no-repeat;
+  opacity: 0.8;
+}
+
+.paint {
+  width: 30px;
+  height: 30px;
+  box-sizing: border-box;
+  border-radius: 25px;
+}
+.paint[color='yellow'] {
+  background-color: rgba(255, 217, 102, 0.7);
+}
+.paint[color='green'] {
+  background-color: rgba(102, 255, 152, 0.7);
+}
+.paint[color='blue'] {
+  background-color: rgba(23, 233, 195, 0.7);
+}
+.paint[color='darkblue'] {
+  background-color: rgba(23, 92, 233, 0.7);
+}
+.paint[color='purple'] {
+  background-color: rgba(154, 23, 233, 0.7);
+}
+.paint[color='red'] {
+  background-color: rgba(252, 11, 37, 0.7);
+}
+
+.paint[status="selected"] {
+	background-image: url('/img/task_checkmark.png');
+	background-size: 75%;
+	background-repeat: no-repeat;
+	background-position: center;
 }

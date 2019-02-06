@@ -5,14 +5,22 @@ html(lang='en')
     title To-Do
     link(rel='stylesheet', href='/css/style.css')
   body
+    
     div(class='create-box__wrapper')
       div(class='new-task__add-field' contenteditable='true') new task...
       div(class='new-task__add-button button')
       div(class='new-note__note-header' contenteditable='true') type header...
       div(class='new-note__note-text' contenteditable='true')
+      div(class='palette-button button')
       div(class='new-note__add-button button')
       div(class='create-box__mode-button button' mode='checkMode')
-
+      div(class='palette')
+        div(class='paint' color='yellow' status='selected')
+        div(class='paint' color='green')
+        div(class='paint' color='blue')
+        div(class='paint' color='darkblue')
+        div(class='paint' color='purple')
+        div(class='paint' color='red')
     div(class='board-wrapper')
       div(class='tasklists-box')
         h2(class='tasklists-box__title') Tasklists
