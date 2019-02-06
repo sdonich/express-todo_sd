@@ -29,6 +29,8 @@
   }
 
   function submit() {
+
+
     if (noteText.textContent.length > 0 && noteHeader.textContent.length > 0) {
       if (noteText.textContent !== 'type note...') {
         let note = {
@@ -140,6 +142,7 @@
 
     if (display === 'none') {
       palette.style.display = 'grid';
+      palette.addEventListener('click', selectNoteColorHandler);
 
       createBoxWrapper.addEventListener('click', closePaletteHandler);
     }

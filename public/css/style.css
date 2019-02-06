@@ -645,22 +645,22 @@ body {
   box-sizing: border-box;
   border-radius: 25px;
 }
-.paint[color='yellow'] {
+div[color='yellow'] {
   background-color: rgba(255, 217, 102, 0.7);
 }
-.paint[color='green'] {
+div[color='green'] {
   background-color: rgba(102, 255, 152, 0.7);
 }
-.paint[color='blue'] {
+div[color='blue'] {
   background-color: rgba(23, 233, 195, 0.7);
 }
-.paint[color='darkblue'] {
+div[color='darkblue'] {
   background-color: rgba(23, 92, 233, 0.7);
 }
-.paint[color='purple'] {
+div[color='purple'] {
   background-color: rgba(154, 23, 233, 0.7);
 }
-.paint[color='red'] {
+div[color='red'] {
   background-color: rgba(252, 11, 37, 0.7);
 }
 
