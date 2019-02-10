@@ -3,6 +3,7 @@ function editNote(newNote, notelist) {
     if (note.id == newNote.id) {
       note.header = newNote.header;
       note.content = newNote.content;
+      note.color = newNote.color;
     }
   });
 

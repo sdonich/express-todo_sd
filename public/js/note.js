@@ -1,13 +1,13 @@
 'use strict';
 
 (function() {
-  let noteHeader = document.querySelector('.new-note__note-header');
-  let noteText = document.querySelector('.new-note__note-text');
-  let addNoteButton = document.querySelector('.new-note__add-button');
-  let switchModeButton = document.querySelector('.create-box__mode-button');
   let createBoxWrapper = document.querySelector('.create-box__wrapper');
-  let paletteButton = document.querySelector('.palette-button');
-  let palette = document.querySelector('.palette');
+  let noteHeader = createBoxWrapper.querySelector('.new-note__note-header');
+  let noteText = createBoxWrapper.querySelector('.new-note__note-text');
+  let addNoteButton = createBoxWrapper.querySelector('.new-note__add-button');
+  let switchModeButton = createBoxWrapper.querySelector('.create-box__mode-button');
+  let paletteButton = createBoxWrapper.querySelector('.palette-button');
+  let palette = createBoxWrapper.querySelector('.palette');
   let paints = palette.querySelectorAll('.paint');
   let notes = document.querySelector('.notes');
   let template = document.querySelector('template').content;
@@ -29,21 +29,13 @@
     window.noteHandler.setHandlers(noteBox, noteHeader, noteText, cross);
   }
 
-  function getColor() {
-    for (let i = 0; i <= paints.length; i++) {
-      if (paints[i].hasAttribute('status', 'selected')) {
-        return paints[i].getAttribute('color');
-      }
-    }
-  }
-
   function submit() {
     if (noteText.textContent.length > 0 && noteHeader.textContent.length > 0) {
       if (noteText.textContent !== 'type note...') {
         let note = {
           header: noteHeader.textContent,
           content: noteText.textContent,
-          color: getColor()
+          color: window.palette.getColor(paints)
         }
   
         window.backend.addNote(note, (response) => {
@@ -60,7 +52,8 @@
     noteHeader.textContent = 'type header...';
     noteHeader.style.color = 'grey';
     noteText.textContent = '';
-    palette.style.display = 'none'; 
+    palette.style.display = 'none';
+    paletteButton.setAttribute('color', 'yellow');
 
     if (!paints[0].hasAttribute('status', 'selected')) {
       paints[0].setAttribute('status', 'selected');
@@ -121,6 +114,7 @@
       noteText.style.color = 'black';
     }
   }
+
   function noteHeaderBlurHandler() {
     if (noteHeader.textContent.length === 0) {
       noteHeader.textContent = 'type header...';
@@ -135,42 +129,6 @@
     }
   }
 
-  function closePaletteHandler(evt) {
-    if (evt.target !== paletteButton && evt.target !== palette) {
-      setTimeout(() => {
-        palette.style.display = 'none';
-        createBoxWrapper.removeEventListener('click', closePaletteHandler);
-        palette.removeEventListener('click', selectNoteColorHandler);
-      }, 200);
-    }
-  }
-
-  function displayPalette() {
-    let display = getComputedStyle(palette, null).display;
-
-    if (display === 'none') {
-      palette.style.display = 'grid';
-      palette.addEventListener('click', selectNoteColorHandler);
-
-      createBoxWrapper.addEventListener('click', closePaletteHandler);
-    }
-    if (display === 'grid') {
-      palette.style.display = 'none';
-      createBoxWrapper.removeEventListener('click', closePaletteHandler);
-    }
-  }
-
-  function selectNoteColorHandler(evt) {
-    if (evt.target !== palette) {
-      paints.forEach(paint => {
-      if (paint.hasAttribute('status', 'selected')) {
-        paint.removeAttribute('status', 'selected')
-      }
-      evt.target.setAttribute('status', 'selected');
-    })
-    }
-  }
-
   function setNoteHandler() {
     noteText.focus();
 
@@ -182,8 +140,7 @@
     noteText.addEventListener('focus', noteTextFocusHandler);
     noteHeader.addEventListener('blur', noteHeaderBlurHandler);
     noteHeader.addEventListener('focus', noteHeaderFocusHandler);
-    paletteButton.addEventListener('click', displayPalette);
-    palette.addEventListener('click', selectNoteColorHandler);
+    paletteButton.addEventListener('click', window.palette.display);
   }
 
   window.note = {

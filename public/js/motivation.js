@@ -3,7 +3,7 @@
 (function() {
 
   let motivationText = {
-    'tasks': `no task, let's play in videogames`,
+    'tasks': `no task, let's play videogames`,
     'notes': `area for your notes`
   }
 

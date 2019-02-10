@@ -43,11 +43,13 @@
 
   function getNoteData() {
     let noteEditor = document.querySelector('.note-box__editor-popup');
+    let noteHeader = noteEditor.querySelector('.editor-popup__header');
 
     return {
       id: noteEditor.getAttribute('id'),
       header: noteEditor.querySelector('.editor-popup__header').textContent,
-      content: noteEditor.querySelector('.editor-popup__text').textContent
+      content: noteEditor.querySelector('.editor-popup__text').textContent,
+      color: noteHeader.getAttribute('color')
     }
   }
 
@@ -56,6 +58,16 @@
     window.domElement.remove('.substrate');
     document.removeEventListener('keydown', resetEditNote);
     document.removeEventListener('mousedown', submitMousedownHandler);
+  }
+
+  function setColor(noteEditor, color) {
+    let paints = noteEditor.querySelectorAll('.paint');
+    for (let i = 0; i <= paints.length; i++) {
+      if (paints[i].getAttribute('color') === color) {
+        paints[i].setAttribute('status', 'selected');
+        return;
+      }
+    }
   }
 
   function noteBoxClickHandler(evt) {
@@ -70,9 +82,12 @@
   
       let noteHeader = noteEditor.querySelector('.editor-popup__header');
       noteHeader.textContent = header.textContent;
-      noteHeader.setAttribute('color', header.getAttribute('color'));
+      let color = header.getAttribute('color');
+      noteHeader.setAttribute('color', color);
       let noteText = noteEditor.querySelector('.editor-popup__text');
       noteText.textContent = content.textContent;
+
+      setColor(noteEditor, color);
   
       document.body.prepend(noteEditor);
       noteText.focus();
@@ -82,6 +97,9 @@
       submitButton.addEventListener('click', submitNoteEdit);
       document.addEventListener('keydown', resetEditNote);
       document.addEventListener('mousedown', submitMousedownHandler);
+
+      let paletteButton = noteEditor.querySelector('.palette-button');
+      paletteButton.addEventListener('click', window.palette.display);
     }
   }
 
@@ -92,13 +110,15 @@
   }
 
   function submitNoteEdit() {
-    window.backend.editNote(getNoteData(), () => {
-      let editNote = getNoteData();
+    let editData = getNoteData();
+    window.backend.editNote(editData, () => {
       let notes = document.querySelectorAll('.note-box');
       notes.forEach((note) => {
-        if (note.getAttribute('id') === editNote.id) {
-          note.querySelector('.note-box__header').textContent = editNote.header;
-          note.querySelector('.note-box__text').textContent = editNote.content;
+        if (note.getAttribute('id') === editData.id) {
+          let noteHeader = note.querySelector('.note-box__header');
+          noteHeader.textContent = editData.header;
+          noteHeader.setAttribute('color', editData.color);
+          note.querySelector('.note-box__text').textContent = editData.content;
         }
       });
 

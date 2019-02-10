@@ -9,6 +9,7 @@
         window.task.addTask(task);
       });
     }, () => {
+      window.domElement.remove('.task-box');
       window.motivation.add('tasks');
     });
   }

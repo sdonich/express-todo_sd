@@ -443,7 +443,6 @@ body {
   display: none;
 
   min-height: 45px;
-  margin-right: 25px;
   outline: none;
   color: grey;
   font-size: 26px;
@@ -606,8 +605,7 @@ body {
 
 .palette {
   position: absolute;
-  left: 14px;
-  top: 29px;
+  
   z-index: 5;
 
   display: none;
@@ -629,19 +627,41 @@ body {
 
 .palette-button {
   position: relative;
-  top: 10px;
-  left: -21px;
-
-  grid-area: setting;
-  display: none;
-
-  width: 45px;
-  height: 45px;
   background-image: url('/img/palette.png');
   background-position: center;
-  background-size: 50%;
   background-repeat: no-repeat;
   opacity: 0.8;
+}
+
+.create-box__wrapper .palette {
+  left: 14px;
+  top: 29px;
+}
+
+.editor-popup__setting .palette {
+  left: 36px;
+  bottom: -63px;
+}
+
+.create-box__wrapper .palette-button {
+  top: 17px;
+  left: -11px;
+  grid-area: setting;
+  display: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 25px;
+  background-size: 55%;
+}
+
+.editor-popup__setting .palette-button {
+	top: 18px;
+	left: 5px;
+
+  margin: 0 auto 0 0;
+	width: 25px;
+	height: 25px;
+	background-size: contain;
 }
 
 .paint {
@@ -654,16 +674,16 @@ div[color='yellow'] {
   background-color: rgba(255, 217, 102, 0.7);
 }
 div[color='green'] {
-  background-color: rgba(102, 255, 152, 0.7);
+  background-color: rgba(129, 230, 47, 0.7);
 }
 div[color='blue'] {
-  background-color: rgba(23, 233, 195, 0.7);
+  background-color: rgba(63, 228, 222, 0.7);
 }
 div[color='darkblue'] {
   background-color: rgba(23, 92, 233, 0.7);
 }
 div[color='purple'] {
-  background-color: rgba(154, 23, 233, 0.7);
+  background-color: rgba(117, 40, 164, 0.7);
 }
 div[color='red'] {
   background-color: rgba(252, 11, 37, 0.7);
